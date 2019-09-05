@@ -1,0 +1,368 @@
+<?php include("../../../../fbs/authenticate.php"); ?>
+<html><head><title>
+
+[Frontiers in Bioscience E5, 533-545, January 1, 2013]
+
+</title>  <META NAME="Description" CONTENT="This is a journal and virtual library useful to scientists, physicians and patients. The site contains medical and biology information as articles, databases, books, lectures and more. The site also contains the forms to search the most useful sites on the Web."><meta name="description" content="Science, global weekly of science"><meta name="keywords" content="Science, Medicine Biology, Journal, Library, Disease, Patient, Doctor, Physician, Manuscript, Artcile, Book, Database, Job, Gene, Gene knockout, Atlas, Embryo, Human, Mouse, Xenopus, Embryoglogy, Pathology, Tumor, Cancer, Diagnosis, Treatment, Restriction Enzyme, Aminoacid, Elements, Heart, anatomy, anthropology, apoptosis, archaeology, asteroids, astrobiology, astronomy, behavioral science, biochemistry, bioinformatics, biology, biophysics, bioremediation, biotechnology, cancer, cardiology, cell , cell biology, cell membrane, chemistry, climate, cognition, cognitive science, ccomputer science, computing, cosmology, cytokine, development, developmental biology, earth, earth science, ecology, electrophyisology, endocrinology, bioengineering, environmental science, epidemiology, evolution, gene regulation, gene therapy, genetic engineering, genetics, genomics, geonome, geophysics, growth factor, HIV, hormone, immunology, informatics, kinase, life science, marine science, materials science, mathematics, medicine, mercury, microbiology, molecular biology, morphology, nature, neurobiology, neuroscience, neurotransmitter, nucleus, numerical methods, numerical simulations,oncology, optics, paleontology, pathology, peptide, pharmaceuticals, pharmacology, physical sciences, physics, physiology, protein, psychology, receptor, satellites, science and society, science careers, science education, science employment, science jobs, science journal, science news, science online, science policy, science signal transduction, science stories, science techniques, scientific careers, scientific information, scientific jobs, signal transduction, spectroscopy, steroid, structural biology, toxicology, universe, veterinary science, virology, zoology, Sound, Music, Jukebox, Computer, Telephone, E-mail, Address, Directory, Dictionary, Toolbox, Decay, Radiation, Mortgage, Home, Advertise, Web, Design, Graphics, Image, Subscription, Net, Flash, Javascript, Editor, Managing editor, Biologist, Scientist, Issue, Encyclopedia, Bioscience, Virtual, Calendar, News, Map, Time, Data, Track a package, Translate, Scientific Calculator, DNA, RNA, Protein, NIH Prize, Grant Forms, Genetic Code, Clincial, Travel, Weather, Tutorial, Zip code, Area code, Currency, Converter, Mortgage, Events, Guides, Newsgroup,"></head>
+<body background="../../../../images/white1.jpg" LINK="#5889FC" VLINK="#9F2440"> <table><tr><td width="700"><img src="http://www.bioscience.org/images/blank.gif" width=48 height=56 border=0><br><b><font face="arial" color="#433447">
+
+[Frontiers in Bioscience E5, 533-545, January 1, 2013]
+
+</font></b></td></tr><tr><td>
+<img src="http://www.bioscience.org/images/blank.gif" width=48 height=61 border=0>
+</td></tr><tr><td width="700"><font face="arial" color="#433447"><B><P ALIGN="JUSTIFY">Semi-automatic determination of cell surface areas used in systems biology
+</B>
+<B><P ALIGN="JUSTIFY">Volker Morath<SUP>1,2</SUP>, Margret Keuper<SUP>1,3</SUP>, Marta Rodriguez-Franco<SUP>4</SUP>, Sumit Deswal<SUP>1,2,5</SUP>, Gina Fiala<SUP>1,2,5</SUP>, Britta Blumenthal<SUP>1,2</SUP>, Daniel Kaschek<SUP>1,6</SUP>, Jens Timmer<SUP>1,6</SUP>, Gunther Neuhaus<SUP>4</SUP>, Stephan Ehl<SUP>7,8</SUP>, Olaf Ronneberger<SUP>1,3</SUP>, <a href="mailto:schamel@immunbio.mpg.de">Wolfgang Werner A. Schamel</a><SUP>1,2,7
+</B></SUP><P ALIGN="JUSTIFY"> 
+<I><SUP><P ALIGN="JUSTIFY">1</SUP>BIOSS Centre for Biological Signaling Studies, University of Freiburg, Germany, <SUP>2</SUP>Department of Molecular Immunology, Max Planck-Institute of Immunobiology and Institute of Biology III, Faculty of Biology, University of Freiburg, Germany,<SUP> 3</SUP>Computer Science Department, Technical Faculty, University of Freiburg, Germany, <SUP>4</SUP>Department of Cell Biology, Faculty of Biology, University of Freiburg, Germany, <SUP>5</SUP>Spemann Graduate School of Biology and Medicine, SGBM, University of Freiburg, Germany, <SUP>6</SUP>Physics Institute, University of Freiburg, Germany,<SUP> 7</SUP>Centre for Chronic Immunodeficiency CCI, University Clinics Freiburg and Medical Faculty, University of Freiburg, Germany, <SUP>8</SUP>Centre for Pediatrics and Adolescent Medicine, University Medical Center Freiburg
+</I>
+<B><P ALIGN="JUSTIFY"> TABLE OF CONTENTS</b><I><dl>
+<dt>1. Abstract
+<dt>2. Introduction
+<dt>3. Materials and methods
+<dd>3.1 .Cells
+</dd><dD>3.2 .Flow cytometry
+</dd><dD>3.3 .Confocal microscopy
+</dd><dD>3.4 .Electron microscopy
+</dd><dD>3.5 .Data processing</dd>
+<dt>4. Results
+<dd>4.1 .Design of the study
+</dd><dd>4.2. Determination of the cellular and nuclear radii distributions
+</dd><dd>4.3. Acquisition of high resolution 2D images
+</dd><dd>4.4. Calculation of the stereological 3D parameters
+<dt>5. Discussion
+<dt>6. Acknowledgements
+<dt>7. References 
+
+</I></dl>
+<B><P ALIGN="JUSTIFY">1. ABSTRACT
+
+</B><P ALIGN="JUSTIFY">Quantitative biology requires high precision measurement of cellular parameters such as surface areas or volumes. Here, we have developed an integrated approach in which the data from 3D confocal microscopy and 2D high-resolution transmission electron microscopy were combined. The volumes and diameters of the cells within one population were automatically measured from the confocal data sets. The perimeter of the cell slices was measured in the TEM images using a semi-automated segmentation into background, cytoplasm and nucleus. These data in conjunction with approaches from stereology allowed for an unbiased estimate of surface areas with high accuracy. We have determined the volumes and surface areas of the cells and nuclei of six different immune cell types. In mast cells for example, the resulting cell surface was 3.5 times larger than the theoretical surface assuming the cell was a sphere with the same volume. Thus, our accurate data can now serve as inputs in modeling approaches in systems immunology.
+
+<B><P ALIGN="JUSTIFY">2. INTRODUCTION
+
+</B><P ALIGN="JUSTIFY">A mechanistic understanding of biological processes requires the generation of quantitative data sets and their description in mathematical terms. This approach has been extensively used in the last years for a detailed understanding of signal transduction pathways (1-3). As many mathematical models are based on ordinary differential equations, their calibration requires accurate data of as many reaction network components as possible. The experimental data that serve as an input to the models include kinetics or dose responses of protein phosphorylations (measured by intracellular flow cytometry, beads based assays, mass spectroscopy or Western blotting) or protein-protein interactions (quantified by immunoprecipitations followed by Western blotting, flow cytometry or mass spectroscopy) (4-6). Common parameters to be measured are reaction rates (measured by enzyme assays), association constants (determined by surface plasmon resonance or flow cytometry) and initial protein concentrations.
+
+<P ALIGN="JUSTIFY">In modeling, it is common practice to determine some parameters by fitting the mathematical model to the experimental data (4,7,8), which is a reasonable approach in many cases. However, the more parameters are determined experimentally the better are the models. In addition, often relative changes rather than absolute values are measured, requiring scaling factors. Thus, it is important to determine the concentration of molecules in molar values, such as moles of a receptor per area of the cell surface or moles of a signaling molecule per volume of cytoplasm. In the case of proteins, one can use quantitative Western blotting or flow cytometry in combination with appropriate standards to determine the total number of a protein on the cell surface or inside the cell (4,9,10). However, the surface area is not easy to measure and its measurement thus constitutes a severe error source in the determination of membrane protein concentrations.
+
+<P ALIGN="JUSTIFY">In many reports, the cell is considered as a sphere (4,11) or a cylinder (12) and the volume or surface area are calculated using the according formula. But as evidenced form electron microscopy (EM) images, the surface of many cell types is not smooth and the cell is not a perfect sphere or cylinder. Many cell surfaces contain protrusions that make the total surface area larger than calculated from the assumption of a perfect sphere or cylinder. Therefore, the surface density of membrane proteins calculated by supposing a spherical cell is higher than it is in reality.
+
+<P ALIGN="JUSTIFY">Besides the measurement of relative increases in cell volume, for example upon cell growth (13), several technologies were used to estimate the volume of cells. These include Coulter counting, flow cytometry, radioisotope labeling, impedance measurements and light-microscopy (14-17) as well as stereological techniques (see below). One of the currently used techniques to estimate cell surface area and volume is confocal light microscopy (18,19). In this method, image sets consisting of very thin, serial optical sections across the cell are obtained and a three-dimensional (3D) model of an individual cell is constructed using digital image processing techniques. To obtain the average of a cell population a large number of cells have to be processed. Further, scanning ion conductance microscopy is also used for measuring cell volumes (20). However, light microscopy-based methods have a limited spatial resolution of approx. 0.2 �m, which might not be enough to visualize finer cell protrusions.
+
+
+
+<P ALIGN="JUSTIFY">A high-resolution technique to visualize even small cellular structures is transmission EM (TEM). Indeed, TEM has been used to determine the nuclear and cytoplasmic volumes and the surface area of cells (21-23).
+
+<P ALIGN="JUSTIFY">In stereology a quantitative analysis of 3D structures is undertaken based on the evaluation of 2D images (24,25). Stereological approaches are applied in physiology, neuro-sciences or immunology (26) where complex tissues are sampled and also for single cell suspensions (21,23,27). 
+
+<P ALIGN="JUSTIFY">In stereology unbiased sampling strategies have been developed to give every point in a biological sample the same probability to be observed (28-31). This allows to directly compute parameters of the 3D tissue from measurements within random 2D sections. 
+
+<P ALIGN="JUSTIFY">The standard procedure in stereology allows for computing the total surface area or the total cytoplasm volume within a certain reference volume from the random 2D sections analyzed by TEM. As we were interested in the surface area per cell, we would need the exact number of cells within the reference volume, which cannot be obtained from random sections. A possible solution would be to use aligned serial sections, but this puts much higher demands on the preparation and recording and requires to assume a homogeneous cell density within the sample. More complex measurements based on 2D slices, such as the cell size distribution within a population are even more challenging, and would require additional assumptions. 
+
+<P ALIGN="JUSTIFY">So we propose to use pure random sections for the TEM and obtain the missing parameters (cell size distribution within a given population) by fully automated 3D confocal microscopy.
+
+<B><P ALIGN="JUSTIFY">3. MATERIALS AND METHODS
+
+<P ALIGN="JUSTIFY">3.1. Cells
+</B><P ALIGN="JUSTIFY">The human T cell line Jurkat (32), the murine B cell line J558L and murine bone marrow derived-mast cells (33) were grown (34-36) using 5% or 10% fetal calf serum. The bone marrow derived mast cells were a gift of Michael Huber, Aachen, and Marina Freudenberg, Freiburg. Primary mouse B cells were obtained from the spleen of C57BL/6 mice and purified using a CD43 MicroBead MACS Cell separations Kit in an AutoMACS separator (Miltenyi Biotech) according to the manufacturer's protocol (37,38). 
+
+<P ALIGN="JUSTIFY">Human peripheral blood mononuclear cells (PBMCs) were obtained from anticoagulated peripheral blood of healthy donors by Ficoll density gradient centrifugation (PAN-Biotec). For T cell blasts generation PBMCs (1.5x106 cells/ml) were stimulated with 1.25 mg/ml phytohemagglutinin (PHA) and IL-2 (100 U/ml) for 3 days and with IL-2 only (100 U/ml) for another 2 days. Primary human T cells were isolated from PBMCs using the Pan T cell isolation kit II from Miltenyi Biotec according to the manufacturer's instructions. In a second purification step, the MACS-sorted T cells were stained with APC-labelled anti-CD14, APC-labelled anti-CD19 APC and APC-labelled anti-CD56 and further purified by FACS sorting. The purity of the isolated primary human T cell fraction was determined by anti-CD3 staining and was 96%.
+
+<B><P ALIGN="JUSTIFY">3.2. Flow cytometry
+</B><P ALIGN="JUSTIFY">Flow cytometric analyses were performed using a LSRII Flow Cytometer (Becton Dickinson). In order to compare the different cell types, the voltage for the forward scatter (FSC) and side scatter (SSC) were fixed to 350 V and 287 V, respectively. A minimum of 10000 cells were recorded. Data were analysed with the FlowJo software (Tree Star, Inc.) as before (39).
+
+<B><P ALIGN="JUSTIFY">3.3. Confocal microscopy
+</B><P ALIGN="JUSTIFY">Cells were stained in 2 ml culture media with 2 �g Calcein AM (Mill Valley) and 32 mM DAPI (Invitrogen) at 37�C in 5% CO2 for 45 minutes. Cells were washed once and resuspending in culture media. Subsequently, cells were passed through a 41 �m polyamide mesh (Reichelt) to obtain a single cell suspension. Calcein AM (40) diffuses into the cells where it is hydrolyzed by intracellular esterases and emits a strong fluorescence and thus stains the whole cell. DAPI binds to the minor groove of the DNA (41) and thus stains the nucleus. Confocal microscopy was performed with a Zeiss AX10 Imager equipped with a CSU-X1 spinning disk (Yokogawa), an MRM camera and a LCI Plan-Neofluar 63x water immersion objective (both Zeiss) with an exposure time of 200 ms. The cytoplasmic dye Calcein AM was excited at 488 nm and measured through the emission filter BP 525/50 SFP. For the nuclear dye DAPI an excitation wavelength of 405 nm was used in combination with the emission filter BP 450/50 DAPI. 
+
+<B><P ALIGN="JUSTIFY">3.4. Electron microscopy
+</B><P ALIGN="JUSTIFY">For prefixation glutaraldehyde (Sigma) was added to the culture media to a final concentration of 2.5% and incubated for 30 minutes. After harvesting, cells were fixed for 3 h with 2.5% glutaraldehyde in 50 mM cacodylate buffer and post-fixed with 1% OsO4 at 4�C. Dehydration through a graded series of ethanol was performed before embedding in Epon 812 resin. Ultra-thin (approx. 90 nm) sections were stained with uranyl acetate (UAc) and lead citrate (PbCit) and examined in a Philips/FEI CM10 (80 kV) electron microscope equipped with a Bio-scan Camera Model 792. Images were recorded with Digital Micrograph software (Gatan).
+
+<B><P ALIGN="JUSTIFY">3.5. Data processing
+</B><P ALIGN="JUSTIFY">All programs for the processing of the confocal data were written in C++. The manual corrections were done using ImageJ. For the processing of the TEM images, the Matlab-based Berkley segmentation engine (BSE) was used (42,43). The software for the data evaluation was written in Matlab.
+
+<B><P ALIGN="JUSTIFY">4. RESULTS
+
+</B><P ALIGN="JUSTIFY">We determined first order stereological parameters, such as surface and volume, by combining 3D confocal with 2D electron microscopical methods and (semi-) automated pattern recognition (Figure 1).
+
+<B><P ALIGN="JUSTIFY">4.1. Design of the study
+</B><P ALIGN="JUSTIFY">The 3D images of the cells and the nuclei were obtained by spinning disk confocal microscopy (Figure 1B). Automatic edge detection and expert control (Figure 1C and D) allowed determining the average volumes, lower bounds for the surfaces and the size distribution of the cells as well as the nuclei. The latter was important for calculating the surface area, since the 2D TEM images do not allow us to obtain the size distribution of the cells, due to the fact that one does not know at which height each cell was cut for image acquisition. For example, the same TEM image could be obtained from a small cell sectioned at the &quot;equator&quot; or a large cell sectioned at its &quot;pole&quot;.
+
+<P ALIGN="JUSTIFY">To obtain high resolution data allowing for the determination of the exact path of nuclear- and cell membranes, the cells were fixed, sectioned and 2D images were recorded by TEM (Figure 1E). TEM images were semi-automatically processed (Figure 1F and G) and analyzed for the section area and the boundary length of the cell and nucleus surfaces. The size distribution of the cells obtained by confocal microscopy and the section area and boundary length distribution from the high resolution images by TEM, allowed us to calculate the average surface area of the cells and the nuclei (Figure 1H). The average cell and nucleus radii were calculated from the 3D confocal microscopy areas using the circle formula.
+
+<P ALIGN="JUSTIFY">In this study the three main cell types of the adaptive immune system, T, B and mast cells, were used. These were primary human T cells from blood of a healthy donor and phytohemagglutinin/IL-2 expanded human T cells (T cell blasts), the human T-cell line Jurkat (32), primary mouse B cells isolated from the spleen, the murine B-cell line J558L and bone marrow derived mast cells (33). Using flow cytometry we show that 94%, 70%, 80%, 95%, 91% and 85% of the primary T cells, T cell blasts, Jurkat, primary B cells, J558L and mast cells, respectively, were viable (Figure 2A). As expected, the primary cells were smaller than the cultured cell lines, as seen by the lower values of the forward scatter. Further, Jurkat cells showed the highest biological variation concerning the size (FSC, Figure 2A), where approximately 0.5% of the cells were giant multinucleated cells (Figure 2B). 
+
+<B><P ALIGN="JUSTIFY">4.2. Determination of the cellular and nuclear radii distributions
+</B><P ALIGN="JUSTIFY">Confocal microscopy was used to obtain the mean radius and the size distribution of the cells and nuclei. Unbiased sampling was assured by randomly recording all z-stacks containing several cells within the image display. In figure 3 we show an example of one z-plane for each cell type. A differential interference contrast (DIC) image (Figure 3A), the Calcein AM (whole cell, Figure 3B) and DAPI (nucleus, Figure 3E) fluorescences are displayed. The two fluorescence images were recorded, in order to facilitate a semi-automatic segmentation of the cells and their nuclei. Grayscale values of the z-stacks were normalized using a min/max function (Adjust Display function) to set the range of grayscale between the lowest and the highest pixel present in the z-stack. We used a resolution of 0.1 �m in x/y-direction and 1 �m in z-direction. The resolution in z-direction represents a trade-off between accuracy and time requirement for the measurement as it has been discussed for another stereological project (43).
+
+<P ALIGN="JUSTIFY">The raw data exported from the microscope were noisy and contained structural details that were not desired for this evaluation. For this reason a Gaussian smoothing with standard deviation of 0.3 �m in all three directions was applied to the data. In order to discriminate between foreground and background, an intensity threshold was computed based on the edge information in the data. The edges of cells and nuclei were determined by considering the length of the corresponding intensity gradient &Ntilde;I, i.e. the magnitude of the intensity change between neighboring pixels. For different thresholds, we compared the values of the gradient magnitude ||&Ntilde;I|| on the resulting boundaries. The best threshold &#964; yields cell boundaries lying on the image edges and thus can be determined by maximizing the gradient magnitude on the resulting contour. 
+
+<P ALIGN="JUSTIFY"><IMG SRC="image1238.gif" WIDTH=307 HEIGHT=38>
+
+
+
+<P ALIGN="JUSTIFY">&#948; is the Dirac function. 
+
+<P ALIGN="JUSTIFY">This threshold optimization was done for the cells with steps in the intensity range from 10 to 1500 and for the nucleus with steps in the range from 10 to 400, both with a step size of 2. The result was manually controlled using an overlay of the computed outline and the original image in 3D (Figure 3C and F) to exclude incompletely stained cells, cells that are only partially visible on the image display or cell doublets (i.e. two cells touching one another). The resulting binary masks marking the complete cells (red) and the nuclei (green) are shown (Figure 3H).
+
+<P ALIGN="JUSTIFY">The segmentation masks were least reliable in the z-direction due to data blurring and the lower resolution in this direction. Thus, we did not use pixel counting of the complete volume to compute the average radii of the segmented masks. Instead, the radii were computed from the z-planes with the maximum section area, i.e. the equatorial plane of the cell. The section area in the equatorial plane was measured and the corresponding radius was calculated using the circle formula. The resulting distribution of the cellular and nuclear radii in each cell population is displayed (Figure 3D and G, respectively). Here and in further analyses we omitted the few giant multi-nuclear Jurkat cells (Figure 2B; cells with two or three nuclei that were within the size distribution were included in our analysis). 
+
+<P ALIGN="JUSTIFY">In conclusion, spinning disk confocal microscope images were used to record the biological variability of the different cell populations concerning their cellular and nuclear radii.
+<P ALIGN="JUSTIFY"> 
+<B><P ALIGN="JUSTIFY">4.3. Acquisition of high resolution 2D images
+</B><P ALIGN="JUSTIFY">Next, TEM was used to obtain images of the cells with a resolution that allows unequivocal detection of all membrane protrusions. For each cell type, a magnification was chosen that allowed recording all cell sections in one image. The magnifications used were 4600x, 5800x and 13500x, yielding pixel sizes in the x- and y-directions of 0.0196 mm, 0.015 mm and 0.0067 mm. Since the cells do not have a preferential orientation within the cell suspension, this results in a systematic random sampling strategy that gives every position within a cell the same probability to be sampled.
+
+<P ALIGN="JUSTIFY">The precise segmentation of the 2D TEM images (Figure 4A and 5A) was based on hierarchical regions computed with the Berkley segmentation engine (BSE) (41,42). In a first step, the image pixels were hierarchically grouped into regions depending on their grayscale and texture (Figure 4B and 5B). The BSE tool provides a Matlab-based graphical user interface for the interactive generation of final segmentation masks from region hierarchies. Herein, the region hierarchies are merged by the user drawing dots and lines (Figure 4C and 5C), such that very little manual interaction is needed compared to a fully manual segmentation. The graphical user interface displays the resulting binary masks (Figure 4F and 5F) and an overlay over the original data (Figure 4D and 5D). A slight modification of the input-script was necessary in order to automatically load, process, and save one TEM image after another. We needed, depending on the image's complexity, one to two minutes to generate a segmentation mask for a cell and the corresponding nucleus, compared to 10 to 20 minutes in a fully manual segmentation.
+
+<P ALIGN="JUSTIFY">These binary masks were used to compute the Euclidean contour length shown in figure 4D and 5D. Since the contour length is also dependent on the magnification used, a smoothing was performed. This smoothing had to be performed in a range that it conserved all biologically relevant protrusions but removed noise. The choice of the smoothing factor was reasoned by the fact that the smallest expected curvature of the membranes are in the range of 60 nm in diameter (44). Hence, the contour was smoothed with a blurring kernel with a full duration at half maximum of 50 nm.
+
+<P ALIGN="JUSTIFY">In order to validate the results obtained from the TEM images, the areas of the cell sections were computed to determine the approximate radii of the cells in the corresponding cutting plane. From the radii distribution derived from the confocal data (Figure 3D), a distribution was simulated that would result when sectioning these cells. A comparison between the simulated (based on the confocal data) and the observed (TEM data) distributions was carried out. In case of the primary B cells and the mast cells the two distributions were the same, serving as a validation for our approach. In contrast, the Jurkat cells used for TEM had a larger radius (1.17 times bigger) than the ones used for confocal microscopy, which was done on a different day than the TEM. Indeed, when we compared Jurkat cells from different origins, slightly different sizes were seen (flow cytometry data not shown). However, one Jurkat &quot;clone&quot; had a constant size independent on the cell density, CO2 concentration (5% or 7.5%) or fetal calf serum concentration (0% - 10%) of its culture.
+<P ALIGN="JUSTIFY"> 
+<B><P ALIGN="JUSTIFY">4.4. Calculation of the stereological 3D parameters
+</B><P ALIGN="JUSTIFY">From stereology we used that LA (the boundary length per unit area) and AV (the surface area per unit volume) for random cuts are coupled by 
+
+<P ALIGN="JUSTIFY"><IMG SRC="image1239.gif" WIDTH=69 HEIGHT=46>&nbsp; (1)
+
+<P ALIGN="JUSTIFY">With the boundary length B per image area A and the surface area S per reference volume V, equation (1) reads: 
+
+<P ALIGN="JUSTIFY"><IMG SRC="image1240.gif" WIDTH=70 HEIGHT=47>&nbsp;(2)
+
+<P ALIGN="JUSTIFY">We were interested in the surface area of an individual cell (not of a certain volume), so we only outlined one cell in each image, which corresponded to a single cell per reference volume. We only used images with a complete cell section, so the height of the reference volume was limited to the diameter of the cell d. By defining the boundary length in image i as bi, the total boundary in n images is 
+
+<P ALIGN="JUSTIFY"><IMG SRC="image1241.gif" WIDTH=64 HEIGHT=54>&nbsp;(3) 
+
+<P ALIGN="JUSTIFY">The width and length of image is denoted as w and l. The area of one image is w*l, thus the total area of n images is
+
+<P ALIGN="JUSTIFY"><IMG SRC="image1242.gif" WIDTH=77 HEIGHT=33>(4) 
+
+<P ALIGN="JUSTIFY">The reference volume had the same width and length as one image multiplied with the height h. The height of the volume corresponded to the mean diameter of a cell d (as determined by confocal microscopy), which resulted in 
+
+<P ALIGN="JUSTIFY"><IMG SRC="image1243.gif" WIDTH=77 HEIGHT=33>&nbsp;(5)
+
+<P ALIGN="JUSTIFY">Inserting (3), (4) and (5) into (2) we obtain 
+
+<P ALIGN="CENTER"><p><p><table cellspacing=0 border=1 width=700>
+<TR><TD WIDTH="26%" VALIGN="MIDDLE">
+<P ALIGN="JUSTIFY"><IMG SRC="image1244.gif" WIDTH=54 HEIGHT=51></TD>
+<TD WIDTH="56%" VALIGN="MIDDLE">
+<P ALIGN="JUSTIFY"><IMG SRC="image1245.gif" WIDTH=102 HEIGHT=60><IMG SRC="image1245.gif" WIDTH=89 HEIGHT=52></TD>
+<TD WIDTH="18%" VALIGN="MIDDLE">
+<P ALIGN="JUSTIFY">(6)</TD>
+</TR>
+<TR><TD WIDTH="26%" VALIGN="MIDDLE">
+<P ALIGN="JUSTIFY"><IMG SRC="image1246.gif" WIDTH=17 HEIGHT=34></TD>
+<TD WIDTH="56%" VALIGN="MIDDLE">
+<P ALIGN="JUSTIFY"><IMG SRC="image1247.gif" WIDTH=162 HEIGHT=60><IMG SRC="image1247.gif" WIDTH=136 HEIGHT=52></TD>
+<TD WIDTH="18%" VALIGN="MIDDLE">
+<P ALIGN="JUSTIFY">(7)</TD>
+</TR>
+<TR><TD WIDTH="26%" VALIGN="MIDDLE">
+<P ALIGN="JUSTIFY"><IMG SRC="image1246.gif" WIDTH=16 HEIGHT=31></TD>
+<TD WIDTH="56%" VALIGN="MIDDLE">
+<P ALIGN="JUSTIFY"><IMG SRC="image1248.gif" WIDTH=84 HEIGHT=68><IMG SRC="image1248.gif" WIDTH=74 HEIGHT=57></TD>
+<TD WIDTH="18%" VALIGN="MIDDLE">
+<P ALIGN="JUSTIFY">(8)</TD>
+</TR>
+</TABLE>
+
+
+
+<P ALIGN="JUSTIFY">  
+<P ALIGN="JUSTIFY">Using equation (8), we calculated the surfaces of the cells and their nuclei (Table). The diameter d was computed from the volumes determined by spinning disk confocal microscopy (Table). In the case of the Jurkat cells that had slightly different sizes on different days of cell culture (see above), we had to correct this diameter with the factor 1.17 (see above). For further experiments, it is advisable to use the same cell preparation for the confocal and TEM recordings.
+
+<B><P ALIGN="JUSTIFY">5. DISCUSSION
+
+</B><P ALIGN="JUSTIFY">In this report we present a semi-automated approach to determine the exact surface area of immune cells and their nuclei. Instead of using the &quot;classical&quot; stereology approach counting points and intersects of the TEM images covered with a transparent sheet bearing a rectangular lattice, we used semi-automated pattern recognition to mark the perimeter of the structures in the 2D images. To obtain exact values for the average surface areas in a given population of cells we further used the size distributions of the cells or nuclei obtained by 3D confocal microscopy and stereological calculations. 
+
+<P ALIGN="JUSTIFY">We found that the volume of the human immortalized Jurkat T cell was 12 times larger and the one of the T cell blasts 2 times larger than the one of the primary T cell, being in line with relative larger diameters as detected by flow cytometry. Indeed, it is known that cultured tumor lines are larger than primary lymphocytes (21,45,46). As expected the primary cells showed the smallest cell-to-cell variation compared to the proliferating Jurkat and mast cells. 
+
+<P ALIGN="JUSTIFY">The sizes of the nuclei follow the same order; the primary cells have the smallest and cultured cells the biggest nucleus. Most likely this is related to the fact that primary B and T cells are resting cells being in the G0 state of the cell cycle and only minimally transcribe genes. In contrast, the Jurkat, J558L and mast cells are proliferating and thus contain a larger amount of the less densely packed euchromatin that is transcriptionally active. Indeed, in the TEM images the mast cell nucleus contains larger light-stained regions, which represent the euchromatin, and fewer dark-stained heterochromatic regions (Figure 5A). As tumor lines, Jurkat and J558L cells contain a large amount of chromosomes, thus the nucleus is the largest one of the cell types analysed.
+
+<P ALIGN="JUSTIFY">The mean cellular surface of the resting primary B and T cells was the smallest, being in line with their small size. The mean surface areas of the Jurkat and mast cells are nearly equal (1390 and 1260 <FONT FACE="Symbol">&#109;</font>
+m2, respectively), although the volume of Jurkat was more than 3 times bigger than the one of the mast cells. This underscores the necessity to carefully measure the surface areas, instead of estimating them from the cell sizes.
+
+<P ALIGN="JUSTIFY">We calculated cell surface areas of 157 <FONT FACE="Symbol">&#109;</font>
+m2 and 290 <FONT FACE="Symbol">&#109;</font>
+m2 for the primary B and T cells, respectively (table). The first value is in line with similar values obtained by using the &quot;classical&quot; stereology approach from primary T cells (150 <FONT FACE="Symbol">&#109;</font>
+m2, (21)) or from total primary lymphocytes (170 <FONT FACE="Symbol">&#109;</font>
+m2, (27)). The second value is larger than the ones reported. The mean FSC value of the fresh cells as measured by flow cytometry was 43000 for the primary T and 32000 for the B cells (Figure 2A). This indicates that the primary T cells in this study indeed were larger than the primary B cells. The discrepancy with the literature is unknown, but might be related to differences in the isolation procedures of the cells. Interestingly, in our analysis the surface area of the primary T cells deviated more from the one of a sphere (factor 1.81) than the one of the primary B cells (factor 1.21). Indeed, the T cells contained more protrusions than the B cells (Figure 4 and 5).
+
+<P ALIGN="JUSTIFY">We observed that within the Jurkat cell population approximately 0.5% of the cells differed in size from the normal population by a factor of 3 to 4 and contained up to a dozen of nuclei (Figure 2B). These few cells could alter the resulting mean values significantly. Here, we restricted the analysis to cells that were within the peak of the size distribution. The two non-tumor cell populations did not contain any giant multi-nucleated cells.
+
+<P ALIGN="JUSTIFY">One of the questions addressed in this project was how many times bigger the real cellular surface is when compared to a surface derived from the spherical formula using the mean radius determined by light microscopy. This would demonstrate how big the deviations from reality were that were used for systems immunology modeling. The primary B cells have the smoothest surface and therewith the smallest factor. In this case the surface was only 1.2 times larger than the one of a sphere. In the other cells the surface is 1.6 to 2.1 times larger and in the mast cells, which have many protrusions, the surface is 3.5 times larger than the ones of spheres with the same radii. Whether a factor of 1.2 or 3.5 affects the results of a modeling approach, depends on how robust the result is to changes in this parameter. If the exact surface area has to be known, we recommend determining the value with the approach presented here. 
+
+<P ALIGN="JUSTIFY">Our volumes and areas can serve as an input into systems biology approaches. In fact, the exact surfaces and volumes of most cell types still remain an ill-defined factor. Therefore, it is desirable to determine the cell surface area and the volumes of the cell and nucleus for the most commonly used cell types and cell lines in immunology. However, compartmentalisation of the cellular volume into organelles and of the plasma membrane into microdomains has to be considered, when necessary, and will reduce the volume or area in which certain proteins can move.
+
+<P ALIGN="JUSTIFY">Our semi-automated approach can be the basis for further advances towards a fully automated segmentation of these biological datasets as on the basis of region hierarchies. In (47), we have already presented an approach for the fully automatic segmentation of bone marrow-derived mast cells from TEM recordings. In addition to cytoplasm and nucleus regions, we also tried to provide automatic segmentations for mitochondria and other vesicles in this paper. The approach proved to be very promising with an overall accuracy of 65% for the segmentation into five classes (background, cytoplasm, nucleus, mitochondria and vesicles). A higher accuracy is to be expected if the very difficult classes mitochondria and vesicles are omitted. Since this automatic approach is based on learning from training data, the TEM images that were recorded during the work presented here together with the semi-automatic segmentations can be used to further improve the method presented in (47). In order to stimulate progress in automated pattern recognition research, we make our TEM images and the according segmentations available as reference data sets: http://lmb.informatik.uni-freiburg.de/resources/datasets/bio/TEM_cells.html.
+
+<B><P ALIGN="JUSTIFY">6. ACKNOWLEDGEMENTS
+
+</B><P ALIGN="JUSTIFY">Volker Morath and Margret Keuper equally contributed to this article. We thank Kerstin Fehrenbach, Marina Freudenberg and Michael Huber for the generation of bone marrow derived mast cells, Marlena Duchniewicz for technical instructions, and Felix Popp, Petra Kindle, Rosula Hinnenberg, Volker Speth and Roland Nitschke for technical help and supply with reagents. This study was supported by the Excellence Initiative of the German Federal and State Governments (EXC 294, BIOSS and GSC-4, SGBM), FORSYS from the Bundesministerium f&uuml;r Bildung und Forschung, the CRC620 and SCHA 976/2-1 from the Deutsche Forschungsgemeinschaft and the SYBILLA project of the EU in FP7.
+
+<B><P ALIGN="JUSTIFY">7. REFERENCES
+</B>
+<P ALIGN="JUSTIFY">1. B. B. Aldridge, J. M. Burke, D. A. Lauffenburger and P. K. Sorger: Physicochemical modelling of cell signalling pathways. Nat Cell Biol, 8(11), 1195-203 (2006) 
+<P ALIGN="JUSTIFY"><A HREF="http://www.nature.com/ncb/journal/v8/n11/full/ncb1497.html">doi:ncb1497 (pii) 10.1038/ncb1497</A><BR>
+<BR>
+2. U. S. Bhalla and R. Iyengar: Emergent properties of networks of biological signaling pathways. Science, 283(5400), 381-7 (1999)<BR>
+<A HREF="http://dx.doi.org/10.1126/science.283.5400.381/t_blank">http://dx.doi.org/10.1126/science.283.5400.381</A><BR>
+<BR>
+3. W. W. Schamel, R. M. Risueno, S. Minguet, A. R. Ortiz and B. Alarcon: A conformation- and avidity-based proofreading mechanism for the TCR-CD3 complex. Trends Immunol, 27, 176-182 (2006)<BR>
+<A HREF="http://dx.doi.org/10.1016/j.it.2006.02.005/t_blank">http://dx.doi.org/10.1016/j.it.2006.02.005</A><BR>
+PMid:16527543<BR>
+<BR>
+4. G. Altan-Bonnet and R. N. Germain: Modeling T cell antigen discrimination based on feedback control of digital ERK responses. PLoS Biol, 3(11), e356 (2005) 
+<P ALIGN="JUSTIFY"><A HREF="http://www.plosbiology.org/article/info:doi/10.1371/journal.pbio.0030356">doi:05-PLBI-RA-0208R2 (pii) 10.1371/journal.pbio.0030356</A><BR>
+<BR>
+5. J. Das, M. Ho, J. Zikherman, C. Govern, M. Yang, A. Weiss, A. K. Chakraborty and J. P. Roose: Digital signaling and hysteresis characterize ras activation in lymphoid cells. Cell, 136(2), 337-51 (2009) <A HREF="http://www.cell.com/abstract/S0092-8674(08)01631-0">doi:S0092-8674(08)01631-0 (pii) 10.1016/j.cell.2008.11.051</A><BR>
+<BR>
+6. M. Schilling, T. Maiwald, S. Hengl, D. Winter, C. Kreutz, W. Kolch, W. D. Lehmann, J. Timmer and U. Klingmuller: Theoretical and experimental analysis links isoform-specific ERK signalling to cell fate decisions. Mol Syst Biol, 5, 334 (2009) 
+<P ALIGN="JUSTIFY"><A HREF="http://www.nature.com/msb/journal/v5/n1/synopsis/msb200991.html">doi:msb200991 (pii) 10.1038/msb.2009.91</A><BR>
+<BR>
+7. S. Deswal, A. K. Schulze, T. Hofer and W. W. Schamel: Quantitative analysis of protein phosphorylations and interactions by multi-colour IP-FCM as an input for kinetic modelling of signalling networks. PloS one, 6(7), e22928 (2011) doi:10.1371/journal.pone.0022928<BR>
+<A HREF="http://dx.doi.org/10.1371/journal.pone.0022928/t_blank">http://dx.doi.org/10.1371/journal.pone.0022928</A><BR>
+PMid:21829558 &nbsp;&nbsp; PMCid:3146539<BR>
+<BR>
+8. A. Raue, C. Kreutz, T. Maiwald, U. Klingmuller and J. Timmer: Addressing parameter identifiability by model-based experimentation. Iet Systems Biology, 5(2), 120-U78 (2011) 
+<br><A HREF="http://dx.doi.org/10.1049/iet-syb.2010.0061">http://dx.doi.org/10.1049/iet-syb.2010.0061</A><BR>
+<BR>
+9. S. B. Iyer, L. E. Hultin, J. A. Zawadzki, K. A. Davis and J. V. Giorgi: Quantitation of CD38 expression using QuantiBRITE beads. Cytometry, 33(2), 206-12 (1998)<BR>
+<A HREF="http://dx.doi.org/10.1002/%28SICI%291097-0320%2819981001%2933:2%3C206::AID-CYTO15%3E3.0.CO;2-Y/t_blank">http://dx.doi.org/10.1002/(SICI)1097-0320(19981001)33:2&lt;206::AID-CYTO15&gt;3.0.CO;2-Y</A><BR>
+<BR>
+10. L. Y. Jiang, C. M. Yuan, J. Hubacheck, J. E. Janik, W. Wilson, J. C. Morris, G. A. Jasper and M. Stetler-Stevenson: Variable CD52 expression in mature T cell and NK cell malignancies: implications for alemtuzumab therapy. British Journal of Haematology, 145(2), 173-179 (2009) 
+<P ALIGN="JUSTIFY"><A HREF="http://onlinelibrary.wiley.com/doi/10.1111/j.1365-2141.2009.07606.x/abstract;jsessionid=5ACC3403956BAEBB7F4D567849851F6F.d02t03?systemMessage=Wiley+Online+Library+will+be+disrupted+3+Dec+from+10-12+GMT+for+monthly+maintenance">doi:Doi 10.1111/J.1365-2141.2009.07606.X</A><BR>
+<BR>
+11. C. Luo, J. W. Clark, T. A. Heming and A. Bidani: A macrophage cell model for pH and volume regulation. Journal of Theoretical Biology, 238(2), 449-463 (2006) 
+<P ALIGN="JUSTIFY"><A HREF="http://www.sciencedirect.com/science/article/pii/S0022519305002365">doi:Doi 10.1016/J.Jtbi.2005.06.002</A><BR>
+<BR>
+12. D. Yu, A. M. Marchiando, C. R. Weber, D. R. Raleigh, Y. M. Wang, L. Shen and J. R. Turner: MLCK-dependent exchange and actin binding region-dependent anchoring of ZO-1 regulate tight junction barrier function. Proceedings of the National Academy of Sciences of the United States of America, 107(18), 8237-8241 (2010) 
+<P ALIGN="JUSTIFY"><A HREF="http://www.pnas.org/content/early/2010/04/15/0908869107">doi:Doi 10.1073/Pnas.0908869107</A><BR>
+<BR>
+13. W. E. Crowe, J. Altamirano, L. Huerto and F. J. Alvarezleefmans: Volume Changes in Single N1e-115 Neuroblastoma-Cells Measured with a Fluorescent-Probe. Neuroscience, 69(1), 283-296 (1995)<BR>
+<A HREF="http://dx.doi.org/10.1016/0306-4522%2895%2900219-9/t_blank">http://dx.doi.org/10.1016/0306-4522(95)00219-9</A><BR>
+<BR>
+14. H. A. Crissman and Steinkam.Ja: Rapid, Simultaneous Measurement of DNA, Protein, and Cell Volume in Single Cells from Large Mammalian-Cell Populations. Journal of Cell Biology, 59(3), 766-771 (1973)<BR>
+<A HREF="http://dx.doi.org/10.1083/jcb.59.3.766/t_blank">http://dx.doi.org/10.1083/jcb.59.3.766</A><BR>
+PMid:4128323 &nbsp;&nbsp; PMCid:2109119<BR>
+<BR>
+15. G. M. Lee: Measurement of Volume Injected into Individual Cells by Quantitative Fluorescence Microscopy. Journal of Cell Science, 94, 443-447 (1989)<BR>
+PMid:2483724<BR>
+<BR>
+16. T. Nakahari, M. Murakami, H. Yoshida, M. Miyamoto, Y. Sohma and Y. Imai: Decrease in Rat Submandibular Acinar Cell-Volume during Ach Stimulation. American Journal of Physiology, 258(6), G878-G886 (1990)<BR>
+PMid:2193538<BR>
+<BR>
+17. H. M. Silver, M. A. Seebeck, R. M. Cowett, K. Y. Patterson and C. Veillon: Red cell volume determination using a stable isotope of chromium. Journal of the Society for Gynecologic Investigation, 4(5), 254-258 (1997)<BR>
+<A HREF="http://dx.doi.org/10.1016/S1071-5576%2897%2900059-2/t_blank">http://dx.doi.org/10.1016/S1071-5576(97)00059-2</A><BR>
+<BR>
+18. F. Guilak: Volume and Surface-Area Measurement of Viable Chondrocytes in-Situ Using Geometric Modeling of Serial Confocal Sections. Journal of Microscopy-Oxford, 173, 245-256 (1994)<BR>
+<A HREF="http://dx.doi.org/10.1111/j.1365-2818.1994.tb03447.x/t_blank">http://dx.doi.org/10.1111/j.1365-2818.1994.tb03447.x</A><BR>
+PMid:8189447<BR>
+<BR>
+19. L. Kubinova, J. Janacek, P. Karen, B. Radochova, F. Difato and I. Krekule: Confocal stereology and image analysis: Methods for estimating geometrical characteristics of cells and tissues from three-dimensional conflocal images. Physiological Research, 53, S47-S55 (2004)<BR>
+PMid:15119935<BR>
+<BR>
+20. Y. E. Korchev, J. Gorelik, M. J. Lab, E. V. Sviderskaya, C. L. Johnston, C. R. Coombes, I. Vodyanoy and C. R. W. Edwards: Cell volume measurement using scanning ion conductance microscopy. Biophysical Journal, 78(1), 451-457 (2000)<BR>
+<A HREF="http://dx.doi.org/10.1016/S0006-3495%2800%2976607-0/t_blank">http://dx.doi.org/10.1016/S0006-3495(00)76607-0</A><BR>
+<BR>
+21. A. M. Boesen and P. Hokland: Stereological Analysis of the Ultrastructure in Isolated Human Lymphoid-T and Non-Lymphoid-T Cells .1. Description of Method and Data on Normal Blood-Lymphocytes. Virchows Archiv B-Cell Pathology Including Molecular Pathology, 39(3), 273-284 (1982)<BR>
+<A HREF="http://dx.doi.org/10.1007/BF02892854/t_blank">http://dx.doi.org/10.1007/BF02892854</A><BR>
+<BR>
+22. H. J. Heiniger, H. Riedwyl, H. Giger, B. Sordat and H. Cottier: Ultrastructural Differences between Thymic and Lymph Node Small Lymphocytes of Mice - Nucleolar Size and Cytoplasmic Volume. Blood-the Journal of Hematology, 30(3), 288-&amp; (1967)<BR>
+<BR>
+23. G. E. Petrzilka, M. Grafdebeer and H. E. Schroeder: Stereological Model System for Free Cells and Base-Line Data for Human Peripheral Blood-Derived Small Lymphocytes-T. Cell and Tissue Research, 192(1), 121-142 (1978)<BR>
+<A HREF="http://dx.doi.org/10.1007/BF00231028/t_blank">http://dx.doi.org/10.1007/BF00231028</A><BR>
+PMid:308396<BR>
+<BR>
+24. G. Griffiths, J. M. Lucocq and T. M. Mayhew: Electron microscopy applications for quantitative cellular microbiology. Cellular Microbiology, 3(10), 659-668 (2001)<BR>
+<A HREF="http://dx.doi.org/10.1046/j.1462-5822.2001.00142.x/t_blank">http://dx.doi.org/10.1046/j.1462-5822.2001.00142.x</A><BR>
+PMid:11580751<BR>
+<BR>
+25. J. Lucocq: Quantification of structures and gold labeling in transmission electron microscopy. Introduction to Electron Microscopy for Biologists, 88, 59-+ (2008) 
+<P ALIGN="JUSTIFY"><A HREF="http://www.sciencedirect.com/science/article/pii/S0091679X08004044">doi:Doi 10.1016/S0091-679x(08)00404-4</A><BR>
+<BR>
+26. Z. Milicevic, A. Cuschieri, A. Xuereb and N. M. Milicevic: Stereological study of tissue compartments of the human spleen. Histology and Histopathology, 11(4), 833-836 (1996)<BR>
+PMid:8930623<BR>
+<BR>
+27. R. J. Sokol, G. Hudson, J. Wales and N. T. James: Ultrastructural Morphometry of Human-Leukocytes in Health and Disease. Electron Microscopy Reviews, 4(1), 179-195 (1991)<BR>
+<A HREF="http://dx.doi.org/10.1016/0892-0354%2891%2990020-D/t_blank">http://dx.doi.org/10.1016/0892-0354(91)90020-D</A><BR>
+<BR>
+28. L. M. Cruzorive and E. R. Weibel: Sampling Designs for Stereology. Journal of Microscopy-Oxford, 122(Jun), 235-257 (1981)<BR>
+<A HREF="http://dx.doi.org/10.1111/j.1365-2818.1981.tb01265.x/t_blank">http://dx.doi.org/10.1111/j.1365-2818.1981.tb01265.x</A><BR>
+PMid:7017151<BR>
+<BR>
+29. H. J. G. Gundersen, P. Bagger, T. F. Bendtsen, S. M. Evans, L. Korbo, N. Marcussen, A. Moller, K. Nielsen, J. R. Nyengaard, B. Pakkenberg, F. B. Sorensen, A. Vesterby and M. J. West: The New Stereological Tools - Disector, Fractionator, Nucleator and Point Sampled Intercepts and Their Use in Pathological Research and Diagnosis. Apmis, 96(10), 857-881 (1988)<BR>
+<A HREF="http://dx.doi.org/10.1111/j.1699-0463.1988.tb00954.x/t_blank">http://dx.doi.org/10.1111/j.1699-0463.1988.tb00954.x</A><BR>
+PMid:3056461<BR>
+<BR>
+30. H. J. G. Gundersen, T. F. Bendtsen, L. Korbo, N. Marcussen, A. Moller, K. Nielsen, J. R. Nyengaard, B. Pakkenberg, F. B. Sorensen, A. Vesterby and M. J. West: Some New, Simple and Efficient Stereological Methods and Their Use in Pathological Research and Diagnosis - Review Article. Apmis, 96(5), 379-394 (1988)<BR>
+<A HREF="http://dx.doi.org/10.1111/j.1699-0463.1988.tb05320.x/t_blank">http://dx.doi.org/10.1111/j.1699-0463.1988.tb05320.x</A><BR>
+PMid:3288247<BR>
+<BR>
+31. T. M. Mayhew: The New Stereological Methods for Interpreting Functional-Morphology from Slices of Cells and Organs. Experimental Physiology, 76(5), 639-665 (1991)<BR>
+PMid:1742008<BR>
+<BR>
+32. R. T. Abraham and A. Weiss: Jurkat T cells and development of the T-cell receptor signalling paradigm. Nature reviews. Immunology, 4(4), 301-8 (2004) doi:10.1038/nri1330<BR>
+<A HREF="http://dx.doi.org/10.1038/nri1330/t_blank">http://dx.doi.org/10.1038/nri1330</A><BR>
+PMid:15057788<BR>
+<BR>
+33. I. Puxeddu, A. M. Piliponsky, I. Bachelet and F. Levi-Schaffer: Mast cells in allergy and beyond. International Journal of Biochemistry &amp; Cell Biology, 35(12), 1601-1607 (2003) 
+<P ALIGN="JUSTIFY"><A HREF="http://www.sciencedirect.com/science/article/pii/S1357272503002085">doi:Doi 10.1016/S1357-2725(03)00208-5</A><BR>
+<BR>
+34. M. Swamy, S. Minguet, G. M. Siegers, B. Alarcon and W. W. Schamel: A native antibody-based mobility-shift technique (NAMOS-assay) to determine the stoichiometry of multiprotein complexes. J Immunol Methods, 324(1-2), 74-83 (2007)<BR>
+<A HREF="http://dx.doi.org/10.1016/j.jim.2007.05.003/t_blank">http://dx.doi.org/10.1016/j.jim.2007.05.003</A><BR>
+PMid:17568608<BR>
+<BR>
+35. M. Swamy, G. M. Siegers, G. J. Fiala, E. Molnar, E. P. Dopfer, P. Fisch, B. Schraven and W. W. Schamel: Stoichiometry and intracellular fate of TRIM-containing TCR complexes. Cell Commun Signal, 8, 5 (2010)<BR>
+<A HREF="http://dx.doi.org/10.1186/1478-811X-8-5/t_blank">http://dx.doi.org/10.1186/1478-811X-8-5</A><BR>
+PMid:20298603 &nbsp;&nbsp; PMCid:2848047<BR>
+<BR>
+36. S. Minguet, M. Swamy, B. Alarcon, I. F. Luescher and W. W. Schamel: Full activation of the T cell receptor requires both clustering and conformational changes at CD3. Immunity, 26(1), 43-54 (2007)<BR>
+<A HREF="http://dx.doi.org/10.1016/j.immuni.2006.10.019/t_blank">http://dx.doi.org/10.1016/j.immuni.2006.10.019</A><BR>
+PMid:17188005<BR>
+<BR>
+37. A. Dufner and W. W. Schamel: B cell antigen receptor-induced activation of an IRAK4-dependent signaling pathway revealed by a MALT1-IRAK4 double knockout mouse model. Cell Communication and Signaling, 9 (2011) 
+<P ALIGN="JUSTIFY"><A HREF="http://www.biosignaling.com/content/9/1/6">doi:Artn 6 Doi 10.1186/1478-811x-9-6</A><BR>
+<BR>
+38. S. Minguet, M. Huber, L. Rosenkranz, W. W. Schamel, M. Reth and T. Brummer: Adenosine and cAMP are potent inhibitors of the NF-kappa B pathway downstream of immunoreceptors. Eur J Immunol, 35(1), 31-41 (2005)<BR>
+<A HREF="http://dx.doi.org/10.1002/eji.200425524/t_blank">http://dx.doi.org/10.1002/eji.200425524</A><BR>
+PMid:15580656<BR>
+<BR>
+39. S. Minguet, M. Swamy, E. P. Dopfer, E. Dengler, B. Alarcon and W. W. A. Schamel: The extracellular part of zeta is buried in the T cell antigen receptor complex. Immunol Lett, 116(2), 203-210 (2008)<BR>
+<A HREF="http://dx.doi.org/10.1016/j.imlet.2007.11.024/t_blank">http://dx.doi.org/10.1016/j.imlet.2007.11.024</A><BR>
+PMid:18215426<BR>
+<BR>
+40. S. A. Weston and C. R. Parish: New Fluorescent Dyes for Lymphocyte Migration Studies - Analysis by Flow-Cytometry and Fluorescence Microscopy. Journal of Immunological Methods, 133(1), 87-97 (1990)<BR>
+<A HREF="http://dx.doi.org/10.1016/0022-1759%2890%2990322-M/t_blank">http://dx.doi.org/10.1016/0022-1759(90)90322-M</A><BR>
+<BR>
+41. J. Kapuscinski: Dapi - a DNA-Specific Fluorescent-Probe. Biotechnic &amp; Histochemistry, 70(5), 220-233 (1995)<BR>
+<A HREF="http://dx.doi.org/10.3109/10520299509108199/t_blank">http://dx.doi.org/10.3109/10520299509108199</A><BR>
+<BR>
+42. D. R. Martin, C. C. Fowlkes and J. Malik: Learning to detect natural image boundaries using local brightness, color, and texture cues. Ieee Transactions on Pattern Analysis and Machine Intelligence, 26(5), 530-549 (2004)<BR>
+<A HREF="http://dx.doi.org/10.1109/TPAMI.2004.1273918/t_blank">http://dx.doi.org/10.1109/TPAMI.2004.1273918</A><BR>
+PMid:15460277<BR>
+<BR>
+43. H. J. G. Gundersen and R. Osterby: Optimizing Sampling Efficiency of Stereological Studies in Biology - or Do More Less Well. Journal of Microscopy-Oxford, 121(Jan), 65-73 (1981)<BR>
+<A HREF="http://dx.doi.org/10.1111/j.1365-2818.1981.tb01199.x/t_blank">http://dx.doi.org/10.1111/j.1365-2818.1981.tb01199.x</A><BR>
+PMid:7014910<BR>
+<BR>
+44. B. Alberts: Molecular biology of the cell. Garland, New York; London (1989)<BR>
+<BR>
+45. Konwinsk.M and Kozlowsk.T: Morphometric Study of Normal and Phytohemagglutinin-Stimulated Lymphocytes. Zeitschrift Fur Zellforschung Und Mikroskopische Anatomie, 129(4), 500-&amp; (1972)<BR>
+<BR>
+46. A. M. Boesen and P. Hokland: Ultrastructure of Normal Human-Blood Lymphocyte-T Subsets Isolated by Cell Sorting Using Monoclonal-Antibodies - a Stereological Analysis. Virchows Archiv B-Cell Pathology Including Molecular Pathology, 41(1-2), 107-117 (1982)<BR>
+PMid:6134377<BR>
+<BR>
+47. M Keuper, M Rodriguez-Franco, WW Schamel, T Brox, H Burkhardt, O Ronneberger.: Hierarchical Markov Random Fields for Mast Cell Segmentation in Electron Microscopic Recordings. In: <I>International Symposium on Biomedical Imaging: From Nano to Macro </I>973-978<I> </I>(2011)
+
+<B><P ALIGN="JUSTIFY">Abbreviations:</B> BSE: Berkley segmentation engine; DAPI: 4&#8242;,6-Diamidin-2-phenylindol; DIC: differential interference contrast; EM: electron microscopy; FSC: forward scatter; PBMC: peripheral blood mononuclear cell; PHA: phytohemagglutinin; SSC: side scatter; TEM: transmission EM; 2D: two dimensional; 3D: three dimensional
+<B>
+<P ALIGN="JUSTIFY">Key Words:</B> Systems biology, Immunology, B cell, Mast cell, T cell, Stereology, Quantification, Surface, Volume, Pattern recognition, Segmentation
+
+<B><P ALIGN="JUSTIFY">Send correspondence to: </B>Wolfgang Werner A. Schamel, BIOSS Centre for Biological Signaling Studies, University of Freiburg, Germany, Tel: +49-761-5108-313, Fax: +49-761-5108-423, E-mail:<a href="mailto:schamel@immunbio.mpg.de">schamel@immunbio.mpg.de</A>
+
+
+<script type='text/javascript' src='http://api.nextbio.com/b/nbapi/include.nbs?type=js&name=genhighlight&apiKey=bdd50e10ac643171a30965ed6371d18e'></script>
+</font></td></tr></table></body></html>
+
+
+
+

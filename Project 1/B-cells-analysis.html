@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> B Cell Analysis </title>
+	<!comment: MathJax para equações matemáticas em TeX>
+	<script type="text/javascript" async
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+	</script>
+</head>
+<body>
+	<h1> Transmissão Eletrônica Microscópica (Transmission Eletron Microscopic) </h1>
+	<h2> Motivação </h2> 
+	<h2> Introdução </h2>
+	<h2> Equalização de Histogramas </h2>
+	<p> O primeiro processo que tive que fazer foi o dde converter as imagens do banco de dados 
+	no formato TIFF em imagens no formato PNG. Esse formato foi escolhido por sua flexibilidade 
+	quanto à escolha do browser e por ser de código aberto. As imagens tinham resolução de cor de
+	8 bits, então a conversão não sofreu grandes perdas. </p>
+
+<figure>
+	<canvas id="imagemOriginal" width="900" height="600"></canvas>
+	<figcaption>
+		Imagem de uma célula B.
+	</figcaption>
+</figure>
+
+<p> Esse é o primeiro trabalho da matéria de Introdução à Computação Gráfica </p> 
+
+<script>
+	var canvasOriginal = document.getElementById("imagemOriginal");
+	var ctxOriginal = canvasOriginal.getContext("2d");
+	
+	var imgOriginal = new Image();
+
+    imgOriginal.src = 'img/DiagramVisualComputing.png'; 
+	
+	imgOriginal.onload = function (){
+		ctxOriginal.drawImage(imgOriginal,0,0);
+	};
+   
+</script>
+
+</body>
+</html>
