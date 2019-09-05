@@ -18,7 +18,7 @@
 	8 bits, então a conversão não sofreu grandes perdas. </p>
 
 <figure>
-	<canvas id="imagemOriginal" width="900" height="600"></canvas>
+	<canvas id="imagemOriginal" width="1024" height="512"></canvas>
 	<figcaption>
 		Imagem de uma célula B.
 	</figcaption>
@@ -31,12 +31,23 @@
 	var ctxOriginal = canvasOriginal.getContext("2d");
 	
 	var imgOriginal = new Image();
-
-    imgOriginal.src = 'img/DiagramVisualComputing.png'; 
+	var imgOut;
+    imgOriginal.src = 'images-png/img1.png';
 	
 	imgOriginal.onload = function (){
-		ctxOriginal.drawImage(imgOriginal,0,0);
+		
+		ctxOriginal.drawImage(imgOriginal,0,0,512,512);
+		imgOut = ctxOriginal.getImageData(0,0,512,512);
+		
+		for (let i = 0; i < imgOut.data.length; i += 4) {
+			imgOut.data[i] = 255 - imgOut.data[i];
+			imgOut.data[i+1] = 255 - imgOut.data[i+1];
+			imgOut.data[i+2] = 255- imgOut.data[i+2] ;
+		}
+		ctxOutput.putImageData(imgOut, 512, 0);		
 	};
+	
+	
    
 </script>
 
