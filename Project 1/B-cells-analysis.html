@@ -31,12 +31,15 @@
 	var ctxOriginal = canvasOriginal.getContext("2d");
 	
 	var imgOriginal = new Image();
-	var imgOut;
-    imgOriginal.src = 'images-png/img1.png';
+	var imgOut = new Image();
+	
+	imgOriginal.crossOrigin = '';
+	imgOut.crossOrigin = '';
 	
 	imgOriginal.onload = function (){
 		
 		ctxOriginal.drawImage(imgOriginal,0,0,512,512);
+		
 		imgOut = ctxOriginal.getImageData(0,0,512,512);
 		
 		for (let i = 0; i < imgOut.data.length; i += 4) {
@@ -44,12 +47,12 @@
 			imgOut.data[i+1] = 255 - imgOut.data[i+1];
 			imgOut.data[i+2] = 255- imgOut.data[i+2] ;
 		}
-		ctxOutput.putImageData(imgOut, 512, 0);		
+		ctxOriginal.putImageData(imgOut, 512, 0);		
 	};
 	
+	imgOriginal.src = "http://localhost:9000/img1.png";
+	//imgOriginal.src = "https://i.ibb.co/1K04DTr/img1.png"
 	
-   
 </script>
-
 </body>
 </html>
