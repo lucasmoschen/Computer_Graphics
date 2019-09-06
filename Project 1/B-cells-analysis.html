@@ -19,17 +19,26 @@
 	8 bits, então a conversão não sofreu grandes perdas. </p>
 
 <figure>
-	<canvas id="imagemOriginal" width="1024" height="512"></canvas>
+	<canvas id="cells_inicial" width="1300" height="600"></canvas>
 	<figcaption>
-		Imagem de uma célula B.
+		Imagem de duas células B. É observável a diferença entre as duas imagens, uma com uma distribuição de brancos muito maior do que a outra.
+		A segunda imagem tem um problema de obtenção. O dado apresenta um grande ruído. 
 	</figcaption>
 </figure>
 
-<div id="histogram1" style="width:1024px;height:512px;"></div>
+<div id="histogram1" style = "width:1300px height:512px">
+  <div id = "cell1" style="width:650px; float:left;"></div>
+  <div id = "cell2" style="width:650px; float:right;"></div>
+</div>
 
-<p> Esse é o primeiro trabalho da matéria de Introdução à Computação Gráfica </p> 
-
+<script type = "text/javascript" src = "load_image.js"></script>
 <script type = "text/javascript" src = "image_processing.js"></script>
-
+<p> Observável que o histograma da segunda imagem está totalmente desequilíbrado. 
+Por uma possível falha ao realizar o processo de obtebção da imagem, existe perda total de 
+informação, e mais do que isso, prejudicou a visualização do histograma. Com o pacote que utilizei, 
+é possível aproximar partes do histograma. Então podes aproximar para obter melhor visualização 
+da informação. Outro ponto negativo do histograma é que a concentração das cores está muito mais forte 
+aos brancos da imagem, o que dificulta a comparação de imagens. 
+</p> 
 </body>
 </html>

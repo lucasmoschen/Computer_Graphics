@@ -1,60 +1,63 @@
-var canvasOriginal = document.getElementById("imagemOriginal");
-var ctxOriginal = canvasOriginal.getContext("2d");
-
-var imgOriginal = new Image();
-var imgOut = new Image();
-
-imgOriginal.crossOrigin = '';
-imgOut.crossOrigin = '';
-
+processingImage = function(img,division,title){
 	
-var red = new Array(256).fill(0)
-var green = new Array(256).fill(0);
-var blue = new Array(256).fill(0);
-var x = new Array(256).fill(0);
-
-imgOriginal.onload = function (){
-	
-	ctxOriginal.drawImage(imgOriginal,0,0,512,512);
-	
-	imgOut = ctxOriginal.getImageData(0,0,512,512);
-	
-	var imgDataOut = imgOut;
-	
-	for (let i = 0; i < imgOut.data.length; i += 4) {
-		imgOut.data[i] = 255 - imgOut.data[i];
-		imgOut.data[i+1] = 255 - imgOut.data[i+1];
-		imgOut.data[i+2] = 255- imgOut.data[i+2];
-	}
-	
-	ctxOriginal.putImageData(imgOut, 512, 0);
+	//I iniciate the colors. However, when the image is grey,
+	//they are iqual. 
+	var red = new Array(256).fill(0)
+	var green = new Array(256).fill(0);
+	var blue = new Array(256).fill(0);
+	var x = new Array(256).fill(0);
 	
 	for (let i = 1; i < 256; i++){
 		x[i] = x[i-1] + 1;
-	}
-
-	for (let i = 0; i < imgDataOut.data.length; i+=4){
-		red[imgDataOut.data[i]] += 1;
-		green[imgDataOut.data[i + 1]] += 1;
-		blue[imgDataOut.data[i + 2]] += 1;
 	};
 	
-	var trace1 = {
-		type: "bar",
-		x: x,
-		y: red,
-		marker: {
-			color: "#FF0000",
-			line: {width: 0.5}
-		}
+	// fazendo a contagem das cores
+	var imgData = img.data;
+	for (let i = 0; i < imgData.length; i+=4){
+		red[imgData[i]] += 1;
+		green[imgData[i + 1]] += 1;
+		blue[imgData[i + 2]] += 1;
 	};
 	
-	var data = [trace1];
-	var layout = {title: "Histogram of the grey colors", font: {size: 18}};
-
-	hist = document.getElementById("histogram1");
-	Plotly.newPlot(hist,data,layout,{responsive:true});
+	//cálculo da média 
+	var mean = 0;
+	var total = 0;
+	var maximal = 0;
+	var x_mean = Array(256).fill(0);
+	var y_mean = Array(256).fill(0);
+	for(let i = 0; i < 256; i++){
+		mean += i*red[i];
+		total += red[i];
+		if (red[i] > maximal){maximal = red[i];}
+		if (i > 0){x_mean[i] = x_mean[i-1] + 1;}
+	};
+	mean = mean/total;
+	y_mean[parseInt(mean)] = maximal;
+	
+	histogram(x,red,division,title,x_mean,y_mean)
 };
 
-imgOriginal.src = "https://i.ibb.co/1K04DTr/img1.png";
+histogram = function(x,color,division,title,x_mean,y_mean){
+	var trace = {type: "bar", x: x, y: color,
+		marker: {
+			color: "#FFFFFF",
+			line: {width: 0.5}
+		},
+		name: "cores"
+	};
+	
+	var mean = {type: "bar", x: x_mean, y: y_mean,
+		marker: {
+			color: "FF0000",
+			line: {width: 0.5}
+		},
+		name: "média"
+	};
+	
+	var data = [trace,mean];
+	var layout = {title: title, font: {size: 14}};
+
+	hist = document.getElementById(division);
+	Plotly.newPlot(hist,data,layout,{responsive:false});
+};
 
