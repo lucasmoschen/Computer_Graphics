@@ -2,11 +2,12 @@
 <html>
 <head>
 	<title> B Cell Analysis </title>
-	<!comment: MathJax para equações matemáticas em TeX>
 	<script type="text/javascript" async
 		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
 	</script>
+	<script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
+
 <body>
 	<h1> Transmissão Eletrônica Microscópica (Transmission Eletron Microscopic) </h1>
 	<h2> Motivação </h2> 
@@ -24,35 +25,11 @@
 	</figcaption>
 </figure>
 
+<div id="histogram1" style="width:1024px;height:512px;"></div>
+
 <p> Esse é o primeiro trabalho da matéria de Introdução à Computação Gráfica </p> 
 
-<script>
-	var canvasOriginal = document.getElementById("imagemOriginal");
-	var ctxOriginal = canvasOriginal.getContext("2d");
-	
-	var imgOriginal = new Image();
-	var imgOut = new Image();
-	
-	imgOriginal.crossOrigin = '';
-	imgOut.crossOrigin = '';
-	
-	imgOriginal.onload = function (){
-		
-		ctxOriginal.drawImage(imgOriginal,0,0,512,512);
-		
-		imgOut = ctxOriginal.getImageData(0,0,512,512);
-		
-		for (let i = 0; i < imgOut.data.length; i += 4) {
-			imgOut.data[i] = 255 - imgOut.data[i];
-			imgOut.data[i+1] = 255 - imgOut.data[i+1];
-			imgOut.data[i+2] = 255- imgOut.data[i+2] ;
-		}
-		ctxOriginal.putImageData(imgOut, 512, 0);		
-	};
-	
-	imgOriginal.src = "http://localhost:9000/img1.png";
-	//imgOriginal.src = "https://i.ibb.co/1K04DTr/img1.png"
-	
-</script>
+<script type = "text/javascript" src = "image_processing.js"></script>
+
 </body>
 </html>
