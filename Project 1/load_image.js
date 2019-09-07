@@ -61,3 +61,68 @@ second_cell.onload = function() {
 
 first_cell.src = "https://i.ibb.co/1K04DTr/img1.png";
 second_cell.src = "https://i.ibb.co/mJCpHf4/img2.png";
+
+//first transformation with histogram equalization
+
+var canvasTrans = document.getElementById("first_equalization");
+var ctxTrans = canvasTrans.getContext("2d");
+
+var cellTrans1 = new Image();
+var cellTrans2 = new Image();
+var cellTrans3 = new Image();
+var cellTrans4 = new Image();
+
+cellTrans1.crossOrigin = '';
+cellTrans2.crossOrigin = '';
+cellTrans3.crossOrigin = '';
+cellTrans4.crossOrigin = '';
+
+cellTrans1.onload = function() {
+	
+	ctxTrans.drawImage(cellTrans1, 0,0, 300, 300);
+
+	var cellTransOut = new Image();
+	cellTransOut = ctxTrans.getImageData(0,0, 300, 300);
+
+	eq_histogram(cellTransOut);
+		
+	ctxTrans.putImageData(cellTransOut, 0, 300);	
+}
+cellTrans2.onload = function() {
+	
+	ctxTrans.drawImage(cellTrans2, 300,0, 300, 300);
+	
+	var cellTransOut = new Image();
+	cellTransOut = ctxTrans.getImageData(300,0, 300, 300);
+	
+	eq_histogram(cellTransOut);
+	
+	ctxTrans.putImageData(cellTransOut, 300, 300);	
+}
+cellTrans3.onload = function() {
+	
+	ctxTrans.drawImage(cellTrans3, 600,0, 300, 300);
+	
+	var cellTransOut = new Image();
+	cellTransOut = ctxTrans.getImageData(600,0, 300, 300);
+	
+	eq_histogram(cellTransOut);
+	
+	ctxTrans.putImageData(cellTransOut, 600, 300);	
+}
+cellTrans4.onload = function() {
+	
+	ctxTrans.drawImage(cellTrans4, 900,0, 300, 300);
+	
+	var cellTransOut = new Image();
+	cellTransOut = ctxTrans.getImageData(900,0, 300, 300);
+	
+	eq_histogram(cellTransOut);
+	
+	ctxTrans.putImageData(cellTransOut, 900, 300);	
+}
+
+cellTrans1.src = "https://i.ibb.co/1K04DTr/img1.png";
+cellTrans2.src = "https://i.ibb.co/mJCpHf4/img2.png";
+cellTrans3.src = "https://i.ibb.co/jzsvMwg/img3.png";
+cellTrans4.src = "https://i.ibb.co/xMfrGT4/img4.png";

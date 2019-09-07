@@ -61,8 +61,6 @@
   <div id = "cell2" style="width:650px; float:right;"></div>
 </div>
 
-<script type = "text/javascript" src = "load_image.js"></script>
-<script type = "text/javascript" src = "image_processing.js"></script>
 <h3> Definição: uso da probabilidade </h3>
 	<p>
 	Seja \(r\) o nível de cinza de um determinado pixel. Por enquanto, utilizemos o fato de que \(0\leq r \leq 1\). Assim, 
@@ -81,17 +79,18 @@
 	<p> Então, a imagem processada é obtida através do mapeamento de cada pixel com seu pixel correspondente. A transformação é chamada de 
 	equalização de histograma. Essa equalização espalha para o espectro completo da escala de cinza.
 	</p>
+	
 <figure>
-	<canvas id="histogram1" width="1300" height="600"></canvas>
+	<canvas id="first_equalization" width="1400" height="600"></canvas>
 	<figcaption>
-		Imagem de duas células B. É observável a diferença entre as duas imagens, uma com uma distribuição de brancos muito maior do que a outra.
-		A segunda imagem tem um problema de obtenção. O dado apresenta um grande ruído. 
+		Vemos na parte superior 4 imagens do banco de dados de células B em seu formato original. Abaixo, após a transformação supracitada, obtermos o resultado.
+		Note que a primeira imagem tem pouca variação, pois essa transformação distribui melhor aas cores, entretanto, quando a imagem tem um histograma bem distribuído,
+		O resultado é pouco diferente. 
 	</figcaption>
 </figure>
-<div id="histogram1" style = "width:1300px height:512px">
-  <div id = "cell1" style="width:650px; float:left;"></div>
-  <div id = "cell2" style="width:650px; float:right;"></div>
-</div>
+
+<script type = "text/javascript" src = "image_processing.js"></script>
+<script type = "text/javascript" src = "load_image.js"></script>
 
 </body>
 </html>

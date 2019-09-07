@@ -68,3 +68,38 @@ histogram = function(x,color,division,title,x_mean,y_mean,measure){
 	Plotly.newPlot(hist,data,layout,{responsive:false});
 };
 
+eq_histogram = function(img){
+	
+	var red = new Array(256).fill(0)
+	var green = new Array(256).fill(0);
+	var blue = new Array(256).fill(0);
+	
+	// fazendo a contagem das cores
+
+	for (let i = 0; i < img.data.length; i+=4){
+		red[img.data[i]] += 1;
+		green[img.data[i + 1]] += 1;
+		blue[img.data[i + 2]] += 1;
+	};
+	
+	var transformation = new Array(256).fill(0);
+	
+	red[0] = 4*red[0]/img.data.length;
+	green[0] = 4*green[0]/img.data.length;
+	blue[0] = 4*blue[0]/img.data.length;
+	transformation[0] = red[0];
+	
+	for (let i = 1; i < red.length; i++){
+		red[i] = 4*red[i]/img.data.length;
+		green[i] = 4*green[i]/img.data.length;
+		blue[i] = 4*blue[i]/img.data.length;
+		transformation[i] = red[i] + transformation[i-1];
+	}
+
+	for(let i = 0; i < img.data.length;i+=4){
+		img.data[i] = 256*transformation[img.data[i]];
+		img.data[i+1] = 256*transformation[img.data[i+1]];
+		img.data[i+2] = 256*transformation[img.data[i+2]];
+	}
+};
+
