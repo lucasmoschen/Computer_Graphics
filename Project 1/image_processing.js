@@ -1,4 +1,4 @@
-processingImage = function(img,division,title){
+processingImage = function(img,division,title,measures){
 	
 	//I iniciate the colors. However, when the image is grey,
 	//they are iqual. 
@@ -18,26 +18,29 @@ processingImage = function(img,division,title){
 		green[imgData[i + 1]] += 1;
 		blue[imgData[i + 2]] += 1;
 	};
-	
+	for (let i = 0; i < 256; i++){
+		red[i] = 4*red[i]/imgData.length;
+		green[i] = 4*green[i]/imgData.length;
+		blue[i] = 4*blue[i]/imgData.length;	
+	}
+
 	//cálculo da média 
 	var mean = 0;
-	var total = 0;
-	var maximal = 0;
+	var max = 0;
+	var a = 0;
 	var x_mean = Array(256).fill(0);
 	var y_mean = Array(256).fill(0);
 	for(let i = 0; i < 256; i++){
 		mean += i*red[i];
-		total += red[i];
-		if (red[i] > maximal){maximal = red[i];}
+		if (red[i] > max) {max = red[i];}
 		if (i > 0){x_mean[i] = x_mean[i-1] + 1;}
 	};
-	mean = mean/total;
-	y_mean[parseInt(mean)] = maximal;
+	y_mean[parseInt(mean)] = max;
 	
-	histogram(x,red,division,title,x_mean,y_mean)
+	histogram(x,red,division,title,x_mean,y_mean,measures)
 };
 
-histogram = function(x,color,division,title,x_mean,y_mean){
+histogram = function(x,color,division,title,x_mean,y_mean,measure){
 	var trace = {type: "bar", x: x, y: color,
 		marker: {
 			color: "#FFFFFF",
@@ -55,7 +58,11 @@ histogram = function(x,color,division,title,x_mean,y_mean){
 	};
 	
 	var data = [trace,mean];
-	var layout = {title: title, font: {size: 14}};
+	var layout = {title: title, font: {size: 14},
+		width: measure[0],
+		height: measure[1],
+		margin: {l: measure[2], r: measure[3], b: measure[4], t: measure[5]}
+	};
 
 	hist = document.getElementById(division);
 	Plotly.newPlot(hist,data,layout,{responsive:false});

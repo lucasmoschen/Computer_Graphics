@@ -2,22 +2,52 @@
 <html>
 <head>
 	<title> B Cell Analysis </title>
+	<script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 	<script type="text/javascript" async
 		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
 	</script>
-	<script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	
 </head>
 
 <body>
 	<h1> Transmissão Eletrônica Microscópica (Transmission Eletron Microscopic) </h1>
 	<h2> Motivação </h2> 
 	<h2> Introdução </h2>
-	<h2> Equalização de Histogramas </h2>
-	<p> O primeiro processo que tive que fazer foi o dde converter as imagens do banco de dados 
+	<h2> Imagens utilizadas </h2>
+	<p> O primeiro processo que tive que fazer foi o de converter as imagens do banco de dados 
 	no formato TIFF em imagens no formato PNG. Esse formato foi escolhido por sua flexibilidade 
 	quanto à escolha do browser e por ser de código aberto. As imagens tinham resolução de cor de
 	8 bits, então a conversão não sofreu grandes perdas. </p>
-
+	<h2> Histogramas </h2>
+	<p> Um histograma de uma imagem digital em tons de cinza é uma função discreta \( h(r_k) = n_k \), onde \(r_k\) é 
+	o nível de cinza e \(n_k\) é o número de ocorrências na imagem. Em meus histogramas, tomarei ele normalizado. 
+	Então, podemos tomar a frequência como uma probabilidade aproximada de ocorrência. A partir dessa informação, 
+	algumas informações podem ser concluídas, como, por exemplo: a imagem é mais clara ou mais escura, a imagem tem 
+	contraste alto ou baixo, etc. </p>
+	<div id = "image_analysis1" style = "width: 1200px height: 400px">
+		<div id = "black_white" style = "width: 600px height: 400px; float: left;">
+			<canvas id = "black_white_image" width="600" height= "400"></canvas>
+		</div>
+		<div id = "bw_histogram" style = "width: 600px height: 400px; float: right;"></div>
+	</div>
+	<div id = "image_analysis2" style = "width: 1200px height: 400px">
+		<div id = "black_white2" style = "width: 600px height: 400px; float: left;">
+			<canvas id = "black_white_image2" width="600" height= "400"></canvas>
+		</div>
+		<div id = "bw_histogram2" style = "width: 600px height: 400px; float: right;"></div>
+	</div>
+	<canvas id = "space" width="35" height = "1"></canvas>
+	<p> Observe que na primeira imagem, a coloração de tons mais escuros é predominante, o que faz com que 
+	os componentes do histograma estejam mais concentrados à esquerda. Como o contraste também é baixo, os tons 
+	tendem a se concentrar (descvio padrão baixo). Enquanto na segunda, os tons são mais distríbuidos. 
+	Desta forma, a média aproxima-se do valor médio de uma distribuição uniforme. O contraste também é maior nessa imagem, por essa distribuição. 
+	</p> 
+	<h2> Equalização de Histogramas </h2>
+	<p> Considere essas imagens de duas células B, obtidas pelo método de TEM. A primeira imagem apresenta uma configuração mais distribuída 
+	entre os tons de cinza, enquanto a segunda apresenta uma concentração de brancos, como visto no histograma, e uma parte totalmente preta, 
+	provavelmente devido a algum problema de obtenção da imagem. Nesse sentido, fica claro o interesse de fazer uma <b> equalização de histograma </b>, 
+	para posteriores análises de dados. 
+	</p>
 <figure>
 	<canvas id="cells_inicial" width="1300" height="600"></canvas>
 	<figcaption>
@@ -33,12 +63,35 @@
 
 <script type = "text/javascript" src = "load_image.js"></script>
 <script type = "text/javascript" src = "image_processing.js"></script>
-<p> Observável que o histograma da segunda imagem está totalmente desequilíbrado. 
-Por uma possível falha ao realizar o processo de obtebção da imagem, existe perda total de 
-informação, e mais do que isso, prejudicou a visualização do histograma. Com o pacote que utilizei, 
-é possível aproximar partes do histograma. Então podes aproximar para obter melhor visualização 
-da informação. Outro ponto negativo do histograma é que a concentração das cores está muito mais forte 
-aos brancos da imagem, o que dificulta a comparação de imagens. 
-</p> 
+<h3> Definição: uso da probabilidade </h3>
+	<p>
+	Seja \(r\) o nível de cinza de um determinado pixel. Por enquanto, utilizemos o fato de que \(0\leq r \leq 1\). Assim, 
+	focamos nossa atenção em transformações do tipo \(s = T(r)\), que satisfazem a condição de ser monótona crescente no intervalo 
+	específicado acima e \(0 \leq T(r) \leq 1\). Também é interessante que exista inversa para essa transformação. Note que a monotocidade 
+	irá garantir que as cores mais escuras continuem dessa maneira, não abrindo precedentes para inversões de cores não desejadas 
+	na análise. Note que estamos tratando essa transformação como contínua, não discreta. Desta maneira, vejamos o nível de cinza de um 
+	pixel como uma variável aleatória no intervalo \([0,1]\). Seja \(p_r(r)\) a função densidade de probabilidade de \(r\). 
+	Como \(s = T(r)\), uma propriedade da probabilidade diz que \(p_s(s) = p_r(r)\cdot |\frac{dr}{ds}|\).
+	</p>
+	<p> 
+	Uma transformação bem com importância particular no processamento de imagens tem a forma \(s = T(r) = \int_0^r p_r(w) dw \). 
+	Nesse caso, a distribuição de \(s\) será uma uniforme no intervalo. Agora, para o problema em questão, como estamos tratando de 
+	valores discretos, tomaremos \(s_k = T(r_k) = \sum_{j=0}^k p_r(r_j) \), onde \(p_r(r_j) = \frac{n_j}{n} \) e \(k = 0,1,2,...255\).
+	</p>
+	<p> Então, a imagem processada é obtida através do mapeamento de cada pixel com seu pixel correspondente. A transformação é chamada de 
+	equalização de histograma. Essa equalização espalha para o espectro completo da escala de cinza.
+	</p>
+<figure>
+	<canvas id="histogram1" width="1300" height="600"></canvas>
+	<figcaption>
+		Imagem de duas células B. É observável a diferença entre as duas imagens, uma com uma distribuição de brancos muito maior do que a outra.
+		A segunda imagem tem um problema de obtenção. O dado apresenta um grande ruído. 
+	</figcaption>
+</figure>
+<div id="histogram1" style = "width:1300px height:512px">
+  <div id = "cell1" style="width:650px; float:left;"></div>
+  <div id = "cell2" style="width:650px; float:right;"></div>
+</div>
+
 </body>
 </html>
