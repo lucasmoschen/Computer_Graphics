@@ -30,6 +30,7 @@
 		</div>
 		<div id = "bw_histogram" style = "width: 600px height: 400px; float: right;"></div>
 	</div>
+	
 	<div id = "image_analysis2" style = "width: 1200px height: 400px">
 		<div id = "black_white2" style = "width: 600px height: 400px; float: left;">
 			<canvas id = "black_white_image2" width="600" height= "400"></canvas>
@@ -88,6 +89,44 @@
 		O resultado é pouco diferente. 
 	</figcaption>
 </figure>
+
+<h3> Histogram Matching </h3>
+<p> Também conhecido como Histogram Specification. Quando utilizamos o método anterior para equalizar o histograma, vimos que isso pode ser 
+automaticamente, produzindo uma imagem com histograma uniforme (Basta fazer o cálculo de \(p_s(s)\)). Entretanto, às vezes é interessante 
+especificar a forma do histograma que desejamos que a imagem processada tenha. 
+Assim, consideremos \(p_r(r)\) e \(p_z(z)\) PDFs, que representam a distribuição do histrograma, da imagem original e da imagem processada, 
+respectivamente. Tomemos, então \(s\) de forma que \(s = T(r) = \int_0^r p_r(w) dw \) e definamos \(z\) com a propriedade \(G(z) = \int_0^z p_z(t) dt = s\).
+Desta dorma, \(G(z) = T(r) \implies z = G^{-1}[T(r)]\), assumindo a existência da inversa de \(G\). Assim: (1) Obtenho \(T(r) \) \(G(z)\) como anteriormente. 
+(2) Obtenho a transformação \(G^{-1}\) e (3) Obtenho a imagem de saída. 
+</p>
+<p> 
+	Todavia, obter essas expressões analitícamente nem sempre é possível. Em contrapartida, podemos utilizar no caso discreto com algumas aproximações. 
+	Façamos um primeiro exemplo com a imagem crítica descrita acima. Usaremos, como referência a distribuição do histograma da primeira imagem, pois ela 
+	deixa bem visível a célula. 
+</p>
+<div id = "hist_matching1" style = "width: 1400px height: 500px">
+	<div id = "images_matching1" style = "width: 600px height: 500px; float: left;">
+		<canvas id = "imagesMatching1" width="500" height= "500"></canvas>
+	</div>
+	<div id = "histogram_matching1" style = "width: 600px height: 500px; float: right;"></div>
+</div>
+<div id = "hist_matching2" style = "width: 1400px height: 500px">
+	<div id = "images_matching2" style = "width: 600px height: 500px; float: right;">
+		<canvas id = "imagesMatching2" width="500" height= "500"></canvas>
+	</div>
+	<div id = "histogram_matching2" style = "width: 600px height: 500px; float: left;"></div>
+</div>
+<div id = "hist_matching3" style = "width: 1200px height: 500px">
+	<div id = "images_matching3" style = "width: 600px height: 500px; float: left;">
+		<canvas id = "imagesMatching3" width="500" height= "500"></canvas>
+	</div>
+	<div id = "histogram_matching3" style = "width: 600px height: 500px; float: right;"></div>
+</div>
+<canvas id = "nothing" width = "100" height = "5"></canvas>
+<p> A diferença é notável. Porém, algo incomoda o modelo para mim: A área de preto, que agora se tornou cinza. Esse dado é dado perdido. Mais do que isso, 
+Todo o entorno da imagem é desnecessário para a análise da célula. Por isso, vamos, posteriormente, recorrer a um método de <b> segmentação </b> para separar 
+a célula de seu fundo. 
+</p>
 
 <script type = "text/javascript" src = "image_processing.js"></script>
 <script type = "text/javascript" src = "load_image.js"></script>

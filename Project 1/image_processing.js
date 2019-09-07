@@ -37,10 +37,10 @@ processingImage = function(img,division,title,measures){
 	};
 	y_mean[parseInt(mean)] = max;
 	
-	histogram(x,red,division,title,x_mean,y_mean,measures)
+	histogram(x,red,division,title,measures,x_mean,y_mean)
 };
 
-histogram = function(x,color,division,title,x_mean,y_mean,measure){
+histogram = function(x,color,division,title,measure,x_mean = 0,y_mean = 0){
 	var trace = {type: "bar", x: x, y: color,
 		marker: {
 			color: "#FFFFFF",
@@ -49,15 +49,18 @@ histogram = function(x,color,division,title,x_mean,y_mean,measure){
 		name: "cores"
 	};
 	
-	var mean = {type: "bar", x: x_mean, y: y_mean,
-		marker: {
-			color: "FF0000",
-			line: {width: 0.5}
-		},
-		name: "média"
-	};
-	
-	var data = [trace,mean];
+	if (x_mean != 0 && y_mean != 0){
+		var mean = {type: "bar", x: x_mean, y: y_mean,
+			marker: {
+				color: "FF0000",
+				line: {width: 0.5}
+			},
+			name: "média"
+		};
+		
+		var data = [trace,mean];
+	}else{var data = [trace];}
+
 	var layout = {title: title, font: {size: 14},
 		width: measure[0],
 		height: measure[1],
@@ -68,7 +71,7 @@ histogram = function(x,color,division,title,x_mean,y_mean,measure){
 	Plotly.newPlot(hist,data,layout,{responsive:false});
 };
 
-eq_histogram = function(img){
+eq_histogram = function(img,verificador,transformation = 0){
 	
 	var red = new Array(256).fill(0)
 	var green = new Array(256).fill(0);
@@ -82,7 +85,9 @@ eq_histogram = function(img){
 		blue[img.data[i + 2]] += 1;
 	};
 	
-	var transformation = new Array(256).fill(0);
+	if (transformation == 0){
+		transformation = new Array(256).fill(0);
+	}
 	
 	red[0] = 4*red[0]/img.data.length;
 	green[0] = 4*green[0]/img.data.length;
@@ -95,11 +100,42 @@ eq_histogram = function(img){
 		blue[i] = 4*blue[i]/img.data.length;
 		transformation[i] = red[i] + transformation[i-1];
 	}
-
-	for(let i = 0; i < img.data.length;i+=4){
-		img.data[i] = 256*transformation[img.data[i]];
-		img.data[i+1] = 256*transformation[img.data[i+1]];
-		img.data[i+2] = 256*transformation[img.data[i+2]];
+	if (verificador == 1){
+		for(let i = 0; i < img.data.length;i+=4){
+			img.data[i] = 256*transformation[img.data[i]];
+			img.data[i+1] = 256*transformation[img.data[i+1]];
+			img.data[i+2] = 256*transformation[img.data[i+2]];
+		}
 	}
 };
 
+hist_matching = function(img,imgRef,measures){
+	
+	var color = new Array(256).fill(0);
+	var x = new Array(256).fill(0);
+	
+	for (let i = 1; i < x.length;i++){x[i] = x[i-1]+1;}
+	
+	var transformation = new Array(256).fill(0);
+	var transformation2 = new Array(256).fill(0);
+	
+	eq_histogram(img,0,transformation);	
+	eq_histogram(imgRef,0,transformation2);
+	
+	var  errOld = 1;
+	var j = 0; 
+	for (let i = 0; i <img.data.length;i+=4){
+		errOld = 1;
+		for (j = 0; j < transformation.length; j++){
+			err = Math.abs(transformation2[j] - transformation[img.data[i]]);
+			if (err >= errOld){break;}
+			errOld = err;
+		}
+		img.data[i] = j - 1 
+		img.data[i+1] = j - 1
+		img.data[i+2] = j - 1
+		j = 0;
+		color[img.data[i]] += 1;
+	}
+	histogram(x,color,"histogram_matching3","Result Histogram",measures);
+}

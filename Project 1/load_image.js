@@ -84,7 +84,7 @@ cellTrans1.onload = function() {
 	var cellTransOut = new Image();
 	cellTransOut = ctxTrans.getImageData(0,0, 300, 300);
 
-	eq_histogram(cellTransOut);
+	eq_histogram(cellTransOut,1);
 		
 	ctxTrans.putImageData(cellTransOut, 0, 300);	
 }
@@ -95,7 +95,7 @@ cellTrans2.onload = function() {
 	var cellTransOut = new Image();
 	cellTransOut = ctxTrans.getImageData(300,0, 300, 300);
 	
-	eq_histogram(cellTransOut);
+	eq_histogram(cellTransOut,1);
 	
 	ctxTrans.putImageData(cellTransOut, 300, 300);	
 }
@@ -106,7 +106,7 @@ cellTrans3.onload = function() {
 	var cellTransOut = new Image();
 	cellTransOut = ctxTrans.getImageData(600,0, 300, 300);
 	
-	eq_histogram(cellTransOut);
+	eq_histogram(cellTransOut,1);
 	
 	ctxTrans.putImageData(cellTransOut, 600, 300);	
 }
@@ -117,7 +117,7 @@ cellTrans4.onload = function() {
 	var cellTransOut = new Image();
 	cellTransOut = ctxTrans.getImageData(900,0, 300, 300);
 	
-	eq_histogram(cellTransOut);
+	eq_histogram(cellTransOut,1);
 	
 	ctxTrans.putImageData(cellTransOut, 900, 300);	
 }
@@ -126,3 +126,50 @@ cellTrans1.src = "https://i.ibb.co/1K04DTr/img1.png";
 cellTrans2.src = "https://i.ibb.co/mJCpHf4/img2.png";
 cellTrans3.src = "https://i.ibb.co/jzsvMwg/img3.png";
 cellTrans4.src = "https://i.ibb.co/xMfrGT4/img4.png";
+
+// histogram matching
+
+var canvasMatching1 = document.getElementById("imagesMatching1");
+var canvasMatching2 = document.getElementById("imagesMatching2");
+var canvasMatching3 = document.getElementById("imagesMatching3");
+
+var ctxMat1 = canvasMatching1.getContext("2d");
+var ctxMat2 = canvasMatching2.getContext("2d");
+var ctxMat3 = canvasMatching3.getContext("2d");
+
+var cellMatch1 = new Image();
+var cellMatch2 = new Image();
+var cellMatch3 = new Image();
+
+cellMatch1.crossOrigin = '';
+cellMatch2.crossOrigin = '';
+cellMatch3.crossOrigin = '';
+
+cellMatch1.onload = function() {
+	ctxMat1.drawImage(cellMatch1,0,0,500,500);
+	
+	cellMatchOut = ctxMat1.getImageData(0,0,500,500);
+
+	var measures = [800,500,50,10,50,50];
+	
+	processingImage(cellMatchOut,"histogram_matching1","Reference Histogram", measures);
+}
+
+cellMatch2.onload = function() {
+	
+	ctxMat2.drawImage(cellMatch2,0,0,500,500);
+	ctxMat3.drawImage(cellMatch3,0,0,500,500);
+	
+	cellMatchOut = ctxMat2.getImageData(0,0,500,500);
+	cellMatchRef = ctxMat3.getImageData(0,0,500,500);
+	
+	var measures = [800,500,50,10,50,50];
+	processingImage(cellMatchOut,"histogram_matching2","Current Histogram", measures);
+	
+	hist_matching(cellMatchOut,cellMatchRef,measures);
+	ctxMat3.putImageData(cellMatchOut,0,0);
+}
+
+cellMatch1.src = "https://i.ibb.co/1K04DTr/img1.png";
+cellMatch2.src = "https://i.ibb.co/mJCpHf4/img2.png";
+cellMatch3.src = "https://i.ibb.co/1K04DTr/img1.png";
