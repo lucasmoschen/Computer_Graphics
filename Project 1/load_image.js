@@ -1,3 +1,5 @@
+// I initiate with two images of cells. 
+
 var canvasBW = document.getElementById("black_white_image");
 var canvasBW2 = document.getElementById("black_white_image2");
 
@@ -13,15 +15,15 @@ imageBW2.crossOrigin = '';
 imageBW.onload = function() {
 	ctxBW.drawImage(imageBW,0,0,600,400);
 	imgBW_data = ctxBW.getImageData(0,0,600,400);
-	var title = "Histogram";
-	var measures = [700,420,50,10,50,50];
-	processingImage(imgBW_data, "bw_histogram", title,measures);
+	var title = "Histograma das folhas";
+	var measures = [700,420,50,10,50,50];  //it serves as a parameter to create a histogram 
+	processingImage(imgBW_data, "bw_histogram", title,measures);  //here I do the processingImage. It does the histogram's count
 };
 
 imageBW2.onload = function() {
 	ctxBW2.drawImage(imageBW2,0,0,600,400);
 	imgBW_data2 = ctxBW2.getImageData(0,0,600,400);
-	var title = "Histogram";
+	var title = "Histograma das montanhas";
 	var measures = [700,420,50,10,50,50];
 	processingImage(imgBW_data2, "bw_histogram2", title,measures);
 };
@@ -29,7 +31,8 @@ imageBW2.onload = function() {
 imageBW.src = "https://d.wattpad.com/story_parts/396812486/images/159ab54e60541a85107225027536.jpg";
 imageBW2.src = "https://images.pexels.com/photos/1146642/pexels-photo-1146642.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
 
-//iniciating the image
+// Now a Initiate the images to show the problem. 
+ 
 var canvasInicial = document.getElementById("cells_inicial"); 
 var ctx = canvasInicial.getContext("2d");
 
@@ -84,7 +87,7 @@ cellTrans1.onload = function() {
 	var cellTransOut = new Image();
 	cellTransOut = ctxTrans.getImageData(0,0, 300, 300);
 
-	eq_histogram(cellTransOut,1);
+	eq_histogram(cellTransOut,1); //this function calculates the histograma. With the verificador == 1, we change the data.  
 		
 	ctxTrans.putImageData(cellTransOut, 0, 300);	
 }
@@ -127,7 +130,7 @@ cellTrans2.src = "https://i.ibb.co/mJCpHf4/img2.png";
 cellTrans3.src = "https://i.ibb.co/jzsvMwg/img3.png";
 cellTrans4.src = "https://i.ibb.co/xMfrGT4/img4.png";
 
-// histogram matching
+// histogram matching with the problem image. 
 
 var canvasMatching1 = document.getElementById("imagesMatching1");
 var canvasMatching2 = document.getElementById("imagesMatching2");
@@ -146,6 +149,7 @@ cellMatch2.crossOrigin = '';
 cellMatch3.crossOrigin = '';
 
 cellMatch1.onload = function() {
+	// we just put the image and draw here 
 	ctxMat1.drawImage(cellMatch1,0,0,500,500);
 	
 	cellMatchOut = ctxMat1.getImageData(0,0,500,500);
@@ -166,7 +170,7 @@ cellMatch2.onload = function() {
 	var measures = [800,500,50,10,50,50];
 	processingImage(cellMatchOut,"histogram_matching2","Current Histogram", measures);
 	
-	hist_matching(cellMatchOut,cellMatchRef,measures);
+	hist_matching(cellMatchOut,cellMatchRef,measures);  //here we do the matching. 
 	ctxMat3.putImageData(cellMatchOut,0,0);
 }
 

@@ -11,29 +11,31 @@ processingImage = function(img,division,title,measures){
 		x[i] = x[i-1] + 1;
 	};
 	
-	// fazendo a contagem das cores
+	//counting the colors 
 	var imgData = img.data;
 	for (let i = 0; i < imgData.length; i+=4){
 		red[imgData[i]] += 1;
 		green[imgData[i + 1]] += 1;
 		blue[imgData[i + 2]] += 1;
 	};
+	
+	//normalizing. Note that each colos has size length/4
 	for (let i = 0; i < 256; i++){
 		red[i] = 4*red[i]/imgData.length;
 		green[i] = 4*green[i]/imgData.length;
 		blue[i] = 4*blue[i]/imgData.length;	
 	}
 
-	//cálculo da média 
+	//mean calculus
 	var mean = 0;
-	var max = 0;
-	var a = 0;
+	var max = red[0];
+	
 	var x_mean = Array(256).fill(0);
 	var y_mean = Array(256).fill(0);
-	for(let i = 0; i < 256; i++){
+	for(let i = 1; i < 256; i++){
 		mean += i*red[i];
 		if (red[i] > max) {max = red[i];}
-		if (i > 0){x_mean[i] = x_mean[i-1] + 1;}
+		x_mean[i] = x_mean[i-1] + 1;
 	};
 	y_mean[parseInt(mean)] = max;
 	
@@ -41,10 +43,12 @@ processingImage = function(img,division,title,measures){
 };
 
 histogram = function(x,color,division,title,measure,x_mean = 0,y_mean = 0){
+	
+	//this function draws the histogram
 	var trace = {type: "bar", x: x, y: color,
 		marker: {
 			color: "#FFFFFF",
-			line: {width: 0.5}
+			line: {width: 0.7}
 		},
 		name: "cores"
 	};
@@ -53,7 +57,7 @@ histogram = function(x,color,division,title,measure,x_mean = 0,y_mean = 0){
 		var mean = {type: "bar", x: x_mean, y: y_mean,
 			marker: {
 				color: "FF0000",
-				line: {width: 0.5}
+				line: {width: 0.7}
 			},
 			name: "média"
 		};
@@ -72,6 +76,8 @@ histogram = function(x,color,division,title,measure,x_mean = 0,y_mean = 0){
 };
 
 eq_histogram = function(img,verificador,transformation = 0){
+	
+	//this functions adapts some cases of the processingImage
 	
 	var red = new Array(256).fill(0)
 	var green = new Array(256).fill(0);
@@ -119,22 +125,31 @@ hist_matching = function(img,imgRef,measures){
 	var transformation = new Array(256).fill(0);
 	var transformation2 = new Array(256).fill(0);
 	
+	//it calculates the CDF. 
 	eq_histogram(img,0,transformation);	
 	eq_histogram(imgRef,0,transformation2);
 	
-	var  errOld = 1;
-	var j = 0; 
-	for (let i = 0; i <img.data.length;i+=4){
+	var errOld = 1;
+	var j = 0;
+	var matching = new Array(256).fill(0);
+	
+	//here, we do the matching, by approximating each color. We want to minimize the error. So, when it starts to get bigger, we stop. 
+	//Note that transformation2[j] just gest higher because it's a monotuous function. 
+	for (let i = 0; i < matching.length; i++){
 		errOld = 1;
-		for (j = 0; j < transformation.length; j++){
-			err = Math.abs(transformation2[j] - transformation[img.data[i]]);
-			if (err >= errOld){break;}
+		for(j = 0; j < transformation2.length; j++){
+			err = Math.abs(transformation2[j] - transformation[i]);
+			if (err >= errOld) {break;}
 			errOld = err;
 		}
-		img.data[i] = j - 1 
-		img.data[i+1] = j - 1
-		img.data[i+2] = j - 1
+		matching[i] = j - 1;
 		j = 0;
+	}
+	
+	for (let i = 0; i <img.data.length;i+=4){
+		img.data[i] = matching[img.data[i]];
+		img.data[i+1] = matching[img.data[i+1]];
+		img.data[i+2] = matching[img.data[i+2]];
 		color[img.data[i]] += 1;
 	}
 	histogram(x,color,"histogram_matching3","Result Histogram",measures);
