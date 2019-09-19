@@ -1,0 +1,4 @@
+To see this page, you need to solve the problem with "Allowance" of the browser. In Google Chrome, I used an extention
+called "Allow-Control-Allow-Origin". 
+
+You also need to have tha packages for Python: Numpy, MatplotLib, Os, Scipy and Pillow (PIL). 
