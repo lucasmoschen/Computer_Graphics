@@ -229,7 +229,7 @@
 	O problema passa, então, para um problema matemático, com diferentes interpretações: uma visão do problema pode ser com otimização. 
 	Imagine que eu tome cada imagem do meu banco de dados, e calcule a distribuição conjunta. Agora, poderia interpretar o problema como:
 	\(\min_{\alpha,\beta} \sum_{i=1}^N \sum_{j = 0}^{255} \min_{k} |G_{\alpha,\beta}(k) - T_i(j)|\), onde \(T:[0,255] \to [0,1]\) é a função acumulada da imagem, 
-	\(G:[0,255] \to [0,1]\) é a função da distribuição acumulada da função beta, \(\alpha, \beta\) são os parâmtros da distribuição e \(N\) é o número de 
+	\(G:[0,255] \to [0,1]\) é a função da distribuição acumulada da função beta, \(\alpha, \beta\) são os parâmetros da distribuição e \(N\) é o número de 
 	imagens. Note que, a grosso modo essa modelagem permite, dado uma distribuição beta, eu somo os erros de cada tom, minimizando eles sempre. Outra forma 
 	de imaginar o problema é enxergar como um problema estatístico, onde queremos estimar \(\alpha, \beta\), parâmetros da minha distribuição. 
 </p>
@@ -237,8 +237,36 @@
 	Antes de dar um pouco de carga matemática nesse problema, eu pretendo neste trabalho observar qualitativamente a relação dessas distribuições 
 	com o resultado das imagens. Neste caso, como vou tratar de problemas um tanto mais específicos e que existem um pouco mais de cálculo por 
 	causa da distribuição beta, a linguagem javascript fica mais restrita e não é boa para o caso. Nesse sentido, pretendo a utilizar a linguagem 
-	<i>Python</i> para mostrar a diferença nesses modelos. 
+	<i>Python</i> para mostrar a diferença nesses modelos. Observe, assim, algumas imagens geradas pelas diferentes distribuições, sujeitas a \(\alpha, \beta\).
+	Para fazer os testes, recomendo usar o arquivo "image.py" que se encontra no GitHub de Lucas Moschen, como constado nas referências. Nele é 
+	possível alterar os parâmetros e obter  as mais variadas imagens.
 </p>
+
+<figure>
+	<canvas id="beta-distribution" width="1400" height="600"></canvas>
+	<figcaption>
+		Você pode observar quatro distribuições a abaixo beta com parâmetros distintos. (i) \(\alpha = \beta = 1\), similar a uniforme (equalização 
+		de histograma), (ii) \(\alpha = \beta = 5\), similar a uma normal, com média em torno do tom médio (note o contraste bem menor), (iii) \(\alpha 
+		= 8, \beta = 3\). Esse histograma se concentra nos brancos da imagem, e (iv) \(\alpha = \beta = 1.75\) Uma distribuição similar à parábola.
+	</figcaption>
+</figure>
+
+<p align = "justify">
+	Uma outra forma de obter um resultado similar é primeiro fazer a equalização de histograma em uma das imagens e depois utilizá-la como referência.
+	O que acredito ser interessante é que variando apenas dois parâmetros, posso obter as mais variadas imagens extremamente distintas, como pudemos 
+	observar. 
+</p>
+
+<h2 align = "center"> Conclusão </h3>
+<p align = "justify">
+
+</p>
+
+<h2 align = "center"> Referências Bibliográficas </h2>
+
+
+
+
 	
 <script type = "text/javascript" src = "image_processing.js"></script>
 <script type = "text/javascript" src = "load_image.js"></script>

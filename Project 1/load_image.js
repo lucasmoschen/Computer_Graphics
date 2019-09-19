@@ -102,6 +102,7 @@ cellTrans2.onload = function() {
 	
 	ctxTrans.putImageData(cellTransOut, 300, 300);	
 }
+
 cellTrans3.onload = function() {
 	
 	ctxTrans.drawImage(cellTrans3, 600,0, 300, 300);
@@ -177,3 +178,25 @@ cellMatch2.onload = function() {
 cellMatch1.src = "https://i.ibb.co/1K04DTr/img1.png";
 cellMatch2.src = "https://i.ibb.co/mJCpHf4/img2.png";
 cellMatch3.src = "https://i.ibb.co/1K04DTr/img1.png";
+
+// Beta Distribution 
+
+var canvasBeta = document.getElementById("beta-distribution")
+var ctxBeta = canvasBeta.getContext("2d")
+
+var cellImages = ["img1.png","img2.png","img3.png","img4.png"]
+var betaImages = ["img1-beta.png","img2-beta.png","img3-beta.png","img4-beta.png"]
+
+for(let i = 0; i < 4; i++){
+	let cell = new Image();
+	cell.onload = function(){
+		ctxBeta.drawImage(cell,i*300,0,300,300);
+	}
+	cell.src = "images-other/"+cellImages[i];
+	
+	let beta = new Image();
+	beta.onload = function(){
+		ctxBeta.drawImage(beta,i*300,300,300,300);
+	}
+	beta.src = "images-other/"+betaImages[i];
+}
