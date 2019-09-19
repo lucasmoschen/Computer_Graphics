@@ -29,8 +29,23 @@ def betaDiscreteDistribution(a,b):
  
 #saving by the beta distribution
  
-#im1 = Image.open("images-png/img2.png")
-#image = HistEq(im1)
+im1 = Image.open("images-hist-match/50.png")
+image = HistEq(im1)
+image.drawHistogram()
+
+a = np.zeros(256)
+a[0:100] = 0
+#a[70:130] = 85
+a[100:175] = 128
+a[175:255] = 255
+
+matrix = image.matrix_colors.copy()
+for i in range(len(matrix)):
+    for j in range(len(matrix[i])):
+        matrix[i][j] = a[matrix[i][j]]
+i = Image.fromarray(matrix)
+i.show()
+        
 
 #image.saveMatch(betaDiscreteDistribution(1,1),"img1.png",1)
 #image.saveMatch(betaDiscreteDistribution(5,5),"img2.png",1)
