@@ -29,11 +29,9 @@ def betaDiscreteDistribution(a,b):
  
 #saving by the beta distribution
  
-#im1 = Image.open("images-hist-match/50.png")
-#image = HistEq(im1)
-#image.showMatch(betaDiscreteDistribution(10,2),1)
-
-
+# im1 = Image.open("images-hist-match/40.png")
+# image = HistEq(im1)
+ 
 #image.saveMatch(betaDiscreteDistribution(1,1),"img1.png",1)
 #image.saveMatch(betaDiscreteDistribution(5,5),"img2.png",1)
 #image.saveMatch(betaDiscreteDistribution(8,3),"img3.png",1)
@@ -45,3 +43,12 @@ def betaDiscreteDistribution(a,b):
 #ax.plot(x, distBeta.pdf(x)) 
 #plt.show()
 
+im1 = Image.open("images-hist-match/118.png")
+image = HistEq(im1)
+colors = image.histogram()
+image.threshold("images-other/th1.png")
+
+im2 = Image.open("images-hist-match/119.png")
+image2 = HistEq(im2)
+colors2 = image2.histogram()
+image2.threshold("images-other/th2.png")

@@ -74,3 +74,33 @@ class HistogramEqualization:
         img = Image.fromarray(newColor)
         img.save(fileName)
         print("File "+fileName+" saved.")
+        
+    def threshold(self,fileName = 0, p1 = 64, p2 = 128, p3 = 192, d = 0.01, N_iteration = 100):
+        ''' Apenas para três variáveis'''
+        p1Old, p2Old, p3Old = 0,0,0
+        it = 0
+        colors = self.histogram()
+        while abs(p1 - p1Old) > d or abs(p2 - p2Old) > d or abs(p3 - p3Old) > d:
+            it += 1
+            if it > N_iteration: 
+                print("Não convergiu. Insira N_iteration maior")
+                break
+            p1Old,p2Old,p3Old = p1,p2,p3
+            p1 = sum([colors[i]*i for i in range(int(p2))])
+            p2 = sum([colors[i]*i for i in range(int(p1Old),int(p3))])
+            p3 = sum([colors[i]*i for i in range(int(p2Old),256)])  
+        a = np.zeros(256)
+        a[int(np.ceil(p1)):int(np.ceil(p2))] = 85
+        a[int(np.ceil(p2)):int(np.ceil(p3))] = 170
+        a[int(np.ceil(p3)):256] = 255
+        
+        M = self.matrix_colors
+        for i in range(len(M)):
+            for j in range(len(M[i])):
+                M[i][j] = a[M[i][j]]
+        i = Image.fromarray(M)
+        if fileName != 0:
+            i.save(fileName)
+        else: 
+            i.show()
+    

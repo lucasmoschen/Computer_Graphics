@@ -200,3 +200,26 @@ for(let i = 0; i < 4; i++){
 	}
 	beta.src = "images-other/"+betaImages[i];
 }
+
+// Thresholding 
+
+var canvasTh = document.getElementById("thresholding")
+var ctxTh = canvasTh.getContext("2d")
+
+cellImages = ["118.png", "119.png"]
+var thImages = ["th1.png", "th2.png"]
+
+for(let i = 0; i < 2; i++){
+	let cell = new Image();
+	cell.onload = function(){
+		ctxTh.drawImage(cell,0,i*600,600,600);
+	}
+	cell.src = "images-hist-match/"+cellImages[i];
+	
+	let th = new Image();
+	
+	th.onload = function(){
+		ctxTh.drawImage(th,600,i*600,600,600);
+	}
+	th.src = "images-other/"+thImages[i];
+}

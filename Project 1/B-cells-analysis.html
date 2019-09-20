@@ -11,6 +11,9 @@
 
 <body>
 	<h1 align = "center"> Microscópico Eletrônico de Transmissão e Correção de Imagens de Células B por Histogramas</h1>
+	<h3 align = "center"> Lucas Machado Moschen </h3>
+	<h3 align = "center"> Escola de Matemática Aplicada - Fundação Getulio Vargas </h3>
+	<h3 align = "center"> Rio de Janeiro, setembro de 2019 </h3>
 	<h2 align = "center"> Motivação </h2>
 		<p align = "justify"> 
 			Desenvolver um projeto para a primeira avaliação do curso de Introdução à Computação Gráfica. O tema foi 
@@ -257,13 +260,42 @@
 	observar. 
 </p>
 
+<h3 align = "center"> Image Segmentation com Thresholding </h3>
+
+<p align = "justify"> 
+	O objetivo de utilizar o método de Thresholding é sua fácil implementação e que ele é interamente baseado no formato de histograma. Originalmente, 
+	ele foi pensado para distribuições bimodais, visto que ele separava o background do objeto em questão. Porém, ele parte do pressuposto de que o contraste 
+	entre esses grupos é grande, o que deixa menos robusto o método. Outro problem que observei ao utilizar esse método é o ruído. Como ele não considera 
+	a posição espacial dos pixels, se houver ruído na imagem, os agrupamentos ficam distorcidos. 
+</p>
+<p align = "jutify">
+A definição matemática é bem simples no caso binário e é facilmente extendida para o caso não binário. Considere uma partição de pontos da reta real, entre
+\(0\) e \(255\) dada por \(P = \{p_1,p_2,...,p_n\}\). Para cada pixel com colocação \(I_{i,j}\), tomo \(I'_{i,j} = int(255/n)\), se \(p_{k} \leq I_{i,j} \leq p_{k+1}\). 
+Para realizar esse método, inicio com $n$ pontos bem distribuídos. Considero \(p_0 = 0\) e \(p_{n+1} = 255\). Assim, calculo a média entre o ponto anterior e o sucessor 
+do histograma. A partir desse cálculo, obtenho uma nova média e contínuo nesse processo, até a convergência. Com os pontos na convergência, pinto novamente a imagem.  
+</p>
+<p align = "justify"> 
+Mas qual o valor de \(n\)? Nesse caso, tomei \(n = 3\), para dividir a região em quatro partes, visto que observando o histograma referência, esse é o comportamento 
+esperado. 
+Observação: Um problema que observei foi o destacado na segunda imagem abaixo. 
+</p>
+<figure>
+	<canvas id="thresholding" width="1200" height="1200"></canvas>
+	<figcaption>
+		Você pode observar o thresholding para cada imagem. São escolhidos três pontos. Observe que no caso da segunda imagem, apenas dois acabaram sendo utilizados. 
+	</figcaption>
+</figure>
+
 <h2 align = "center"> Conclusão </h3>  
 <p align = "justify">
 Histogram Matching e Histogram Equalization são ótimas ferramenta para resolver problemas com o banco de dados, principalmente quando este é obtido por 
 máquinas que podem apresentar falhas durante a obtenção de imagens. Desta forma, qualquer processamento de imagens com o objetivo de comparar as imagens, 
 como, por exemplo comparar as estruturas das células do corpo, merece passar por essa análise. Fazer a comparação com a distribuição beta não foi algo que 
 apresentou uma novidade para o campo de estudo, porém, permitiu fazer análises bem interessantes sobre o que se é desejado. Nesse caso, obter histogram 
-matching de um banco de dados fica reduzido a escolher uma distribuição de interesse. Esse estudo baseou-se em algoritmos já existentes na literatura, 
+matching de um banco de dados fica reduzido a escolher uma distribuição de interesse. 
+Para o algoritmo de Thresholding, os resultados não me pareceram promissores por causa do ruído que as imagens, no geral, apresentavam. Mas foi de grande 
+interesse a aplicação desse método. 
+Esse estudo baseou-se em algoritmos já existentes na literatura, 
 e, portanto, não apresentou grande diferencial quanto aos resultado, como mostro ao longo do escopo desse texto. A classe em <i> Python </i> ficará disponível 
 para uso,  caso haja interesse em reproduzir o algoritmo citado, bem como o código em javascript para o mesmo. 
 Acredito que o objetivo da disciplina de Introdução à Computação Gráfica tenha sido realizado. 
