@@ -192,13 +192,13 @@ for(let i = 0; i < 4; i++){
 	cell.onload = function(){
 		ctxBeta.drawImage(cell,i*300,0,300,300);
 	}
-	cell.src = "images-other/"+cellImages[i];
+	cell.src = "img/images-other/"+cellImages[i];
 	
 	let beta = new Image();
 	beta.onload = function(){
 		ctxBeta.drawImage(beta,i*300,300,300,300);
 	}
-	beta.src = "images-other/"+betaImages[i];
+	beta.src = "img/images-other/"+betaImages[i];
 }
 
 // Thresholding 
@@ -214,12 +214,12 @@ for(let i = 0; i < 2; i++){
 	cell.onload = function(){
 		ctxTh.drawImage(cell,0,i*600,600,600);
 	}
-	cell.src = "images-hist-match/"+cellImages[i];
+	cell.src = "img/images-hist-match/"+cellImages[i];
 	
 	let th = new Image();
 	
 	th.onload = function(){
 		ctxTh.drawImage(th,600,i*600,600,600);
 	}
-	th.src = "images-other/"+thImages[i];
+	th.src = "img/images-other/"+thImages[i];
 }

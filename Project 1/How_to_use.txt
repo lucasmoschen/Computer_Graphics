@@ -3,7 +3,6 @@ called "Allow-Control-Allow-Origin".
 
 You also need to have tha packages for Python: Numpy, MatplotLib, Os, Scipy and Pillow (PIL). 
 
-You need to download some of the the follow folders to begin: 
+You need to download this folder too: 
 
-- data Set: images-hist-match
-- other: images-other
+https://gvmail-my.sharepoint.com/:f:/g/personal/b37214_fgv_edu_br/EqLPW8YI3exEkT0orBW2ph0B_w82IpHNXtkVkxZQlNgIpA?e=OAfHFH
