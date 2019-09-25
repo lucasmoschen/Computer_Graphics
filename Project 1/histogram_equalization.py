@@ -75,24 +75,50 @@ class HistogramEqualization:
         img.save(fileName)
         print("File "+fileName+" saved.")
         
-    def threshold(self,fileName = 0, p1 = 64, p2 = 128, p3 = 192, d = 0.01, N_iteration = 100):
-        ''' Apenas para três variáveis'''
-        p1Old, p2Old, p3Old = 0,0,0
-        it = 0
+    def threshold(self,fileName = 0, lenP = 0, d = 0.01, N_iteration = 100):
+    
+        if lenP == 0: lenP = 3
         colors = self.histogram()
-        while abs(p1 - p1Old) > d or abs(p2 - p2Old) > d or abs(p3 - p3Old) > d:
+        
+        #I want to discover the first appearence of non zero in the histogram
+        pInicial = 0
+        pFinal = 255
+        i,j = 0,0
+        while True:
+            if colors[i] != 0: 
+                pInicial = i
+                break
+            else: i += 1
+        while True:
+            if colors[255-j] != 0:
+                pFinal = 255 - j
+                break
+            else: j+=1
+        
+        p = [int((i+1)*(pFinal - pInicial + 1)/(lenP + 1)) + pInicial for i in range(lenP)]
+        p.insert(0,pInicial)
+        p.append(pFinal)
+        
+        pOld = [0 for i in range(lenP+2)]
+        it = 0
+
+        while True:
             it += 1
             if it > N_iteration: 
                 print("Não convergiu. Insira N_iteration maior")
                 break
-            p1Old,p2Old,p3Old = p1,p2,p3
-            p1 = sum([colors[i]*i for i in range(int(p2))])
-            p2 = sum([colors[i]*i for i in range(int(p1Old),int(p3))])
-            p3 = sum([colors[i]*i for i in range(int(p2Old),256)])  
-        a = np.zeros(256)
-        a[int(np.ceil(p1)):int(np.ceil(p2))] = 85
-        a[int(np.ceil(p2)):int(np.ceil(p3))] = 170
-        a[int(np.ceil(p3)):256] = 255
+            pOld = p.copy()
+            
+            for j in range(1,lenP+1):
+                ss = sum([colors[i]*i for i in range(pOld[j-1],p[j+1])])
+                si = sum([colors[i] for i in range(pOld[j-1],p[j+1])])
+                p[j] = int(ss/si)
+                
+            validator = sum([abs(p[j] - pOld[j]) > d for j in range(lenP)])
+            if validator == 0: break
+        p[0] = 0
+        p[-1] = 256
+        a = [i*int(255/lenP) for i in range(lenP+1) for j in range(p[i],p[i+1])]
         
         M = self.matrix_colors
         for i in range(len(M)):
