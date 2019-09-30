@@ -28,8 +28,8 @@ imageBW2.onload = function() {
 	processingImage(imgBW_data2, "bw_histogram2", title,measures);
 };
 
-imageBW.src = "https://d.wattpad.com/story_parts/396812486/images/159ab54e60541a85107225027536.jpg";
-imageBW2.src = "https://images.pexels.com/photos/1146642/pexels-photo-1146642.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
+imageBW.src = "img/black-white.jpg"
+imageBW2.src = "img/black-white-2.jpg";
 
 // Now a Initiate the images to show the problem. 
  
@@ -62,8 +62,8 @@ second_cell.onload = function() {
 	processingImage(img2_data,"cell2",title,measures);
 };
 
-first_cell.src = "https://i.ibb.co/1K04DTr/img1.png";
-second_cell.src = "https://i.ibb.co/mJCpHf4/img2.png";
+first_cell.src = "img/img1.png";
+second_cell.src = "img/img2.png";
 
 //first transformation with histogram equalization
 
@@ -126,10 +126,10 @@ cellTrans4.onload = function() {
 	ctxTrans.putImageData(cellTransOut, 900, 300);	
 }
 
-cellTrans1.src = "https://i.ibb.co/1K04DTr/img1.png";
-cellTrans2.src = "https://i.ibb.co/mJCpHf4/img2.png";
-cellTrans3.src = "https://i.ibb.co/jzsvMwg/img3.png";
-cellTrans4.src = "https://i.ibb.co/xMfrGT4/img4.png";
+cellTrans1.src = "img/img1.png";
+cellTrans2.src = "img/img2.png";
+cellTrans3.src = "img/img3.png";
+cellTrans4.src = "img/img4.png";
 
 // histogram matching with the problem image. 
 
@@ -175,16 +175,16 @@ cellMatch2.onload = function() {
 	ctxMat3.putImageData(cellMatchOut,0,0);
 }
 
-cellMatch1.src = "https://i.ibb.co/1K04DTr/img1.png";
-cellMatch2.src = "https://i.ibb.co/mJCpHf4/img2.png";
-cellMatch3.src = "https://i.ibb.co/1K04DTr/img1.png";
+cellMatch1.src = "img/img1.png";
+cellMatch2.src = "img/img2.png";
+cellMatch3.src = "img/img1.png";
 
 // Beta Distribution 
 
 var canvasBeta = document.getElementById("beta-distribution")
 var ctxBeta = canvasBeta.getContext("2d")
 
-var cellImages = ["img1.png","img2.png","img3.png","img4.png"]
+var cellImages = ["bimg1.png","bimg2.png","bimg3.png","bimg4.png"]
 var betaImages = ["img1-beta.png","img2-beta.png","img3-beta.png","img4-beta.png"]
 
 for(let i = 0; i < 4; i++){
@@ -192,13 +192,13 @@ for(let i = 0; i < 4; i++){
 	cell.onload = function(){
 		ctxBeta.drawImage(cell,i*300,0,300,300);
 	}
-	cell.src = "img/images-other/"+cellImages[i];
+	cell.src = "img/"+cellImages[i];
 	
 	let beta = new Image();
 	beta.onload = function(){
 		ctxBeta.drawImage(beta,i*300,300,300,300);
 	}
-	beta.src = "img/images-other/"+betaImages[i];
+	beta.src = "img/"+betaImages[i];
 }
 
 // Thresholding 
@@ -214,12 +214,12 @@ for(let i = 0; i < 2; i++){
 	cell.onload = function(){
 		ctxTh.drawImage(cell,0,i*600,600,600);
 	}
-	cell.src = "img/images-hist-match/"+cellImages[i];
+	cell.src = "img/"+cellImages[i];
 	
 	let th = new Image();
 	
 	th.onload = function(){
 		ctxTh.drawImage(th,600,i*600,600,600);
 	}
-	th.src = "img/images-other/"+thImages[i];
+	th.src = "img/"+thImages[i];
 }
