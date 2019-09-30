@@ -11,16 +11,16 @@
 
 <body>
 <div style="font-size: 150%">
-	<h1 align = "center"> Microscópico Eletrônico de Transmissão e Correção de Imagens de Células B por Histogramas</h1>
+	<h1 align = "center"> Correção com Histogramas de Imagens de Células B obtidas por Microscópico Eletrônico de Transmissão </h1>
 	<h3 align = "center"> Lucas Machado Moschen </h3>
 	<h3 align = "center"> Escola de Matemática Aplicada - Fundação Getulio Vargas </h3>
 	<h3 align = "center"> Rio de Janeiro, setembro de 2019 </h3>
 	<h2 align = "center"> Motivação </h2>
 		<p align = "justify"> 
 			Desenvolver um projeto para a primeira avaliação do curso de Introdução à Computação Gráfica. O tema foi 
-			por seu impacto nas áreas biológicas, visto que com imagens de células B, podemos estudar sua estrutura e 
+			por seu impacto nas áreas biológicas, visto que, com imagens de células B, podemos estudar sua estrutura e 
 			desenvolver métodos mais eficientes para o combate de doenças infecciosas. Todavia, ao conhecer os métodos 
-			de obtenção de imagem, percebemos que algumas vezes, algumas falhas nesses processos e que antes de uma 
+			de obtenção de imagem, percebemos que algumas vezes, existem falhas nesses processos e que antes de uma 
 			análise mais precisa, necessitam de correção. Nesse ponto entra a computação gráfica, com a equalização de 
 			histogramas e com a segmentação de imagem, a fim de ser separado a área de estudo de interesse da área não 
 			interessante, como fundo de imagem ou erros. 
@@ -28,7 +28,7 @@
 	<h2 align = "center"> Introdução </h2>
 	<p align = "justify">
 		O sistema imunológico humano compreende diversos tipos de células que exercem as mais variadas funções de defesa 
-		do organismo. Dentre elas existem os macrófagos, os netrófilos, os monócitos, os linfócitos T, os linfócitos B, 
+		do organismo. Dentre elas existem os macrófagos, os neutrófilos, os monocitos, os linfócitos T, os linfócitos B, 
 		entre outras. Neste trabalho, focou-se nas nas células B, devido à sua importância por fabricar 
 		anticorpos, proteínas que atuam como defensores do organismo ao interagir com os antígenos dos invasores. Essas 
 		células passam por diferenciação, assim, a interação entre o antígeno estimulador do linfócito e do anticorpo produzido 
@@ -50,7 +50,7 @@
 	</p>
 	<p align = "justify">  
 		Por fim, antes de qualquer análise minunciosa de algum banco de dados à procura de relações com outras áreas da biologia e matemática, 
-		como bioqímica, machine learning ou modelagem, necessita de uma limpeza de dados. Essa limpeza pode ser feita de várias maneiras, entretanto, 
+		como bioquímica, machine learning ou modelagem, necessita de uma limpeza de dados. Essa limpeza pode ser feita de várias maneiras, entretanto, 
 		a análise de histograma é considerada bastante relevante, para equalizar imagens e poder compará-las. Os histogramas de coloração 
 		proveem bastante informação sobre a imagem, como contraste e problemas de obtenção de imagem. Assim, o escopo do trabalho fica configurado. 
 	</p>
@@ -58,7 +58,7 @@
 	<p align = "justify"> 
 		Este trabalho foi desenvolvido através de estudos teóricos na bibliográfica e simulações computacionais. As referências bibliogáficas estão todas 
 		citadas ao final do texto e vieram como agregador de conhecimento, quanto para referência de modelos já existentes. As simulações computacionais 
-		incluíram o banco de dados utilizado , que mostro abaixo, e a apresentação de resultados através de HTML. Para realizá-las, as linguagens de 
+		incluíram o banco de dados utilizado, que mostro abaixo, e a apresentação de resultados através de HTML. Para realizá-las, as linguagens de 
 		programação utilizadas foram Javascript, linguagem natural da Web, e Python, para programação em escala. Nesse site, todas as simulações de histograma 
 		são feitas em Javascript. Os resultados de histogramas são apresentados utilizando a bilbioteca do javascript Plotly.js, que é citada nas 
 		referências. Observo que o Javascript apresenta problemas de leitura. Ele processa algumas funções não na ordem especificada pelo código, e às vezes 
@@ -81,7 +81,7 @@
 		o nível de cinza e \(n_k\) é o número de ocorrências na imagem deste tom. Em meus histogramas, tomarei ele normalizado, isto é, os valores 
 		estarão no intervalo \([0,1]\). Então, podemos tomar a frequência como uma probabilidade aproximada de ocorrência. A partir dessa informação, 
 		algumas conclusões podem ser tiradas, como, por exemplo: a imagem é mais clara ou mais escura, a imagem tem contraste alto ou baixo, etc. O 
-		histograma também permite a vizualização da divisão de uma imagem em determinadas partes. Em meus histogramas, mostrarei a média ponderada 
+		histograma também permite a visualização da divisão de uma imagem em determinadas partes. Em meus histogramas, mostrarei a média ponderada 
 		desse histograma, a fim de ter uma noção de como é o comportamento médio das cores da minha imagem. 
 	</p>
 	<div id = "image_analysis1" style = "width: 1200px height: 400px">
@@ -103,7 +103,7 @@
 	<p align = "justify"> 
 		Observe que na primeira imagem, a coloração de tons mais escuros é predominante, o que faz com que 
 		os componentes do histograma estejam mais concentrados à esquerda. Como o contraste também é baixo, os tons 
-		tendem a se concentrar (descvio padrão baixo). Enquanto na segunda, os tons são mais distríbuidos. 
+		tendem a se concentrar (desvio padrão baixo). Enquanto na segunda, os tons são mais distríbuidos. 
 		Desta forma, a média aproxima-se do valor médio de uma distribuição uniforme. O contraste também é maior nessa imagem, devido a essa distribuição. 
 	</p>
 	
@@ -134,8 +134,7 @@
 		focamos nossa atenção em transformações do tipo \(s = T(r)\), que satisfazem a condição de ser monótona crescente no intervalo (injetividade!)
 		especificado acima e \(0 \leq T(r) \leq 1\). Também é interessante que exista inversa para essa transformação. Note que a monotocidade 
 		irá garantir que as cores mais escuras continuem dessa maneira, não abrindo precedentes para inversões de cores não desejadas 
-		na análise, isto é, imagine cores mais tons mais escuros do que outros tornando-se mais claros após uma determinada informação. Essa 
-		transformação não é interessante para analisar o dado, e, portanto, não é interessante. <i> Outros objetivos podem existir, porém. </i> 
+		na análise, isto é, tons mais escuros não se tornarão mais claros após uma determinada transformação. Porém, outros objetivos podem existir nesse sentido.  
 		Note que estamos tratando essa transformação como contínua, não discreta. Desta maneira, vejamos o nível de cinza de um 
 		pixel como uma variável aleatória no intervalo \([0,1]\). Seja \(p_r(r)\) a função densidade de probabilidade de \(r\). 
 		Como \(s = T(r)\), uma propriedade da probabilidade diz que \(p_s(s) = p_r(r)\cdot |\frac{dr}{ds}|\).
@@ -170,7 +169,7 @@
 		respectivamente. Tomemos, então \(s\) de forma que \(s = T(r) = \int_0^r p_r(w) dw \) e definamos \(z\) com a propriedade \(G(z) = \int_0^z p_z(t) dt = s\).
 		Desta dorma, \(G(z) = T(r) \implies z = G^{-1}[T(r)]\), assumindo a existência da inversa de \(G\). Desta forma:
 		<ol type = "1">
-			<li> Obtenho as distribuições acumuladas \(T(r) \) \(G(z)\) como anteriormente; </li>
+			<li> Obtenho as distribuições acumuladas \(T(r) \) e \(G(z)\) como anteriormente; </li>
 			<li> Obtenho a transformação \(G^{-1}\), fazendo a comparação das distribuições (Veja imagem abaixo); e </li>
 			<li> Obtenho a imagem de saída. </li>
 		</ol>
