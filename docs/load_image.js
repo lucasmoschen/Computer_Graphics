@@ -28,7 +28,7 @@ imageBW2.onload = function() {
 	processingImage(imgBW_data2, "bw_histogram2", title,measures);
 };
 
-imageBW.src = "https://d.wattpad.com/story_parts/396812486/images/159ab54e60541a85107225027536.jpg";
+imageBW.src = "img/black-white.jpg"
 imageBW2.src = "https://images.pexels.com/photos/1146642/pexels-photo-1146642.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
 
 // Now a Initiate the images to show the problem. 
