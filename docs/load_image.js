@@ -155,9 +155,9 @@ cellMatch1.onload = function() {
 	
 	cellMatchOut = ctxMat1.getImageData(0,0,500,500);
 
-	var measures = [800,500,50,10,50,50];
+	meas = [800,500,50,10,50,50];
 	
-	processingImage(cellMatchOut,"histogram_matching1","Reference Histogram", measures);
+	processingImage(cellMatchOut,"histogram_matching1","Reference Histogram", meas);
 }
 
 cellMatch2.onload = function() {
@@ -168,8 +168,8 @@ cellMatch2.onload = function() {
 	cellMatchOut = ctxMat2.getImageData(0,0,500,500);
 	cellMatchRef = ctxMat3.getImageData(0,0,500,500);
 	
-	var measures = [800,500,50,10,50,50];
-	processingImage(cellMatchOut,"histogram_matching2","Current Histogram", measures);
+	meas2 = [800,500,50,10,50,50];
+	processingImage(cellMatchOut,"histogram_matching2","Current Histogram", meas2);
 	
 	hist_matching(cellMatchOut,cellMatchRef,measures);  //here we do the matching. 
 	ctxMat3.putImageData(cellMatchOut,0,0);
