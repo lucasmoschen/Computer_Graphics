@@ -47,7 +47,7 @@ second_cell.crossOrigin = '';
 first_cell.onload = function (){
 	//draw the image
 	ctx.drawImage(first_cell,100,0,500,500);
-	img1_data = ctx.getImageData(0,0,500,500);
+	img1_data = ctx.getImageData(100,0,500,500);
 	//processing the information to generate the data
 	var title = "Histogram of grey colors - First Cell B";
 	var measures = [500,300,50,10,50,50];
