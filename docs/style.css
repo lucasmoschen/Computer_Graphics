@@ -1,0 +1,24 @@
+body {background-color: white;}
+
+h1 {
+    color: blue;
+    font-family: verdana;
+}
+h2 {
+    color: blue;
+    font-family: verdana;
+}
+h3 {
+    color: blue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+p {
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+figcaption{
+    margin-right: 100px;
+    margin-left: 100px;
+}

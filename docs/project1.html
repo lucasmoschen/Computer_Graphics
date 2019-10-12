@@ -6,11 +6,11 @@
 	<script type="text/javascript" async
 		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
 	</script>
-	
+	<link rel="stylesheet" href="style.css">
+	<meta charset="utf-8"></meta>
 </head>
 
 <body>
-<div style="font-size: 130%">
 	<h1 align = "center"> Correção com Histogramas de Imagens de Células B obtidas por Microscópico Eletrônico de Transmissão </h1>
 	<h3 align = "center"> Lucas Machado Moschen </h3>
 	<h3 align = "center"> Escola de Matemática Aplicada - Fundação Getulio Vargas </h3>
@@ -84,18 +84,18 @@
 		histograma também permite a visualização da divisão de uma imagem em determinadas partes. Em meus histogramas, mostrarei a média ponderada 
 		desse histograma, a fim de ter uma noção de como é o comportamento médio das cores da minha imagem. 
 	</p>
-	<div id = "image_analysis1" style = "width: 1200px height: 400px">
-		<div id = "black_white" style = "width: 600px height: 400px; float: left;">
-			<canvas id = "black_white_image" width="600" height= "400"></canvas>
+	<div id = "image_analysis1" style = "width: 1200px height: 300px; margin-right: 100px">
+		<div id = "black_white" style = "width: 600px height: 300px; float: left;">
+			<canvas id = "black_white_image" width="600" height= "300"></canvas>
 		</div>
-		<div id = "bw_histogram" style = "width: 600px height: 400px; float: right;"></div>
+		<div id = "bw_histogram" style = "width: 600px height: 300px; float: right;"></div>
 	</div>
-	
-	<div id = "image_analysis2" style = "width: 1200px height: 400px">
-		<div id = "black_white2" style = "width: 600px height: 400px; float: left;">
-			<canvas id = "black_white_image2" width="600" height= "400"></canvas>
+	<canvas width = "1000" height = "5"></canvas>
+	<div id = "image_analysis2" style = "width: 1200px height: 300px; margin-right: 100px">
+		<div id = "black_white2" style = "width: 600px height: 300px; float: left;">
+			<canvas id = "black_white_image2" width="600" height= "300"></canvas>
 		</div>
-		<div id = "bw_histogram2" style = "width: 600px height: 400px; float: right;"></div>
+		<div id = "bw_histogram2" style = "width: 600px height: 300px; float: right;"></div>
 	</div>
 	
 	<canvas id = "space" width="35" height = "1"></canvas>
@@ -116,16 +116,16 @@
 		é espalhar os tons por um espectro maior, aumentando contraste e a diferença de percepção. 
 	</p>
 <figure>
-	<canvas id="cells_inicial" width="1300" height="600"></canvas>
+	<canvas id="cells_inicial" width="1200" height="500"></canvas>
 	<figcaption>
 		Imagem de duas células B. É observável a diferença entre as duas imagens, uma com uma distribuição de brancos muito maior do que a outra.
 		A segunda imagem tem um problema de obtenção. O dado apresenta um grande ruído. 
 	</figcaption>
 </figure>
 
-<div id="histogram1" style = "width:1300px height:512px">
-  <div id = "cell1" style="width:650px; float:left;"></div>
-  <div id = "cell2" style="width:650px; float:right;"></div>
+<div id="histogram1" style = "width:1200px height:512px; margin-left: 100px">
+  <div id = "cell1" style="width:500px; float:left;"></div>
+  <div id = "cell2" style="width:600px; float:right;"></div>
 </div>
 
 <h3 align = "center"> Definição: usando conceitos probabilísticos </h3>
@@ -168,7 +168,7 @@
 		Assim, consideremos \(p_r(r)\) e \(p_z(z)\) PDFs, que representam a distribuição do histrograma, da imagem original e da imagem processada, 
 		respectivamente. Tomemos, então \(s\) de forma que \(s = T(r) = \int_0^r p_r(w) dw \) e definamos \(z\) com a propriedade \(G(z) = \int_0^z p_z(t) dt = s\).
 		Desta dorma, \(G(z) = T(r) \implies z = G^{-1}[T(r)]\), assumindo a existência da inversa de \(G\). Desta forma:
-		<ol type = "1">
+		<ol type = "1" style = "margin-right: 100px; margin-left: 100px;">
 			<li> Obtenho as distribuições acumuladas \(T(r) \) e \(G(z)\) como anteriormente; </li>
 			<li> Obtenho a transformação \(G^{-1}\), fazendo a comparação das distribuições (Veja imagem abaixo); e </li>
 			<li> Obtenho a imagem de saída. </li>
@@ -209,7 +209,7 @@
 	</div>
 	<div id = "histogram_matching3" style = "width: 600px height: 500px; float: right;"></div>
 </div>
-<canvas id = "nothing" width = "100" height = "10"></canvas>
+<canvas id = "nothing" width = "100" height = "15"></canvas>
 <p align = "justify"> 
 	A diferença é notável. Porém, algo incomoda o modelo para mim: A área de preto, que agora se tornou cinza. Esse dado é dado perdido. 
 	<b> Atualize até 10 vezes, caso a tela fique preta. </b>
@@ -338,6 +338,5 @@ Frontiers in Biosciences, 2012
 	
 <script type = "text/javascript" src = "image_processing.js"></script>
 <script type = "text/javascript" src = "load_image.js"></script>
-</div>
 </body>
 </html>

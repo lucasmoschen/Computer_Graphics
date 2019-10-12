@@ -13,18 +13,18 @@ imageBW.crossOrigin = '';
 imageBW2.crossOrigin = '';
 
 imageBW.onload = function() {
-	ctxBW.drawImage(imageBW,0,0,600,390);
-	imgBW_data = ctxBW.getImageData(0,0,600,390);
+	ctxBW.drawImage(imageBW,100,0,500,300);
+	imgBW_data = ctxBW.getImageData(100,0,500,300);
 	var title = "Histograma das folhas";
-	meas = [650,390,50,10,50,50];  //it serves as a parameter to create a histogram 
+	meas = [550,300,100,10,50,50];  //it serves as a parameter to create a histogram 
 	processingImage(imgBW_data, "bw_histogram", title,meas);  //here I do the processingImage. It does the histogram's count
 };
 
 imageBW2.onload = function() {
-	ctxBW2.drawImage(imageBW2,0,0,600,390);
-	imgBW_data2 = ctxBW2.getImageData(0,0,600,390);
+	ctxBW2.drawImage(imageBW2,100,0,500,300);
+	imgBW_data2 = ctxBW2.getImageData(100,0,500,300);
 	var title = "Histograma das montanhas";
-	meas = [650,390,50,10,50,50];
+	meas = [550,300,100,10,50,50];
 	processingImage(imgBW_data2, "bw_histogram2", title,meas);
 };
 
@@ -46,19 +46,19 @@ second_cell.crossOrigin = '';
 //call the first B cell image 
 first_cell.onload = function (){
 	//draw the image
-	ctx.drawImage(first_cell,0,0,600,600);
-	img1_data = ctx.getImageData(0,0,600,600);
+	ctx.drawImage(first_cell,100,0,500,500);
+	img1_data = ctx.getImageData(0,0,500,500);
 	//processing the information to generate the data
 	var title = "Histogram of grey colors - First Cell B";
-	var measures = [600,300,50,10,50,50];
+	var measures = [500,300,50,10,50,50];
 	processingImage(img1_data,"cell1",title,measures);	
 };
 
 second_cell.onload = function() {
-	ctx.drawImage(second_cell, 650, 0, 600, 600);
-	img2_data = ctx.getImageData(650,0,600,600);
+	ctx.drawImage(second_cell, 650, 0, 500, 500);
+	img2_data = ctx.getImageData(650,0,500,500);
 	var title = "Histogram of grey colors - Second Cell B";
-	var measures = [600,300,50,10,50,50];
+	var measures = [500,300,50,10,50,50];
 	processingImage(img2_data,"cell2",title,measures);
 };
 
@@ -155,7 +155,7 @@ cellMatch1.onload = function() {
 	
 	cellMatchOut = ctxMat1.getImageData(0,0,500,500);
 
-	meas = [740,450,50,10,50,50];
+	meas = [760,490,50,10,50,50];
 	
 	processingImage(cellMatchOut,"histogram_matching1","Reference Histogram", meas);
 }
@@ -168,7 +168,7 @@ cellMatch2.onload = function() {
 	cellMatchOut = ctxMat2.getImageData(0,0,500,500);
 	cellMatchRef = ctxMat3.getImageData(0,0,500,500);
 	
-	meas2 = [740,450,50,10,50,50];
+	meas2 = [760,490,50,10,50,50];
 	processingImage(cellMatchOut,"histogram_matching2","Current Histogram", meas2);
 	
 	hist_matching(cellMatchOut,cellMatchRef,meas2);  //here we do the matching. 

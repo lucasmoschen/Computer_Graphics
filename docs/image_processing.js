@@ -72,7 +72,7 @@ histogram = function(x,color,division,title,measure,x_mean = 0,y_mean = 0){
 	};
 
 	hist = document.getElementById(division);
-	Plotly.newPlot(hist,data,layout,{responsive:false});
+	Plotly.newPlot(hist,data,layout,{responsive:true});
 };
 
 eq_histogram = function(img,verificador,transformation = 0){
