@@ -13,18 +13,18 @@ imageBW.crossOrigin = '';
 imageBW2.crossOrigin = '';
 
 imageBW.onload = function() {
-	ctxBW.drawImage(imageBW,0,0,600,400);
-	imgBW_data = ctxBW.getImageData(0,0,600,400);
+	ctxBW.drawImage(imageBW,0,0,600,390);
+	imgBW_data = ctxBW.getImageData(0,0,600,390);
 	var title = "Histograma das folhas";
-	meas = [650,400,50,10,50,50];  //it serves as a parameter to create a histogram 
+	meas = [650,390,50,10,50,50];  //it serves as a parameter to create a histogram 
 	processingImage(imgBW_data, "bw_histogram", title,meas);  //here I do the processingImage. It does the histogram's count
 };
 
 imageBW2.onload = function() {
-	ctxBW2.drawImage(imageBW2,0,0,600,400);
-	imgBW_data2 = ctxBW2.getImageData(0,0,600,400);
+	ctxBW2.drawImage(imageBW2,0,0,600,390);
+	imgBW_data2 = ctxBW2.getImageData(0,0,600,390);
 	var title = "Histograma das montanhas";
-	meas = [650,400,50,10,50,50];
+	meas = [650,390,50,10,50,50];
 	processingImage(imgBW_data2, "bw_histogram2", title,meas);
 };
 
