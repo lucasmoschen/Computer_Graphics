@@ -16,16 +16,16 @@ imageBW.onload = function() {
 	ctxBW.drawImage(imageBW,0,0,600,400);
 	imgBW_data = ctxBW.getImageData(0,0,600,400);
 	var title = "Histograma das folhas";
-	meas = [630,370,50,10,50,50];  //it serves as a parameter to create a histogram 
-	processingImage(imgBW_data, "bw_histogram", title,measures);  //here I do the processingImage. It does the histogram's count
+	meas = [650,390,50,10,50,50];  //it serves as a parameter to create a histogram 
+	processingImage(imgBW_data, "bw_histogram", title,meas);  //here I do the processingImage. It does the histogram's count
 };
 
 imageBW2.onload = function() {
 	ctxBW2.drawImage(imageBW2,0,0,600,400);
 	imgBW_data2 = ctxBW2.getImageData(0,0,600,400);
 	var title = "Histograma das montanhas";
-	meas = [630,370,50,10,50,50];
-	processingImage(imgBW_data2, "bw_histogram2", title,measures);
+	meas = [650,390,50,10,50,50];
+	processingImage(imgBW_data2, "bw_histogram2", title,meas);
 };
 
 imageBW.src = "img/black-white.jpg"
@@ -155,7 +155,7 @@ cellMatch1.onload = function() {
 	
 	cellMatchOut = ctxMat1.getImageData(0,0,500,500);
 
-	meas = [700,400,50,10,50,50];
+	meas = [720,420,50,10,50,50];
 	
 	processingImage(cellMatchOut,"histogram_matching1","Reference Histogram", meas);
 }
@@ -168,7 +168,7 @@ cellMatch2.onload = function() {
 	cellMatchOut = ctxMat2.getImageData(0,0,500,500);
 	cellMatchRef = ctxMat3.getImageData(0,0,500,500);
 	
-	meas2 = [700,400,50,10,50,50];
+	meas2 = [720,420,50,10,50,50];
 	processingImage(cellMatchOut,"histogram_matching2","Current Histogram", meas2);
 	
 	hist_matching(cellMatchOut,cellMatchRef,measures);  //here we do the matching. 
