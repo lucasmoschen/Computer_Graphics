@@ -8,6 +8,7 @@ var matching = new Array(256); //array com as cores e suas cores após o matchin
 var error = 2; //indica o erro entre a diferença das distribuições
 var curMatch = 0; //o valor atual da cor referência que será o match
 var curColor = 0; //o valor atual da cor
+var count = 0; //ajuda a contar para entrar em algumas funções
 
 function initial(){
   press = 0;
@@ -16,6 +17,7 @@ function initial(){
   error = 2;
   curColor = 0;
   curMatch = 0;
+  count = 0;
   doit();
   t0 = millis();
   loop();
@@ -24,7 +26,6 @@ function initial(){
 function next(){
 
   if (press == 0){
-    hist = new Array(256).fill(1/256);
     cumHist = cumulative(hist);
   }
   else if (press == 2){
@@ -35,6 +36,7 @@ function next(){
     curColor = 0;
     curMatch = 0;
     error = 2;
+    count = 0;
   }
 
   press += 1;
@@ -60,6 +62,7 @@ function previous(){
     error = 2;
     curMatch = 0;
     curColor = 0;
+    count = 0;
   }
 
   press -= 1;
@@ -105,7 +108,6 @@ function drawLines(){
 }
 
 var hist = imageCell.onload();
-var hist = new Array(256).fill(1/256);
 
 function firstDraw(t){
   
@@ -294,56 +296,56 @@ function sixthDraw(t){
     if(curColor != 256){
       maxi = max(50,curMatch,curColor);
       if (maxi == 50){
-        times = 5;
-      }else{times = 2;}
-        if(t%times == 0){
-          errorOld = error;
-          error = Math.abs(cumBetaDist[curMatch]-cumHist[curColor]);
-          if(error > errorOld){
-            if(maxi == 50){
-              curMatch = -1;
-            }else{
-              curMatch -= 2;
-            }
-            error = 2;
-            curColor += 1
+        countMax = 4;
+      }else{countMax = 2;}
+      if(count == countMax){
+        errorOld = error;
+        error = Math.abs(cumBetaDist[curMatch]-cumHist[curColor]);
+        if(error > errorOld){
+          if(maxi == 50){
+            curMatch = -1;
+          }else{
+            curMatch -= 2;
           }
-          curMatch += 1;
-          if(curMatch == 256){
-            curColor = 256;
-          }
+          error = 2;
+          curColor += 1
         }
-        maximum1 = max(cumHist.slice(0,maxi+1));
-        maximum2 = max(cumBetaDist.slice(0,maxi+1));
-        maximum = max(maximum1,maximum2);
-        for(let i = 0; i < maxi;i++){
-          height = cumHist[i]*350/maximum;
-          height2 = cumHist[i+1]*350/maximum;
-          strokeWeight(4);
-          stroke(200,100,50);
-          line(400/maxi*i + 50, 400 - height,400/maxi*(i+1) + 50,400 - height2);
-          betaHeight = cumBetaDist[i]*350/maximum;
-          betaHeight2 = cumBetaDist[i+1]*350/maximum;
-          strokeWeight(4);
-          stroke(50,200,100);
-          line(400/maxi*i + 50, 400 - betaHeight,400/maxi*(i+1) + 50,400 - betaHeight2);  
+        curMatch += 1;
+        if(curMatch == 256){
+          curColor = 256;
         }
-        strokeWeight(3);
-        stroke(200,50,50);
-        console.log(curColor);
-        console.log(curMatch);
-        line(400/maxi*curColor + 50, 400 - cumHist[curColor]*350/maximum,400/maxi*curMatch + 50,400 - cumBetaDist[curMatch]*350/maximum);
-        if(maxi <= 50){
-          explain1 = "Note que procuro a cor que apresenta a menor diferença." 
-          explain2 = "Basta ver que quando o erro aumentar, deve-se parar." 
-        }else{
-          explain1 = "A partir de agora, utilizo o algoritmo de forma mais eficiente, " 
-          explain2 = "pois a busca de cores não reinicia, já que o acumulado não diminui."
-        }
-        textSize(10);
-        stroke(255);
-        strokeWeight(0.01);
-        text(maxi,440,420);      
+        count = 0;
+      }
+      count += 1;
+      maximum1 = max(cumHist.slice(0,maxi+1));
+      maximum2 = max(cumBetaDist.slice(0,maxi+1));
+      maximum = max(maximum1,maximum2);
+      for(let i = 0; i < maxi;i++){
+        height = cumHist[i]*350/maximum;
+        height2 = cumHist[i+1]*350/maximum;
+        strokeWeight(4);
+        stroke(200,100,50);
+        line(400/maxi*i + 50, 400 - height,400/maxi*(i+1) + 50,400 - height2);
+        betaHeight = cumBetaDist[i]*350/maximum;
+        betaHeight2 = cumBetaDist[i+1]*350/maximum;
+        strokeWeight(4);
+        stroke(50,200,100);
+        line(400/maxi*i + 50, 400 - betaHeight,400/maxi*(i+1) + 50,400 - betaHeight2);  
+      }
+      strokeWeight(3);
+      stroke(200,50,50);
+      line(400/maxi*curColor + 50, 400 - cumHist[curColor]*350/maximum,400/maxi*curMatch + 50,400 - cumBetaDist[curMatch]*350/maximum);
+      if(maxi <= 50){
+        explain1 = "Note que procuro a cor que apresenta a menor diferença." 
+        explain2 = "Basta ver que quando o erro aumentar, deve-se parar." 
+      }else{
+        explain1 = "A partir de agora, utilizo o algoritmo de forma mais eficiente, " 
+        explain2 = "pois a busca de cores não reinicia, já que o acumulado não diminui."
+      }
+      textSize(10);
+      stroke(255);
+      strokeWeight(0.01);
+      text(maxi,440,420);      
     }else{
       for(let i = 0; i < 256; i++){
         height = cumHist[i]*350/max(cumHist);
