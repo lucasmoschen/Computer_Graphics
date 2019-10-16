@@ -60,7 +60,7 @@ function calcMatching(histogram,reference){
   var matching = new Array(256);
   for(let i = 0; i < 256; i++){
     let j = 0;
-    errOld = 1;
+    errOld = 2;
     err = Math.abs(histogram[i] - reference[j]);
     while(err <= errOld){
       errOld = err;

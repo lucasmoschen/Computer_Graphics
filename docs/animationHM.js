@@ -5,7 +5,7 @@ var cumBetaDist = new Array(256);
 
 //sixth function
 var matching = new Array(256); //array com as cores e suas cores após o matching
-var error = 1; //indica o erro entre a diferença das distribuições
+var error = 2; //indica o erro entre a diferença das distribuições
 var curMatch = 0; //o valor atual da cor referência que será o match
 var curColor = 0; //o valor atual da cor
 
@@ -13,7 +13,7 @@ function initial(){
   press = 0;
   hist = imageCell.onload();
   cumHist = cumulative(hist);
-  error = 1;
+  error = 2;
   curColor = 0;
   curMatch = 0;
   doit();
@@ -33,7 +33,7 @@ function next(){
     matching = calcMatching(cumHist,cumBetaDist);
     curColor = 0;
     curMatch = 0;
-    error = 1;
+    error = 2;
   }
 
   press += 1;
@@ -56,7 +56,7 @@ function previous(){
     calculate();
   }
   else if (press == 6){
-    error = 1;
+    error = 2;
     curMatch = 0;
     curColor = 0;
   }
@@ -303,7 +303,7 @@ function sixthDraw(t){
             }else{
               curMatch -= 2;
             }
-            error = 1;
+            error = 2;
             curColor += 1
           }
           curMatch += 1;
