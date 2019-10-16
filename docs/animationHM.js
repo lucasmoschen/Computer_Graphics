@@ -321,6 +321,7 @@ function sixthDraw(t){
           stroke(50,200,100);
           line(400/maxi*i + 50, 400 - betaHeight,400/maxi*(i+1) + 50,400 - betaHeight2);  
         }
+        console.log("oi");
         strokeWeight(3);
         stroke(200,50,50);
         line(400/maxi*curColor + 50, 400 - cumHist[curColor]*350/maximum,400/maxi*curMatch + 50,400 - cumBetaDist[curMatch]*350/maximum);
