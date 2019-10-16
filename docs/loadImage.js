@@ -10,7 +10,6 @@ imageCell.crossOrigin = '';
 imageCell.src = "118.png"
 
 imageCell.onload = function() {
-    console.log("oi");
     ctxBcell.drawImage(imageCell,100,0,500,500);
     imageData = ctxBcell.getImageData(100,0,500,500);
     hist = histogram(imageData);
