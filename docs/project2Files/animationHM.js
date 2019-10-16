@@ -46,7 +46,9 @@ function next(){
 }
 
 function previous(){
-  if (press == 0){return;}
+  if (press == 0){
+    press = 1;
+  }
   else if (press == 4){
     calculate();
   }
