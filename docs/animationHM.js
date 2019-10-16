@@ -24,6 +24,7 @@ function initial(){
 function next(){
 
   if (press == 0){
+    hist = new Array(256).fill(1/256);
     cumHist = cumulative(hist);
   }
   else if (press == 2){
@@ -104,6 +105,7 @@ function drawLines(){
 }
 
 var hist = imageCell.onload();
+var hist = new Array(256).fill(1/256);
 
 function firstDraw(t){
   
@@ -328,6 +330,8 @@ function sixthDraw(t){
         }
         strokeWeight(3);
         stroke(200,50,50);
+        console.log(curColor);
+        console.log(curMatch);
         line(400/maxi*curColor + 50, 400 - cumHist[curColor]*350/maximum,400/maxi*curMatch + 50,400 - cumBetaDist[curMatch]*350/maximum);
         if(maxi <= 50){
           explain1 = "Note que procuro a cor que apresenta a menor diferença." 
