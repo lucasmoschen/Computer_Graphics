@@ -7,7 +7,7 @@ var imageCell = new Image();
 
 imageCell.crossOrigin = '';
 
-imageCell.src = "project2Files/118.png"
+imageCell.src = "118.png"
 
 imageCell.onload = function() {
     ctxBcell.drawImage(imageCell,100,0,500,500);
