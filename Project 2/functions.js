@@ -20,7 +20,7 @@ function calculate(){
   par1 = document.getElementById("alpha").value;
   par2 = document.getElementById("beta").value;
   betaDist = beta(par1,par2);
-  indice2 = 0;
+  cumBetaDist = cumulative(betaDist);
   t0 = millis();
 }
 
@@ -45,4 +45,34 @@ function beta(alpha,betap){
   }
 
   return betaDist;
+}
+
+function cumulative(histogram){
+  var H = new Array(256);
+  H[0] = histogram[0];
+  for(let i = 1; i < histogram.length; i++){
+    H[i] = H[i-1] + histogram[i];
+  }
+  return H;
+}
+
+function calcMatching(histogram,reference){
+  var matching = new Array(256);
+  for(let i = 0; i < 256; i++){
+    let j = 0;
+    errOld = 1;
+    err = Math.abs(histogram[i] - reference[j]);
+    while(err <= errOld){
+      errOld = err;
+      j += 1;
+      err = Math.abs(histogram[i] - reference[j]);
+    }
+    matching[i] = j - 1;
+  }
+  return matching;
+}
+
+function doit() {
+  calculate();
+  matching = calcMatching(cumHist,cumBetaDist);
 }
