@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>Mathmatics Illustration</title>
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
+    <script src="https://unpkg.com/simple-statistics@7.0.2/dist/simple-statistics.min.js"></script>
+    <link rel="stylesheet" href="style_algorithms.css">
+    <meta charset="utf-8"></meta>
+</head>
+<body>
+    <h1> Demonstração dos Algoritmos do Projeto 1</h1>
+    <h3> Lucas Machado Moschen </h3>
+	<h3> Escola de Matemática Aplicada - Fundação Getulio Vargas </h3>
+    <h3> Rio de Janeiro, setembro de 2019 </h3>
+    
+    <div>
+        <h2> Algoritmo de Thresholding </h2>
+        <p>
+            O algoritmo de Thresholding é um método de Segmentação de Imagem de fácil implementação e baseado no 
+            formato do histograma. Originalmente, ele foi pensado para distribuições bimodais, desta forma ele é muito 
+            útil para esses casos, visto que ele separava o background do objeto em questão. Ele parte do pressuposto de 
+            que o contraste entre esses grupos é grande, o que deixa menos robusto o método, para casos mais gerais. 
+            Outro problema que observei ao utilizar esse método é o ruído. Como ele não considera a posição espacial dos 
+            pixels, se houver ruído na imagem, os agrupamentos ficam distorcidos. 
+        </p>
+        <p>
+            Esse algoritmo tem inicialmente uma marcação de \(n\) pontos, que delimitam \(n+1\) regiões. Assim, a suposição 
+            inicial é de que existem \(n+1\) regiões constrastantes. Após a marcação desses pontos, para cada ponto, faz-se a média 
+            ponderada entre o ponto anterior e o ponto posterior. Essa média é em relação ao histograma. Marca-se esse ponto, então, 
+            no valor da média. Faz-se isso para cada ponto (sempre em relação a posição antiga nessa implementação). Assim, faz-se
+            um método iterativo, até que o ponto da média se desloque a menos de um valor epsilon.
+        </p>
+    </div>
+    <section class = "container">
+            <div class = "left-half" id = "image2" style = "width: 600px; height: 500px; 
+                          margin-bottom: 20px">
+                <canvas id = "Bcell2" width="750" height= "500"></canvas>
+            </div>
+            <div class = "right-half" id = "processing2" style = "width: 500px; height: 500px; 
+                          margin-bottom: 20px;margin-left:50px">
+            <script type = "text/javascript" src = "animationTH.js"></script>
+            </div>
+        </section>
+
+    <script type="text/javascript" src="functions2.js"></script>
+    <script type="text/javascript" src="loadImage2.js"></script>
+</body>
+</html>
+
