@@ -25,3 +25,17 @@ histogramMatch = function(matching){
     }
     ctxBcell.putImageData(imageData,100,0);
 }
+
+var canvasBcell2 = document.getElementById('Bcell2');
+var ctxBcell2 = canvasBcell2.getContext('2d');
+
+var imageCell2 = new Image();
+
+imageCell2.src = "118.png";
+
+imageCell.onload = function() {
+    ctxBcell2.drawImage(imageCell2,100,0,500,500);
+    imageData = ctxBcell2.getImageData(100,0,500,500);
+    hist = histogram(imageData);
+    return hist;
+};
