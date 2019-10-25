@@ -13,11 +13,11 @@ var ctxBcell2 = canvasBcell2.getContext('2d');
 
 var imageCell2 = new Image();
 
-imageCell2.src = "118.png";
+//imageCell2.src = "118.png";
 
 imageCell2.crossOrigin = '';
 
-//imageCell2.src = "https://i.ibb.co/MkJS4GP/118.png"
+imageCell2.src = "https://i.ibb.co/MkJS4GP/118.png"
 
 imageCell2.onload = function() {
     ctxBcell2.drawImage(imageCell2,100,0,500,500);
