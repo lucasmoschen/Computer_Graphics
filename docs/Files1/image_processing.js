@@ -1,5 +1,3 @@
-console.log("oi")
-
 processingImage = function(img,division,title,measures){
 	
 	//I iniciate the colors. However, when the image is grey,
