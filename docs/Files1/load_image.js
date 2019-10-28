@@ -28,8 +28,8 @@ imageBW2.onload = function() {
 	processingImage(imgBW_data2, "bw_histogram2", title,meas);
 };
 
-imageBW.src = "img/black-white.jpg"
-imageBW2.src = "img/black-white-2.jpg";
+imageBW.src = "../Files1/img/black-white.jpg"
+imageBW2.src = "../Files1/img/black-white-2.jpg";
 
 // Now a Initiate the images to show the problem. 
  
@@ -62,8 +62,8 @@ second_cell.onload = function() {
 	processingImage(img2_data,"cell2",title,measures);
 };
 
-first_cell.src = "img/img1.png";
-second_cell.src = "img/img2.png";
+first_cell.src = "../Files1/img/img1.png";
+second_cell.src = "../Files1/img/img2.png";
 
 //first transformation with histogram equalization
 
@@ -126,10 +126,10 @@ cellTrans4.onload = function() {
 	ctxTrans.putImageData(cellTransOut, 900, 300);	
 }
 
-cellTrans1.src = "img/img1.png";
-cellTrans2.src = "img/img2.png";
-cellTrans3.src = "img/img3.png";
-cellTrans4.src = "img/img4.png";
+cellTrans1.src = "../Files1/img/img1.png";
+cellTrans2.src = "../Files1/img/img2.png";
+cellTrans3.src = "../Files1/img/img3.png";
+cellTrans4.src = "../Files1/img/img4.png";
 
 // histogram matching with the problem image. 
 
@@ -175,9 +175,9 @@ cellMatch2.onload = function() {
 	ctxMat3.putImageData(cellMatchOut,0,0);
 }
 
-cellMatch1.src = "img/img1.png";
-cellMatch2.src = "img/img2.png";
-cellMatch3.src = "img/img1.png";
+cellMatch1.src = "../Files1/img/img1.png";
+cellMatch2.src = "../Files1/img/img2.png";
+cellMatch3.src = "../Files1/img/img1.png";
 
 // Beta Distribution 
 
@@ -192,13 +192,13 @@ for(let i = 0; i < 4; i++){
 	cell.onload = function(){
 		ctxBeta.drawImage(cell,i*300,0,300,300);
 	}
-	cell.src = "img/"+cellImages[i];
+	cell.src = "../Files1/img/"+cellImages[i];
 	
 	let beta = new Image();
 	beta.onload = function(){
 		ctxBeta.drawImage(beta,i*300,300,300,300);
 	}
-	beta.src = "img/"+betaImages[i];
+	beta.src = "../Files1/img/"+betaImages[i];
 }
 
 // Thresholding 
@@ -214,12 +214,12 @@ for(let i = 0; i < 2; i++){
 	cell.onload = function(){
 		ctxTh.drawImage(cell,0,i*600,600,600);
 	}
-	cell.src = "img/"+cellImages[i];
+	cell.src = "../Files1/img/"+cellImages[i];
 	
 	let th = new Image();
 	
 	th.onload = function(){
 		ctxTh.drawImage(th,600,i*600,600,600);
 	}
-	th.src = "img/"+thImages[i];
+	th.src = "../Files1/img/"+thImages[i];
 }
