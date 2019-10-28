@@ -1,0 +1,155 @@
+<h3 align = "center"> Histogram Matching </h3>
+	<p align = "justify"> 
+		Também conhecido como Histogram Specification. Quando utilizamos o método anterior para equalizar o histograma, vimos que isso pode ser 
+		automatizado, produzindo uma imagem com histograma uniforme (Basta fazer o cálculo de \(p_s(s)\)). Entretanto, às vezes é interessante 
+		especificar a forma do histograma que desejamos que a imagem processada tenha. Aplica-se para fazer o<i> match </i>entre imagens de dois 
+		sensores, cuja resposta seja levemente diferente. 
+		Assim, consideremos \(p_r(r)\) e \(p_z(z)\) PDFs, que representam a distribuição do histrograma, da imagem original e da imagem processada, 
+		respectivamente. Tomemos, então \(s\) de forma que \(s = T(r) = \int_0^r p_r(w) dw \) e definamos \(z\) com a propriedade \(G(z) = \int_0^z p_z(t) dt = s\).
+		Desta dorma, \(G(z) = T(r) \implies z = G^{-1}[T(r)]\), assumindo a existência da inversa de \(G\). Desta forma:
+		<ol type = "1" style = "margin-right: 100px; margin-left: 100px;">
+			<li> Obtenho as distribuições acumuladas \(T(r) \) e \(G(z)\) como anteriormente; </li>
+			<li> Obtenho a transformação \(G^{-1}\), fazendo a comparação das distribuições (Veja imagem abaixo); e </li>
+			<li> Obtenho a imagem de saída. </li>
+		</ol>
+	</p>
+	
+<figure>
+<center>
+<img src="http://paulbourke.net/miscellaneous/equalisation/diagram1.jpg" alt="cumulative function" width="600" height="350"> 
+	<figcaption>
+	Imagem das funções acumuladas, contínuas, com comparação entre os pontos com mesma ordenada. \(H(x)\) é minha referência, e portanto, para cada \(x\)
+	em \(G(x)\), tomo \(x'\) tal que \(H(x') = G(x)\)
+	</figcaption>
+</center> 
+</figure>
+
+<p align = "justify"> 
+	Todavia, obter essas expressões analitícamente nem sempre é possível. Em contrapartida, podemos utilizar no caso discreto com algumas aproximações. 
+	Essas aproximações funcionam como uma comparação de elemento a elemento para cada tom diferente, buscando uma aproximação para o tom mais próximo. 
+	Façamos um primeiro exemplo com a imagem crítica descrita acima. Usaremos, como referência a distribuição do histograma da primeira imagem, pois ela 
+	deixa bem visível a célula. Outro motivo que a função \(G\) é injetiva no grande espectro, visto que \(p_z(z) > 0\), para quase todo \(z\).  
+</p>
+<div id = "hist_matching1" style = "width: 1400px; height: 500px">
+	<div id = "images_matching1" style = "width: 600px; height: 500px; float: left;">
+		<canvas id = "imagesMatching1" width="500" height= "500"></canvas>
+	</div>
+	<div id = "histogram_matching1" style = "width: 600px; height: 500px; float: right;"></div>
+</div>
+<div id = "hist_matching2" style = "width: 1400px; height: 500px">
+	<div id = "images_matching2" style = "width: 600px; height: 500px; float: right;">
+		<canvas id = "imagesMatching2" width="500" height= "500"></canvas>
+	</div>
+	<div id = "histogram_matching2" style = "width: 600px; height: 500px; float: left;"></div>
+</div>
+<div id = "hist_matching3" style = "width: 1200px; height: 500px">
+	<div id = "images_matching3" style = "width: 600px; height: 500px; float: left;">
+		<canvas id = "imagesMatching3" width="500" height= "500"></canvas>
+	</div>
+	<div id = "histogram_matching3" style = "width: 600px; height: 500px; float: right;"></div>
+</div>
+<canvas id = "nothing" width = "100" height = "15"></canvas>
+<p align = "justify"> 
+	A diferença é notável. Porém, algo incomoda o modelo para mim: A área de preto, que agora se tornou cinza. Esse dado é dado perdido. 
+	<b> Atualize até 10 vezes, caso a tela fique preta. </b>
+</p>
+<p align = "justify">
+	Para a equalização de histograma e para o histogram matching, desenvolvi na linguagem de programação Python um arquivo com uma classe que implementa
+	o que necessito para ter essas funções. Chamei essa classe de HistogramEqualization. A partir dela, é mais fácil fazer a equalização de histogramas 
+	de imagens de forma estruturada. 
+</p>
+<h3 align = "center"> Testando com Distribuição Beta</h3> 
+
+<p align = "justify">
+	Às vezes, não queremos utilizar uma imagem do nosso domínio de imagens para fazer o matching de histograma, pois as imagens podem todas ter uma densidade 
+	conjunta não necessariamente monótona estritamente crescente, para assim, poder utilizar o método acima citado. Neste caso, a distribuição beta tem duas 
+	propriedades desejadas para o estudo em questão: flexibilidade, devido à escolha de dois parâmetros, que permite observar diferentes curvas; e ela tem o 
+	suporte no intervalo \([0,1]\), limitado, como o nosso modelo em questão. Desta maneira, basta discretizar esse intervalo de maneira uniforme e aumentá-lo 
+	linearmente para o intervalo \([0,255]\) e utilizar a distribuição beta. 
+</p>
+
+<p align = "justify"> 
+	O problema passa, então, para um problema matemático, com diferentes interpretações: uma visão do problema pode ser com otimização. 
+	Imagine que eu tome cada imagem do meu banco de dados, e calcule a distribuição conjunta. Agora, poderia interpretar o problema como:
+	\(\min_{\alpha,\beta} \sum_{i=1}^N \sum_{j = 0}^{255} \min_{k} |G_{\alpha,\beta}(k) - T_i(j)|\), onde \(T:[0,255] \to [0,1]\) é a função acumulada da imagem, 
+	\(G:[0,255] \to [0,1]\) é a função da distribuição acumulada da função beta, \(\alpha, \beta\) são os parâmetros da distribuição e \(N\) é o número de 
+	imagens. Note que, a grosso modo essa modelagem permite, dado uma distribuição beta, eu somo os erros de cada tom, minimizando eles sempre. Outra forma 
+	de imaginar o problema é enxergar como um problema estatístico, onde queremos estimar \(\alpha, \beta\), parâmetros da minha distribuição. 
+</p>
+<p align = "justify">
+	Antes de dar um pouco de carga matemática nesse problema, eu pretendo neste trabalho observar qualitativamente a relação dessas distribuições 
+	com o resultado das imagens. Neste caso, como vou tratar de problemas um tanto mais específicos e que existem um pouco mais de cálculo por 
+	causa da distribuição beta, a linguagem javascript fica mais restrita e não é boa para o caso. Nesse sentido, pretendo a utilizar a linguagem 
+	<i>Python</i> para mostrar a diferença nesses modelos. Observe, assim, algumas imagens geradas pelas diferentes distribuições, sujeitas a \(\alpha, \beta\).
+	Para fazer os testes, recomendo usar o arquivo "image.py" que se encontra no GitHub de Lucas Moschen, como constado nas referências. Nele é 
+	possível alterar os parâmetros e obter  as mais variadas imagens.
+</p>
+
+<figure>
+	<canvas id="beta-distribution" width="1400" height="600"></canvas>
+	<figcaption>
+		Você pode observar quatro distribuições a abaixo beta com parâmetros distintos. (i) \(\alpha = \beta = 1\), similar a uniforme (equalização 
+		de histograma), (ii) \(\alpha = \beta = 5\), similar a uma normal, com média em torno do tom médio (note o contraste bem menor), (iii) \(\alpha 
+		= 8, \beta = 3\). Esse histograma se concentra nos brancos da imagem, e (iv) \(\alpha = \beta = 1.75\) Uma distribuição similar à parábola.
+	</figcaption>
+</figure>
+
+<p align = "justify">
+	Uma outra forma de obter um resultado similar é primeiro fazer a equalização de histograma em uma das imagens e depois utilizá-la como referência.
+	O que acredito ser interessante é que variando apenas dois parâmetros, posso obter as mais variadas imagens extremamente distintas, como pudemos 
+	observar. 
+</p>
+
+<h3 align = "center"> Image Segmentation com Thresholding </h3>
+
+<p align = "justify"> 
+	O objetivo de utilizar o método de Thresholding é sua fácil implementação e que ele é interamente baseado no formato de histograma. Originalmente, 
+	ele foi pensado para distribuições bimodais, visto que ele separava o background do objeto em questão. Porém, ele parte do pressuposto de que o contraste 
+	entre esses grupos é grande, o que deixa menos robusto o método. Outro problem que observei ao utilizar esse método é o ruído. Como ele não considera 
+	a posição espacial dos pixels, se houver ruído na imagem, os agrupamentos ficam distorcidos. 
+</p>
+<p align = "jutify">
+A definição matemática é bem simples no caso binário e é facilmente extendida para o caso não binário. Considere uma partição de pontos da reta real, entre
+\(0\) e \(255\) dada por \(P = \{p_1,p_2,...,p_n\}\). Para cada pixel com colocação \(I_{i,j}\), tomo \(I'_{i,j} = int(255/n)\), se \(p_{k} \leq I_{i,j} \leq p_{k+1}\). 
+Para realizar esse método, inicio com $n$ pontos bem distribuídos. Considero \(p_0 = 0\) e \(p_{n+1} = 255\). Assim, calculo a média entre o ponto anterior e o sucessor 
+do histograma. A partir desse cálculo, obtenho uma nova média e contínuo nesse processo, até a convergência. Com os pontos na convergência, pinto novamente a imagem.  
+</p>
+<p align = "justify"> 
+Mas qual o valor de \(n\)? Nesse caso, tomei \(n = 3\), para dividir a região em quatro partes, visto que observando o histograma referência, esse é o comportamento 
+esperado. 
+Observação: Um problema que observei foi o destacado na segunda imagem abaixo. 
+</p>
+<figure>
+	<canvas id="thresholding" width="1200" height="1200"></canvas>
+	<figcaption>
+		Você pode observar o thresholding para cada imagem. São escolhidos três pontos. Observe que no caso da segunda imagem, apenas dois acabaram sendo utilizados. 
+	</figcaption>
+</figure>
+
+<h2 align = "center"> Conclusão </h3>  
+<p align = "justify">
+Histogram Matching e Histogram Equalization são ótimas ferramenta para resolver problemas com o banco de dados, principalmente quando este é obtido por 
+máquinas que podem apresentar falhas durante a obtenção de imagens. Desta forma, qualquer processamento de imagens com o objetivo de comparar as imagens, 
+como, por exemplo comparar as estruturas das células do corpo, merece passar por essa análise. Fazer a comparação com a distribuição beta não foi algo que 
+apresentou uma novidade para o campo de estudo, porém, permitiu fazer análises bem interessantes sobre o que se é desejado. Nesse caso, obter histogram 
+matching de um banco de dados fica reduzido a escolher uma distribuição de interesse. 
+Para o algoritmo de Thresholding, os resultados não me pareceram promissores por causa do ruído que as imagens, no geral, apresentavam. Mas foi de grande 
+interesse a aplicação desse método. 
+Esse estudo baseou-se em algoritmos já existentes na literatura, 
+e, portanto, não apresentou grande diferencial quanto aos resultado, como mostro ao longo do escopo desse texto. A classe em <i> Python </i> ficará disponível 
+para uso,  caso haja interesse em reproduzir o algoritmo citado, bem como o código em javascript para o mesmo. 
+Acredito que o objetivo da disciplina de Introdução à Computação Gráfica tenha sido realizado. 
+</p>
+<p align = "justify">
+Para futuros trabalhos, eu gostaria de resolver o problema de otimização duplo que se construiu quando pensei na obtenção dos parâmetros da distribuição 
+beta. Acredito que escolhendo uma distribuição que de alguma forma minimize o erro do histogram matching fará com que a distribuição tenha cara de uma "média"
+das distribuições de um banco de dados qualquer e, a partir daí, poder-se-ia ter uma relação bem interessante de equivalência entre as imagens. 
+</p>
+
+<h2 align = "center"> Referências Bibliográficas </h2>
+
+	
+<script type = "text/javascript" src = "image_processing.js"></script>
+<script type = "text/javascript" src = "load_image.js"></script>
+</body>
+</html>

@@ -1,33 +1,196 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title> Computação Gráfica </title>	
-</head>
+<html lang="por">
+<title>Computer Graphics Histograms</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
+<script src="https://unpkg.com/simple-statistics@7.0.2/dist/simple-statistics.min.js"></script>
+<link rel="stylesheet" href="style_algorithms.css">
+<meta charset="utf-8"></meta>
+<style>
+  html,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Roboto", sans-serif;
+  }
+
+  .w3-sidebar {
+    z-index: 3;
+    width: 250px;
+    top: 43px;
+    bottom: 0;
+    height: inherit;
+  }
+
+  .top-bar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+  }
+</style>
 
 <body>
-	<h1 align = "center"> Site para o curso de Introdução à Computação Gráfica </h1>
-	<h3 align = "center"> Lucas Machado Moschen </h3>
-	<h3 align = "center"> Escola de Matemática Aplicada - Fundação Getulio Vargas </h3>
-	<h3 align = "center"> Rio de Janeiro </h3>
-	
-	<h4> Trabalhos Desenvolvidos </h4>
 
-	<ol> 
-	<li> <a href = "Project1/project1.html"> Correção com Histogramas de Imagens de Células B obtidas por Microscópico Eletrônico de Transmissão </a> </li>
-	<li> <a href = "Project2/project2.html"> Representação em processing dos algoritmos apresentados no Projeto 1</a> </li>
-	<li> Exercícios de Computação Gráfica </li>
-		<ol> 
-			<li> <a href = "Exercises/SVGhouse.html"> Uma casa em SVG </a></li>
-		</ol>
-	</ol>
-	
-	<p>
-		Os algoritmos em javascript e python estão na pasta correspondente ao seu projeto. 
-	</p>
-	<p>
-		As imagens do banco de dados em tiff, png e após o processamento de histogram matching, estão localizadas em: 
-		<a href = "https://gvmail-my.sharepoint.com/:f:/g/personal/b37214_fgv_edu_br/EqLPW8YI3exEkT0orBW2ph0B_w82IpHNXtkVkxZQlNgIpA?e=wyoSjz"> Este link </a> 
-	<p>
+  <!-- Navbar -->
+  <div class="top-bar">
+    <div class="w3-bar w3-theme tor-bar w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
+        href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+      <a href="index.html" class="w3-bar-item w3-button w3-theme-l1">Sobre</a>
+      <a href="Project/intro.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Intro e Metodologia</a>
+      <a href="Project/histogram.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogramas</a>
+      <a href="Project/matching.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogram Matching</a>
+      <a href="Project/thresholding.html"
+        class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Thresholding</a>
+      <a href="Project/conclusion.html"
+        class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Conclusão</a>
+
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+    <h4 class="w3-bar-item"><b>Links Importantes</b></h4>
+    <a class="w3-bar-item w3-button w3-hover-black"
+      href="https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html">Banco de Imagens</a>
+    <a class="w3-bar-item w3-button w3-hover-black" href="Exercises/exercises.html">Exercícios</a>
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+  <div class="w3-main" style="margin-left:250px; margin-right: -300px;">
+
+    <div class="w3-padding-64 w3-twothird w3-container">
+      <h1 class="w3-text-teal" style = "margin-bottom: -50px;">Introdução à Computação Gráfica</h1>
+    </div>
+
+    <div class="w3-row">
+        <div class="w3-twothird w3-container">
+          <h3 class="w3-text-teal">Estrutura do Trabalho</h3>
+          <p align="justify" style = "margin-right: -50px;">
+            Este site pretende apresentar o trabalho para o curso de Introdução à Computação Gráfica, além de dois 
+            exercícios desenvolcidos, encontrados no Menu ao lado. O trabalho está dividido em duas partes. 
+            Uma delas é a parte teórica que explica histogramas e os processos 
+            realizados. Esta parte foi avaliada na primeira parte do curso. A segunda parte avaliada trata-se da 
+            representação meramente ilustrativa desses processos. Alguns exercícios adicionais dessa disciplina também foram
+            adicionados. 
+          </p>
+        </div>
+
+    <div class="w3-row">
+      <div class="w3-twothird w3-container">
+        <h2 class="w3-text-teal">Correção com Histogramas de Imagens de Células B obtidas por Microscópico Eletrônico de
+             Transmissão</h2>
+        <h3 class="w3-text-teal">Apresentação</h3>
+        <p> Professora Asla Medeiros de Sá</p>
+        <p> Estudante Lucas Machado Moschen</p>
+        <p> Escola de Matemática Aplicada </p>
+        <p> Matéria eletiva em Introdução à Computação Gráfica</p>
+        <p> Rio de Janeiro</p>
+      </div>
+
+      <div class="w3-row w3-padding-64">
+        <div class="w3-twothird w3-container">
+          <h3 class="w3-text-teal">Motivação</h3>
+          <p align="justify" style = "margin-right: -50px;">
+            Desenvolver um projeto para a avaliação do curso de Introdução à Computação Gráfica. O tema foi
+            por seu impacto nas áreas biológicas, visto que, com imagens de células B, podemos estudar sua estrutura e
+            desenvolver métodos mais eficientes para o combate de doenças infecciosas. Todavia, ao conhecer os métodos
+            de obtenção de imagem, percebemos que algumas vezes, existem falhas nesses processos e que antes de uma
+            análise mais precisa, necessitam de correção. Nesse ponto entra a computação gráfica, com a equalização de
+            histogramas e com a segmentação de imagem, a fim de ser separado a área de estudo de interesse da área não
+            interessante, como fundo de imagem ou erros.
+          </p>
+        </div>
+
+        </div>
+
+        <!-- Pagination -->
+        <footer id="myFooter">
+          <div class="w3-container w3-theme-l2 w3-padding-32">
+            <h4>Referências Bibliográficas</h4>
+                <p align = "justify" style = "margin-right: 400px;"> 
+                [1] Volker Morath, Margret Keuper, Marta Rodriguez-Franco, Sumit Deswal, Gina Fiala, Britta Blumenthal, Daniel Kaschek, Jens Timmer, Gunther Neuhaus, 
+                Olaf Ronneberger, Wolfgang Werner A. Schamel: Semi-automatic procedure for the determination of the cell surface area used in systems immunology, 
+                Frontiers in Biosciences, 2012
+                </p>
+                <p>
+                [2] GONZALES, Rafael C.; WOODS, Richard E.. Digital Image Processing. 2. ed. New Jersey: Pearson, 2007  
+                </p>
+                <p>
+                [3] BOURKE, Paul. Histogram Matching. Acesso em http://paulbourke.net/miscellaneous/equalisation/. Dia 10 de setembro de 2019.
+                </p>
+                <p>
+                [4] Computer Vision Group, TEM Dataset. Acesso em: https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html4
+                </p>
+                <p>
+                [5] Plotly para Javascript: https://plot.ly/javascript/
+                </p>
+                <p>
+                [6] Pillow para Python: https://pillow.readthedocs.io/en/stable/
+                </p>
+                <p>
+                [7] Numpy, Matplolib, Scipy e Os
+                </p> 
+                <p>
+                    As imagens do banco de dados em tiff, png e após o processamento de histogram matching, estão localizadas em: 
+                    <a href = "https://gvmail-my.sharepoint.com/:f:/g/personal/b37214_fgv_edu_br/EqLPW8YI3exEkT0orBW2ph0B_w82IpHNXtkVkxZQlNgIpA?e=wyoSjz"> Este link </a> 
+                  <p>
+          </div>
+
+          <div class="w3-container w3-theme-l1">
+            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+          </div>
+        </footer>
+
+        <!-- END MAIN -->
+      </div>
+
+      <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
+
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
+
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+          if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+          } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+          }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+          mySidebar.style.display = "none";
+          overlayBg.style.display = "none";
+        }
+      </script>
+
 </body>
 
 </html>

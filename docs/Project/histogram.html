@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="por">
+<title>Histograms Project 1</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
+<script src="https://unpkg.com/simple-statistics@7.0.2/dist/simple-statistics.min.js"></script>
+<link rel="stylesheet" href="style_algorithms.css">
+<meta charset="utf-8"></meta>
+<style>
+  html,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Roboto", sans-serif;
+  }
+
+  .w3-sidebar {
+    z-index: 3;
+    width: 250px;
+    top: 43px;
+    bottom: 0;
+    height: inherit;
+  }
+
+  .top-bar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+  }
+</style>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="top-bar">
+    <div class="w3-bar w3-theme tor-bar w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
+        href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+      <a href="../index.html" class="w3-bar-item w3-button w3-theme-l1">Sobre</a>
+      <a href="intro.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Intro e Metodologia</a>
+      <a href="histogram.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogramas</a>
+      <a href="matching.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogram Matching</a>
+      <a href="thresholding.html"
+        class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Thresholding</a>
+      <a href="conclusion.html"
+        class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Conclusão</a>
+
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+    <h4 class="w3-bar-item"><b>Links Importantes</b></h4>
+    <a class="w3-bar-item w3-button w3-hover-black"
+      href="https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html">Banco de Imagens</a>
+    <a class="w3-bar-item w3-button w3-hover-black" href="Exercises/exercises.html">Exercícios</a>
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+  <div class="w3-main" style="margin-left:250px; margin-right: -300px;">
+
+    <div class="w3-row">
+        <div class="w3-twothird w3-container w3-padding-64">
+          <h3 class="w3-text-teal">Histogramas</h3>
+          <p align = "justify" style = "margin-right: -50px;"> 
+              Um histograma de uma imagem digital em tons de cinza é uma função discreta \( h(r_k) = n_k \), onde \(r_k\) é 
+              o nível de cinza e \(n_k\) é o número de ocorrências na imagem deste tom. Em meus histogramas, tomarei ele normalizado, isto é, os valores 
+              estarão no intervalo \([0,1]\). Então, podemos tomar a frequência como uma probabilidade aproximada de ocorrência. A partir dessa informação, 
+              algumas conclusões podem ser tiradas, como, por exemplo: a imagem é mais clara ou mais escura, a imagem tem contraste alto ou baixo, etc. O 
+              histograma também permite a visualização da divisão de uma imagem em determinadas partes. Em meus histogramas, mostrarei a média ponderada 
+              desse histograma, a fim de ter uma noção de como é o comportamento médio das cores da minha imagem. 
+          </p>
+
+          <div id = "image_analysis1" style = "width: 1200px; height: 300px; margin-right: 100px">
+            <div id = "black_white" style = "width: 600px; height: 300px; float: left;">
+              <canvas id = "black_white_image" width="600" height= "300"></canvas>
+            </div>
+            <div id = "bw_histogram" style = "width: 600px; height: 300px; float: right;"></div>
+          </div>
+          <canvas width = "1000" height = "5"></canvas>
+          <div id = "image_analysis2" style = "width: 1200px; height: 300px; margin-right: 100px">
+            <div id = "black_white2" style = "width: 600px; height: 300px; float: left;">
+              <canvas id = "black_white_image2" width="600" height= "300"></canvas>
+            </div>
+            <div id = "bw_histogram2" style = "width: 600px; height: 300px; float: right;"></div>
+          </div>
+            
+          <canvas id = "space" width="35" height = "1"></canvas>
+            
+          <p align = "justify" style = "margin-right: -50px;"> 
+            Observe que na primeira imagem, a coloração de tons mais escuros é predominante, o que faz com que 
+            os componentes do histograma estejam mais concentrados à esquerda. Como o contraste também é baixo, os tons 
+            tendem a se concentrar (desvio padrão baixo). Enquanto na segunda, os tons são mais distríbuidos. 
+            Desta forma, a média aproxima-se do valor médio de uma distribuição uniforme. O contraste também é maior nessa imagem, devido a essa distribuição. 
+          </p>
+        </div>
+        
+        <div class="w3-twothird w3-container w3-padding-64">
+          <h3 class = "w3-text-teal"> Equalização de Histogramas </h3>
+          <p align = "justify" style = "margin-right: -50px;"> 
+            Considere essas imagens de duas células B, obtidas pelo método de Transmission Eletronic Microscopic (TEM). A primeira imagem 
+            apresenta uma configuração mais distribuída entre os tons de cinza, enquanto a segunda apresenta uma concentração de brancos, 
+            como visto no histograma, e uma parte totalmente preta, provavelmente devido a algum problema de obtenção da imagem. Nesse sentido, 
+            fica claro o interesse de fazer uma <b> equalização de histograma </b>, para posteriores análises de dados. A ideia de uma equalização 
+            é espalhar os tons por um espectro maior, aumentando contraste e a diferença de percepção. 
+          </p>
+
+          <figure>
+            <canvas id="cells_inicial" width="1200" height="500"></canvas>
+            <figcaption>
+              Imagem de duas células B. É observável a diferença entre as duas imagens, uma com uma distribuição de brancos muito maior do que a outra.
+              A segunda imagem tem um problema de obtenção. O dado apresenta um grande ruído. 
+            </figcaption>
+          </figure>
+          
+          <div id="histogram1" style = "width:1200px; height:512px; margin-left: 100px">
+            <div id = "cell1" style="width:500px; float:left;"></div>
+            <div id = "cell2" style="width:600px; float:right;"></div>
+          </div>
+          
+          <h4 class="w3-text-teal"> Definição: usando conceitos probabilísticos </h4>
+          <p align = "justify" style = "margin-right: -50px;">
+            Seja \(r\) o nível de cinza de um determinado pixel. Por enquanto, utilizemos o fato de que \(0\leq r \leq 1\), para fins explicativos. Assim, 
+            focamos nossa atenção em transformações do tipo \(s = T(r)\), que satisfazem a condição de ser monótona crescente no intervalo (injetividade!)
+            especificado acima e \(0 \leq T(r) \leq 1\). Também é interessante que exista inversa para essa transformação. Note que a monotocidade 
+            irá garantir que as cores mais escuras continuem dessa maneira, não abrindo precedentes para inversões de cores não desejadas 
+            na análise, isto é, tons mais escuros não se tornarão mais claros após uma determinada transformação. Porém, outros objetivos podem existir nesse sentido.  
+            Note que estamos tratando essa transformação como contínua, não discreta. Desta maneira, vejamos o nível de cinza de um 
+            pixel como uma variável aleatória no intervalo \([0,1]\). Seja \(p_r(r)\) a função densidade de probabilidade de \(r\). 
+            Como \(s = T(r)\), uma propriedade da probabilidade diz que \(p_s(s) = p_r(r)\cdot |\frac{dr}{ds}|\).
+          </p>
+          <p align = "justify" style = "margin-right: -50px;"> 
+            Uma transformação com bastante importância particular no processamento de imagens tem a forma \(s = T(r) = \int_0^r p_r(w) dw \). 
+            Nesse caso, a distribuição de \(s\) será uma uniforme no intervalo. Agora, para o problema em questão, como estamos tratando de 
+            valores discretos, tomaremos \(s_k = T(r_k) = \sum_{j=0}^k p_r(r_j) \), onde \(p_r(r_j) = \frac{n_j}{n} \) e \(k = 0,1,2,...255\).
+          </p>
+          <p align = "justify" style = "margin-right: -50px;"> 
+            Então, a imagem processada é obtida através do mapeamento de cada pixel com seu pixel correspondente. 
+            A transformação é chamada de equalização de histograma. Essa equalização espalha para o espectro completo da escala de cinza, como desejado
+            anteriormente. 
+          </p>
+            
+          <figure>
+            <canvas id="first_equalization" width="1400" height="600"></canvas>
+            <figcaption>
+              Vemos na parte superior 4 imagens do banco de dados de células B em seu formato original. Abaixo, após a transformação supracitada, obtemos o resultado.
+              Note que a primeira imagem tem pouca variação, pois essa transformação distribui melhor as cores, entretanto, quando a imagem tem um histograma 
+              bem distribuído, o resultado é pouco diferente. 
+            </figcaption>
+          </figure>
+
+        </div>
+          
+      </div>
+
+        <!-- Pagination -->
+        <footer id="myFooter">
+          <div class="w3-container w3-theme-l2 w3-padding-32">
+            <h4>Referências Bibliográficas</h4>
+                <p align = "justify" style = "margin-right: 400px;"> 
+                [1] Volker Morath, Margret Keuper, Marta Rodriguez-Franco, Sumit Deswal, Gina Fiala, Britta Blumenthal, Daniel Kaschek, Jens Timmer, Gunther Neuhaus, 
+                Olaf Ronneberger, Wolfgang Werner A. Schamel: Semi-automatic procedure for the determination of the cell surface area used in systems immunology, 
+                Frontiers in Biosciences, 2012
+                </p>
+                <p>
+                [2] GONZALES, Rafael C.; WOODS, Richard E.. Digital Image Processing. 2. ed. New Jersey: Pearson, 2007  
+                </p>
+                <p>
+                [3] BOURKE, Paul. Histogram Matching. Acesso em http://paulbourke.net/miscellaneous/equalisation/. Dia 10 de setembro de 2019.
+                </p>
+                <p>
+                [4] Computer Vision Group, TEM Dataset. Acesso em: https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html4
+                </p>
+                <p>
+                [5] Plotly para Javascript: https://plot.ly/javascript/
+                </p>
+                <p>
+                [6] Pillow para Python: https://pillow.readthedocs.io/en/stable/
+                </p>
+                <p>
+                [7] Numpy, Matplolib, Scipy e Os
+                </p> 
+                <p>
+                    As imagens do banco de dados em tiff, png e após o processamento de histogram matching, estão localizadas em: 
+                    <a href = "https://gvmail-my.sharepoint.com/:f:/g/personal/b37214_fgv_edu_br/EqLPW8YI3exEkT0orBW2ph0B_w82IpHNXtkVkxZQlNgIpA?e=wyoSjz"> Este link </a> 
+                  <p>
+          </div>
+
+          <div class="w3-container w3-theme-l1">
+            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+          </div>
+        </footer>
+
+        <!-- END MAIN -->
+      </div>
+
+      <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
+
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
+
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+          if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+          } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+          }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+          mySidebar.style.display = "none";
+          overlayBg.style.display = "none";
+        }
+      </script>
+
+  <script type = "text/javascript" src = "../Files1/image_processing.js"></script>
+  <script type = "text/javascript" src = "../Files1/load_image.js"></script>
+
+</body>
+
+</html>
