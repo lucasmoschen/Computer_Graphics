@@ -281,8 +281,8 @@ try{
 	//imageCell2.src = "https://i.ibb.co/MkJS4GP/118.png"
 	
 	imageCell2.onload = function() {
-		ctxBcell2.drawImage(imageCell2,0,0,500,500);
-		imageData = ctxBcell2.getImageData(0,0,500,500);
+		ctxBcell2.drawImage(imageCell2,0,0,400,400);
+		imageData = ctxBcell2.getImageData(0,0,400,400);
 		hist = histogram(imageData);
 		return hist;
 	};
