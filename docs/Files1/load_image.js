@@ -13,8 +13,8 @@ imageBW.crossOrigin = '';
 imageBW2.crossOrigin = '';
 
 imageBW.onload = function() {
-	ctxBW.drawImage(imageBW,100,0,500,300);
-	imgBW_data = ctxBW.getImageData(100,0,500,300);
+	ctxBW.drawImage(imageBW,0,0,500,300);
+	imgBW_data = ctxBW.getImageData(0,0,500,300);
 	var title = "Histograma das folhas";
 	meas = [550,300,100,10,50,50];  //it serves as a parameter to create a histogram 
 	processingImage(imgBW_data, "bw_histogram", title,meas);  //here I do the processingImage. It does the histogram's count
