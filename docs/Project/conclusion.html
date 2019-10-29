@@ -50,27 +50,31 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
   <div class="w3-main" style="margin-left:250px; margin-right: -300px;">
 
     <div class="w3-row">
-        <div class="w3-twothird w3-container w3-padding-64">
-          <h3 class="w3-text-teal">Conclusão</h3>
-          <p align = "justify" style = "margin-right: -50px;">
-            Histogram Matching e Histogram Equalization são ótimas ferramenta para resolver problemas com o banco de dados, principalmente quando este é obtido por 
-            máquinas que podem apresentar falhas durante a obtenção de imagens. Desta forma, qualquer processamento de imagens com o objetivo de comparar as imagens, 
-            como, por exemplo comparar as estruturas das células do corpo, merece passar por essa análise. Fazer a comparação com a distribuição beta não foi algo que 
-            apresentou uma novidade para o campo de estudo, porém, permitiu fazer análises bem interessantes sobre o que se é desejado. Nesse caso, obter histogram 
-            matching de um banco de dados fica reduzido a escolher uma distribuição de interesse. 
-            Para o algoritmo de Thresholding, os resultados não me pareceram promissores por causa do ruído que as imagens, no geral, apresentavam. Mas foi de grande 
-            interesse a aplicação desse método. 
-            Esse estudo baseou-se em algoritmos já existentes na literatura, 
-            e, portanto, não apresentou grande diferencial quanto aos resultado, como mostro ao longo do escopo desse texto. A classe em <i> Python </i> ficará disponível 
-            para uso,  caso haja interesse em reproduzir o algoritmo citado, bem como o código em javascript para o mesmo. 
-            Acredito que o objetivo da disciplina de Introdução à Computação Gráfica tenha sido realizado. 
+      
+    <div class="w3-row w3-padding-64">
+      <div class="w3-twothird w3-container">
+        <h3 class="w3-text-teal">Metodologia</h3>
+        <p align = "justify" style = "margin-right: -50px;"> 
+            Este trabalho foi desenvolvido através de estudos teóricos na bibliográfica e simulações computacionais. As referências bibliogáficas estão todas 
+            citadas ao final do texto e vieram como agregador de conhecimento, quanto para referência de modelos já existentes. As simulações computacionais 
+            incluíram o banco de dados utilizado, que mostro abaixo, e a apresentação de resultados através de HTML. Para realizá-las, as linguagens de 
+            programação utilizadas foram Javascript, linguagem natural da Web, e Python, para programação em escala. Nesse site, todas as simulações de histograma 
+            são feitas em Javascript. Os resultados de histogramas são apresentados utilizando a bilbioteca do javascript Plotly.js, que é citada nas 
+            referências. Observo que o Javascript apresenta problemas de leitura. Ele processa algumas funções não na ordem especificada pelo código, e às vezes 
+            faz confusão com alguns histogramas, necessitando a atualização do site algumas vezes. Para isso, a necessidade de Python.
+          </p>	
+          <h4 class="w3-text-teal"> Banco de Dados utilizado </h4>
+          <p align = "justify" style = "margin-right: -50px;"> 
+            Foi utilizado um banco de imagens de domínio público, a fim de contribuir para a pesquisa na área de matemática e computação gráfica. Para 
+            encontrá-lo basta clicar no seguinte link: <a href="https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html">  Clique aqui </a>. 
+            Esse banco de imagens contém 122 imagens em tons de cinza com resolução \(1024 \times 1024\) e a intesidade de bits é 8. O formato das imagens 
+            é TIFF. Entretanto, esse formato não é lido nos principais navegadores de internet. Com essa problerma em vista, o primeiro processo que teve 
+            que ser feito foi o de converter as imagens do banco de dados para o formato PNG. Esse formato foi escolhido por sua flexibilidade 
+            quanto à escolha do browser e por ser de código aberto. Observei também, juntamente a professora Asla de Sá, que não ocorreria nenhum tipo de 
+            truncamento de imagem na conversão, visto que a intensidade de bits foi mantida. 
           </p>
-          <p align = "justify" style = "margin-right: -50px;">
-            Para futuros trabalhos, eu gostaria de resolver o problema de otimização duplo que se construiu quando pensei na obtenção dos parâmetros da distribuição 
-            beta. Acredito que escolhendo uma distribuição que de alguma forma minimize o erro do histogram matching fará com que a distribuição tenha cara de uma "média"
-            das distribuições de um banco de dados qualquer e, a partir daí, poder-se-ia ter uma relação bem interessante de equivalência entre as imagens. 
-          </p>
-       </div>
+      </div>
+    </div>
 
         <!-- Pagination -->
         <footer id="myFooter" style = "margin-left: -50px;">
