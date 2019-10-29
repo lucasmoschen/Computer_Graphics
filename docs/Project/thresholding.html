@@ -47,7 +47,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
               entre esses grupos é grande, o que deixa menos robusto o método. Outro problem que observei ao utilizar esse método é o ruído. Como ele não considera 
               a posição espacial dos pixels, se houver ruído na imagem, os agrupamentos ficam distorcidos. 
             </p>
-            <p align = "jutify" style = "margin-right: -50px;">
+            <p align = "justify" style = "margin-right: -50px;">
             A definição matemática é bem simples no caso binário e é facilmente extendida para o caso não binário. Considere uma partição de pontos da reta real, entre
             \(0\) e \(255\) dada por \(P = \{p_1,p_2,...,p_n\}\). Para cada pixel com colocação \(I_{i,j}\), tomo \(I'_{i,j} = int(255/n)\), se \(p_{k} \leq I_{i,j} \leq p_{k+1}\). 
             Para realizar esse método, inicio com $n$ pontos bem distribuídos. Considero \(p_0 = 0\) e \(p_{n+1} = 255\). Assim, calculo a média entre o ponto anterior e o sucessor 
