@@ -12,14 +12,14 @@ font-family: "Roboto", sans-serif;
 .w3-sidebar {
 z-index: 3;
 width: 250px;
-top: 0px;
+top: 43px;
 bottom: 0;
 height: inherit;
 }
 
 .top-bar {
 overflow: hidden;
-background-color: #333;
+background-color: "red";
 position: fixed;
 /* Set the navbar to fixed position */
 top: 0;
