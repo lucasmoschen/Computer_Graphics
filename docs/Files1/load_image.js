@@ -288,7 +288,6 @@ try{
 	};
 	
 	transform = function(points){
-		console.log(points);
 		let matching = new Array(256);
 		for(let i = 0; i < 256; i++){
 			for(let j = 1; j < points.length;j++){
