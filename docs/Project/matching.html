@@ -175,7 +175,46 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
             O que acredito ser interessante é que variando apenas dois parâmetros, posso obter as mais variadas imagens extremamente distintas, como pudemos 
             observar. 
           </p>
-        </div>  
+        </div> 
+        
+        <div class="w3-twothird w3-container w3-padding-64">
+            <h3 class="w3-text-real"> Algoritmo de Histogram Matching </h3>
+            <p align="justify" style = "margin-left: -50px;">
+                Este algoritmo tem o objetivo de modificar uma imagem de forma a seu histograma corresponder 
+                a um outro histograma, em geral da mesma base dados. Ele é de simples implementação. Nessa 
+                representação, permito o usuário escolher dos parâmtetros, \(\alpha > 0\) e \(\beta > 0\) da distribuição 
+                beta, para podermos ter uma referência. Não preciso montar uma ilustração para o algoritmo de Equalização
+                de Histogramas, pois ele é um subitem do Histogram Matching da distribuição uniforme, que nesse caso, é a 
+                distribuição \(Beta(1,1)\).
+            </p>
+            <section class = "container">
+                <div class = "left-half" id = "image" style = "width: 600px; height: 500px; 
+                              margin-bottom: 20px">
+                    <canvas id = "Bcell" width="750" height= "500"></canvas>
+                </div>
+                <div class = "right-half" id = "processing" style = "width: 500px; height: 500px; 
+                              margin-bottom: 20px;margin-left:50px">
+                    <script type = "text/javascript" src="../Files2/animationHM.js"></script>
+                </div>
+            </section>
+            <div style = "margin-top: 100px; margin-left:100px; 
+                          margin-right: 100px; margin-bottom: 20px;" align = "center">
+                <button id = "continue" type="button" onclick="next()">Continue</button>
+                <button id = "return" type="button" onclick="previous()">Retorne  </button>
+                <button id = "initial" type = "button" onclick = "initial()">Início</button>
+            </div>
+            <div align = "center">
+                <form>
+                    Alfa: 
+                    <input type = "number" id = "alpha" name = "alpha" value = "1" step = 0.01>
+                    <br><br>
+                    Beta:
+                    <input type = "number" id = "beta" name = "beta" value = "1" step = 0.01>
+                    <br><br>
+                    <button id = "submit" type = "button" onclick="doit()"> Submeter </button>
+                </form>
+            </div>
+        </div>
       </div>
 
         <!-- Pagination -->
@@ -219,34 +258,9 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
         <!-- END MAIN -->
       </div>
 
-      <script>
-        // Get the Sidebar
-        var mySidebar = document.getElementById("mySidebar");
-
-        // Get the DIV with overlay effect
-        var overlayBg = document.getElementById("myOverlay");
-
-        // Toggle between showing and hiding the sidebar, and add overlay effect
-        function w3_open() {
-          if (mySidebar.style.display === 'block') {
-            mySidebar.style.display = 'none';
-            overlayBg.style.display = "none";
-          } else {
-            mySidebar.style.display = 'block';
-            overlayBg.style.display = "block";
-          }
-        }
-
-        // Close the sidebar with the close button
-        function w3_close() {
-          mySidebar.style.display = "none";
-          overlayBg.style.display = "none";
-        }
-      </script>
-
   <script type = "text/javascript" src = "../Files1/image_processing.js"></script>
   <script type = "text/javascript" src = "../Files1/load_image.js"></script>
-
+  <script type="text/javascript" src="../Files2/functions.js"></script>
 </body>
 
 </html>
