@@ -206,7 +206,7 @@ try{
 	}
 
 	//Adding image for demonstration
-	
+
 	var canvasBcell = document.getElementById("Bcell");
 	var ctxBcell = canvasBcell.getContext("2d");
 
@@ -214,7 +214,7 @@ try{
 
 	imageCell.crossOrigin = '';
 
-	imageCell.src = "118.png"
+	imageCell.src = "../Files2/118.png"
 
 	//imageCell.src = "https://i.ibb.co/MkJS4GP/118.png"
 
