@@ -19,10 +19,11 @@ height: inherit;
 
 .top-bar {
 overflow: hidden;
-background-color: #333;
+background-color:#FF5733;
 position: fixed;
 /* Set the navbar to fixed position */
 top: 0;
+left: 0;
 /* Position the navbar at the top of the page */
 width: 100%;
 /* Full width */
