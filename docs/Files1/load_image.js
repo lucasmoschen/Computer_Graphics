@@ -219,8 +219,8 @@ try{
 	//imageCell.src = "https://i.ibb.co/MkJS4GP/118.png"
 
 	imageCell.onload = function() {
-		ctxBcell.drawImage(imageCell,100,0,500,500);
-		imageData = ctxBcell.getImageData(100,0,500,500);
+		ctxBcell.drawImage(imageCell,0,0,500,500);
+		imageData = ctxBcell.getImageData(0,0,500,500);
 		hist = histogramMade(imageData);
 		return hist;
 	};
