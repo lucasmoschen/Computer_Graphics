@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="por">
+<title>Introduction Project 1</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
+<script src="https://unpkg.com/simple-statistics@7.0.2/dist/simple-statistics.min.js"></script>
+<meta charset="utf-8"></meta>
+<style type="text/css" src="style.css"></style>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="top-bar">
+    <div class="w3-bar w3-theme tor-bar w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
+        href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+      <a href="../index.html" class="w3-bar-item w3-button w3-theme-l1">Sobre</a>
+      <a href="intro.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Intro e Metodologia</a>
+      <a href="histogram.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogramas</a>
+      <a href="matching.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogram Matching</a>
+      <a href="thresholding.html"
+        class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Thresholding</a>
+      <a href="conclusion.html"
+        class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Conclusão</a>
+
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+    <h4 class="w3-bar-item"><b>Links Importantes</b></h4>
+    <a class="w3-bar-item w3-button w3-hover-black"
+      href="https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html">Banco de Imagens</a>
+    <a class="w3-bar-item w3-button w3-hover-black" href="Exercises/exercises.html">Exercícios</a>
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+  <div class="w3-main" style="margin-left:250px; margin-right: -300px;">
+
+    <div class="w3-row">
+        <div class="w3-twothird w3-container w3-padding-64">
+          <h3 class="w3-text-teal">Introdução</h3>
+          <p align = "justify" style = "margin-right: -50px;">
+              O sistema imunológico humano compreende diversos tipos de células que exercem as mais variadas funções de defesa 
+              do organismo. Dentre elas existem os macrófagos, os neutrófilos, os monocitos, os linfócitos T, os linfócitos B, 
+              entre outras. Neste trabalho, focou-se nas nas células B, devido à sua importância por fabricar 
+              anticorpos, proteínas que atuam como defensores do organismo ao interagir com os antígenos dos invasores. Essas 
+              células passam por diferenciação, assim, a interação entre o antígeno estimulador do linfócito e do anticorpo produzido 
+              é maior. 
+            </p>
+            <p align = "justify" style = "margin-right: -50px;">Porém, como funciona essa diferenciação? O corpo humano produz milhões de diferentes tipos de células B que 
+              apresentam um receptor de célula B (conhceido como BCR), responsável por fazer a ligação entre a membrana celular 
+              e a imunoglobulina. Este receptor encontra-se na superfície de cada célula. Após receber um sinal da célula T auxiliar, os leucócitos 
+              B podem se diferenciar em tipos distintos, como os plasmócitos e as células de memória B. Deste modo, a interpretação da estrutura 
+              celular dos mais diferentes tipos e relacioná-la com sua função específica é algo que a computação gráfica pode contribuir 
+              de forma significativa.
+            </p>
+            <p align = "justify" style = "margin-right: -50px;">
+              O primeiro passo é obter as imagens. Todavia, a forma natural de fotografar com a luz não é viável para objetos de estudo 
+              na ordem de tamanho das células ou vírus. Deste modo, precisa-se do uso da ferramenta microscópio eletrônico de transmissão, que 
+              emite um feixe de elétrons na direção de uma amostra fina e a interação entre os elétrons e a amostra é ampliada e focada em 
+              uma tela fluorescente ou detectada por algum sensor. A resolução da imagem é significantemente maior, pois o comprimento de onda
+              é pequeno. Desta maneira, é extremamente eficiente para as células, que desejamos estudar. 
+            </p>
+            <p align = "justify" style = "margin-right: -50px;">  
+              Por fim, antes de qualquer análise minunciosa de algum banco de dados à procura de relações com outras áreas da biologia e matemática, 
+              como bioquímica, machine learning ou modelagem, necessita de uma limpeza de dados. Essa limpeza pode ser feita de várias maneiras, entretanto, 
+              a análise de histograma é considerada bastante relevante, para equalizar imagens e poder compará-las. Os histogramas de coloração 
+              proveem bastante informação sobre a imagem, como contraste e problemas de obtenção de imagem. Assim, o escopo do trabalho fica configurado. 
+            </p>
+        </div>
+
+    <div class="w3-row w3-padding-64">
+      <div class="w3-twothird w3-container">
+        <h3 class="w3-text-teal">Metodologia</h3>
+        <p align = "justify" style = "margin-right: -50px;"> 
+            Este trabalho foi desenvolvido através de estudos teóricos na bibliográfica e simulações computacionais. As referências bibliogáficas estão todas 
+            citadas ao final do texto e vieram como agregador de conhecimento, quanto para referência de modelos já existentes. As simulações computacionais 
+            incluíram o banco de dados utilizado, que mostro abaixo, e a apresentação de resultados através de HTML. Para realizá-las, as linguagens de 
+            programação utilizadas foram Javascript, linguagem natural da Web, e Python, para programação em escala. Nesse site, todas as simulações de histograma 
+            são feitas em Javascript. Os resultados de histogramas são apresentados utilizando a bilbioteca do javascript Plotly.js, que é citada nas 
+            referências. Observo que o Javascript apresenta problemas de leitura. Ele processa algumas funções não na ordem especificada pelo código, e às vezes 
+            faz confusão com alguns histogramas, necessitando a atualização do site algumas vezes. Para isso, a necessidade de Python.
+          </p>	
+          <h4 class="w3-text-teal"> Banco de Dados utilizado </h4>
+          <p align = "justify" style = "margin-right: -50px;"> 
+            Foi utilizado um banco de imagens de domínio público, a fim de contribuir para a pesquisa na área de matemática e computação gráfica. Para 
+            encontrá-lo basta clicar no seguinte link: <a href="https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html">  Clique aqui </a>. 
+            Esse banco de imagens contém 122 imagens em tons de cinza com resolução \(1024 \times 1024\) e a intesidade de bits é 8. O formato das imagens 
+            é TIFF. Entretanto, esse formato não é lido nos principais navegadores de internet. Com essa problerma em vista, o primeiro processo que teve 
+            que ser feito foi o de converter as imagens do banco de dados para o formato PNG. Esse formato foi escolhido por sua flexibilidade 
+            quanto à escolha do browser e por ser de código aberto. Observei também, juntamente a professora Asla de Sá, que não ocorreria nenhum tipo de 
+            truncamento de imagem na conversão, visto que a intensidade de bits foi mantida. 
+          </p>
+      </div>
+
+
+      </div>
+
+        <!-- Pagination -->
+        <footer id="myFooter" style = "margin-left: -50px;">
+          <div class="w3-container w3-theme-l2 w3-padding-32">
+            <h4>Referências Bibliográficas</h4>
+                <p align = "justify" style = "margin-right: 400px;"> 
+                [1] Volker Morath, Margret Keuper, Marta Rodriguez-Franco, Sumit Deswal, Gina Fiala, Britta Blumenthal, Daniel Kaschek, Jens Timmer, Gunther Neuhaus, 
+                Olaf Ronneberger, Wolfgang Werner A. Schamel: Semi-automatic procedure for the determination of the cell surface area used in systems immunology, 
+                Frontiers in Biosciences, 2012
+                </p>
+                <p>
+                [2] GONZALES, Rafael C.; WOODS, Richard E.. Digital Image Processing. 2. ed. New Jersey: Pearson, 2007  
+                </p>
+                <p>
+                [3] BOURKE, Paul. Histogram Matching. Acesso em http://paulbourke.net/miscellaneous/equalisation/. Dia 10 de setembro de 2019.
+                </p>
+                <p>
+                [4] Computer Vision Group, TEM Dataset. Acesso em: https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html4
+                </p>
+                <p>
+                [5] Plotly para Javascript: https://plot.ly/javascript/
+                </p>
+                <p>
+                [6] Pillow para Python: https://pillow.readthedocs.io/en/stable/
+                </p>
+                <p>
+                [7] Numpy, Matplolib, Scipy e Os
+                </p> 
+                <p>
+                    As imagens do banco de dados em tiff, png e após o processamento de histogram matching, estão localizadas em: 
+                    <a href = "https://gvmail-my.sharepoint.com/:f:/g/personal/b37214_fgv_edu_br/EqLPW8YI3exEkT0orBW2ph0B_w82IpHNXtkVkxZQlNgIpA?e=wyoSjz"> Este link </a> 
+                  <p>
+          </div>
+
+          <div class="w3-container w3-theme-l1">
+            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+          </div>
+        </footer>
+
+        <!-- END MAIN -->
+      </div>
+
+      <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
+
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
+
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+          if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+          } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+          }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+          mySidebar.style.display = "none";
+          overlayBg.style.display = "none";
+        }
+      </script>
+
+</body>
+
+</html>

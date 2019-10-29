@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="por">
+<title>Histogram Matching</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+</script>
+<script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
+<script src="https://unpkg.com/simple-statistics@7.0.2/dist/simple-statistics.min.js"></script>
+<meta charset="utf-8"></meta>
+<style type="text/css" src="style.css"></style>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="top-bar">
+    <div class="w3-bar w3-theme tor-bar w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
+        href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+      <a href="../index.html" class="w3-bar-item w3-button w3-theme-l1">Sobre</a>
+      <a href="intro.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Intro e Metodologia</a>
+      <a href="histogram.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogramas</a>
+      <a href="matching.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogram Matching</a>
+      <a href="thresholding.html"
+        class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Thresholding</a>
+      <a href="conclusion.html"
+        class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Conclusão</a>
+
+    </div>
+  </div>
+
+  <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+  <div class="w3-main" style="margin-left:100px; margin-right: -350px;">
+
+    <div class="w3-row">
+        <div class="w3-twothird w3-container w3-padding-64">
+          <h3 class="w3-text-teal">Segmentação de Imagem com Thresholding</h3>
+          <p align = "justify" style = "margin-right: -50px;"> 
+              O objetivo de utilizar o método de Thresholding é sua fácil implementação e que ele é interamente baseado no formato de histograma. Originalmente, 
+              ele foi pensado para distribuições bimodais, visto que ele separava o background do objeto em questão. Porém, ele parte do pressuposto de que o contraste 
+              entre esses grupos é grande, o que deixa menos robusto o método. Outro problem que observei ao utilizar esse método é o ruído. Como ele não considera 
+              a posição espacial dos pixels, se houver ruído na imagem, os agrupamentos ficam distorcidos. 
+            </p>
+            <p align = "jutify" style = "margin-right: -50px;">
+            A definição matemática é bem simples no caso binário e é facilmente extendida para o caso não binário. Considere uma partição de pontos da reta real, entre
+            \(0\) e \(255\) dada por \(P = \{p_1,p_2,...,p_n\}\). Para cada pixel com colocação \(I_{i,j}\), tomo \(I'_{i,j} = int(255/n)\), se \(p_{k} \leq I_{i,j} \leq p_{k+1}\). 
+            Para realizar esse método, inicio com $n$ pontos bem distribuídos. Considero \(p_0 = 0\) e \(p_{n+1} = 255\). Assim, calculo a média entre o ponto anterior e o sucessor 
+            do histograma. A partir desse cálculo, obtenho uma nova média e contínuo nesse processo, até a convergência. Com os pontos na convergência, pinto novamente a imagem.  
+            </p>
+            <p align = "justify" style = "margin-right: -50px;"> 
+            Mas qual o valor de \(n\)? Nesse caso, tomei \(n = 3\), para dividir a região em quatro partes, visto que observando o histograma referência, esse é o comportamento 
+            esperado. 
+            Observação: Um problema que observei foi o destacado na segunda imagem abaixo. 
+            </p>
+            <figure>
+              <canvas id="thresholding" width="1200" height="1200"></canvas>
+              <figcaption>
+                Você pode observar o thresholding para cada imagem. São escolhidos três pontos. Observe que no caso da segunda imagem, apenas dois acabaram sendo utilizados. 
+              </figcaption>
+            </figure>       
+       </div>
+       <div class="w3-twothird w3-container w3-padding-64">
+          <h3 class="w3-text-teal"> Algoritmo de Thresholding </h3>
+          <p align = "justify" style="marigin-right:-50px">
+              O algoritmo de Thresholding é um método de Segmentação de Imagem de fácil implementação e baseado no 
+              formato do histograma. Originalmente, ele foi pensado para distribuições bimodais, desta forma ele é muito 
+              útil para esses casos, visto que ele separava o background do objeto em questão. Ele parte do pressuposto de 
+              que o contraste entre esses grupos é grande, o que deixa menos robusto o método, para casos mais gerais. 
+              Outro problema que observei ao utilizar esse método é o ruído. Como ele não considera a posição espacial dos 
+              pixels, se houver ruído na imagem, os agrupamentos ficam distorcidos. 
+          </p>
+          <p align = "justify" style="marigin-right:-50px">
+              Esse algoritmo tem inicialmente uma marcação de \(n\) pontos, que delimitam \(n+1\) regiões. Assim, a suposição 
+              inicial é de que existem \(n+1\) regiões constrastantes. Após a marcação desses pontos, para cada ponto, faz-se a média 
+              ponderada entre o ponto anterior e o ponto posterior. Essa média é em relação ao histograma. Marca-se esse ponto, então, 
+              no valor da média. Faz-se isso para cada ponto (sempre em relação a posição antiga nessa implementação). Assim, faz-se
+              um método iterativo, até que o ponto da média se desloque a menos de um valor epsilon.
+          </p>
+        </div>
+        <section class = "container">
+                <div id = "image2" style = "width: 500px; height: 500px; 
+                              margin-bottom: 20px; float: left">
+                    <canvas id = "Bcell2" width="500" height= "500"></canvas>
+                </div>
+                <div id = "processing2" style = "width: 500px; height: 500px; 
+                              margin-bottom: 20px;margin-left:0px; float: right;">
+                <script type = "text/javascript" src = "../Files2/animationTH.js"></script>
+                </div>
+            </section>
+  
+    </div>
+
+        <!-- Pagination -->
+        <footer id="myFooter">
+          <div class="w3-container w3-theme-l2 w3-padding-32" style="margin-left: -100px;">
+            <h4>Referências Bibliográficas</h4>
+                <p align = "justify" style = "margin-right: 400px;"> 
+                [1] Volker Morath, Margret Keuper, Marta Rodriguez-Franco, Sumit Deswal, Gina Fiala, Britta Blumenthal, Daniel Kaschek, Jens Timmer, Gunther Neuhaus, 
+                Olaf Ronneberger, Wolfgang Werner A. Schamel: Semi-automatic procedure for the determination of the cell surface area used in systems immunology, 
+                Frontiers in Biosciences, 2012
+                </p>
+                <p>
+                [2] GONZALES, Rafael C.; WOODS, Richard E.. Digital Image Processing. 2. ed. New Jersey: Pearson, 2007  
+                </p>
+                <p>
+                [3] BOURKE, Paul. Histogram Matching. Acesso em http://paulbourke.net/miscellaneous/equalisation/. Dia 10 de setembro de 2019.
+                </p>
+                <p>
+                [4] Computer Vision Group, TEM Dataset. Acesso em: https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html4
+                </p>
+                <p>
+                [5] Plotly para Javascript: https://plot.ly/javascript/
+                </p>
+                <p>
+                [6] Pillow para Python: https://pillow.readthedocs.io/en/stable/
+                </p>
+                <p>
+                [7] Numpy, Matplolib, Scipy e Os
+                </p> 
+                <p>
+                    As imagens do banco de dados em tiff, png e após o processamento de histogram matching, estão localizadas em: 
+                    <a href = "https://gvmail-my.sharepoint.com/:f:/g/personal/b37214_fgv_edu_br/EqLPW8YI3exEkT0orBW2ph0B_w82IpHNXtkVkxZQlNgIpA?e=wyoSjz"> Este link </a> 
+                  <p>
+          </div>
+
+          <div class="w3-container w3-theme-l1" style="margin-left: -100px;">
+            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+          </div>
+        </footer>
+
+        <!-- END MAIN -->
+      </div>
+
+  <script type = "text/javascript" src = "../Files1/load_image.js"></script>
+  <script type="text/javascript" src="../Files2/functions2.js"></script>
+</body>
+
+</html>
