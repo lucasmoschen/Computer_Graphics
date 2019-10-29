@@ -292,7 +292,7 @@ try{
 		for(let i = 0; i < 256; i++){
 			for(let j = 1; j < points.length;j++){
 				if(i < points[j] && i >= points[j-1]){
-					matching[i] = (j-1)*255/(points.length - 1)
+					matching[i] = (j-1)*255/(points.length - 2)
 				}
 			}
 		}
