@@ -21,8 +21,8 @@ imageBW.onload = function() {
 };
 
 imageBW2.onload = function() {
-	ctxBW2.drawImage(imageBW2,100,0,500,300);
-	imgBW_data2 = ctxBW2.getImageData(100,0,500,300);
+	ctxBW2.drawImage(imageBW2,0,0,500,300);
+	imgBW_data2 = ctxBW2.getImageData(0,0,500,300);
 	var title = "Histograma das montanhas";
 	meas = [550,300,100,10,50,50];
 	processingImage(imgBW_data2, "bw_histogram2", title,meas);
@@ -46,8 +46,8 @@ second_cell.crossOrigin = '';
 //call the first B cell image 
 first_cell.onload = function (){
 	//draw the image
-	ctx.drawImage(first_cell,100,0,500,500);
-	img1_data = ctx.getImageData(100,0,500,500);
+	ctx.drawImage(first_cell,0,0,500,500);
+	img1_data = ctx.getImageData(0,0,500,500);
 	//processing the information to generate the data
 	var title = "Histogram of grey colors - First Cell B";
 	var measures = [500,300,50,10,50,50];
@@ -55,8 +55,8 @@ first_cell.onload = function (){
 };
 
 second_cell.onload = function() {
-	ctx.drawImage(second_cell, 650, 0, 500, 500);
-	img2_data = ctx.getImageData(650,0,500,500);
+	ctx.drawImage(second_cell, 550, 0, 500, 500);
+	img2_data = ctx.getImageData(550,0,500,500);
 	var title = "Histogram of grey colors - Second Cell B";
 	var measures = [500,300,50,10,50,50];
 	processingImage(img2_data,"cell2",title,measures);
