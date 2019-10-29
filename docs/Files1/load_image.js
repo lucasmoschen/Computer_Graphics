@@ -226,7 +226,7 @@ try{
 	};
 
 	histogramMatch = function(matching){
-		imageData = ctxBcell.getImageData(100,0,500,500);
+		imageData = ctxBcell.getImageData(0,0,500,500);
 		for(let i = 0; i < imageData.data.length; i+=4){
 			imageData.data[i] = matching[imageData.data[i]];
 			imageData.data[i+1] = matching[imageData.data[i+1]];
