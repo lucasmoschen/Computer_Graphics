@@ -1,6 +1,6 @@
 //functions
 
-histogram = function(data){
+histogramMade = function(data){
   color = new Array(256).fill(0);
   for(let i = 0; i < data.data.length; i +=4){
       color[data.data[i]] += 1;

@@ -214,14 +214,14 @@ try{
 
 	imageCell.crossOrigin = '';
 
-	imageCell.src = "../Files2/118.png"
+	imageCell.src = "../Files2/118.png";
 
 	//imageCell.src = "https://i.ibb.co/MkJS4GP/118.png"
 
 	imageCell.onload = function() {
 		ctxBcell.drawImage(imageCell,100,0,500,500);
 		imageData = ctxBcell.getImageData(100,0,500,500);
-		hist = histogram(imageData);
+		hist = histogramMade(imageData);
 		return hist;
 	};
 
