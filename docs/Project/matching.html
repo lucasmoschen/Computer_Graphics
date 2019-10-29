@@ -72,8 +72,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
         <div class="w3-twothird w3-container w3-padding-64">
           <h3 class="w3-text-teal">Histogram Matching</h3>
 
-          <h3 align = "center"> Histogram Matching </h3>
-          <p align = "justify" style = "margin-left: -50px;"> 
+          <p align = "justify" style = "margin-right: -50px;"> 
             Também conhecido como Histogram Specification. Quando utilizamos o método anterior para equalizar o histograma, vimos que isso pode ser 
             automatizado, produzindo uma imagem com histograma uniforme (Basta fazer o cálculo de \(p_s(s)\)). Entretanto, às vezes é interessante 
             especificar a forma do histograma que desejamos que a imagem processada tenha. Aplica-se para fazer o<i> match </i>entre imagens de dois 
@@ -98,7 +97,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
             </center> 
           </figure>
 
-          <p align = "justify" style = "margin-left: -50px;"> 
+          <p align = "justify" style = "margin-right: -50px;"> 
             Todavia, obter essas expressões analitícamente nem sempre é possível. Em contrapartida, podemos utilizar no caso discreto com algumas aproximações. 
             Essas aproximações funcionam como uma comparação de elemento a elemento para cada tom diferente, buscando uma aproximação para o tom mais próximo. 
             Façamos um primeiro exemplo com a imagem crítica descrita acima. Usaremos, como referência a distribuição do histograma da primeira imagem, pois ela 
@@ -125,11 +124,11 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
           </div>
           </canvas id = "nothing" width = "100" height = "15"></canvas>
 
-          <p align = "justify" style = "margin-left: -50px;"> 
+          <p align = "justify" style = "margin-right: -50px;"> 
           A diferença é notável. Porém, algo incomoda o modelo para mim: A área de preto, que agora se tornou cinza. Esse dado é dado perdido. 
           <b> Atualize até 10 vezes, caso a tela fique preta. </b>
           </p>
-          <p align = "justify" style = "margin-left: -50px;">
+          <p align = "justify" style = "margin-right: -50px;">
             Para a equalização de histograma e para o histogram matching, desenvolvi na linguagem de programação Python um arquivo com uma classe que implementa
             o que necessito para ter essas funções. Chamei essa classe de HistogramEqualization. A partir dela, é mais fácil fazer a equalização de histogramas 
             de imagens de forma estruturada. 
@@ -137,7 +136,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
           
           <h4 class="w3-text-teal"> Testando com Distribuição Beta</h3> 
 
-          <p align = "justify" style = "margin-left: -50px;">
+          <p align = "justify" style = "margin-right: -50px;">
             Às vezes, não queremos utilizar uma imagem do nosso domínio de imagens para fazer o matching de histograma, pois as imagens podem todas ter uma densidade 
             conjunta não necessariamente monótona estritamente crescente, para assim, poder utilizar o método acima citado. Neste caso, a distribuição beta tem duas 
             propriedades desejadas para o estudo em questão: flexibilidade, devido à escolha de dois parâmetros, que permite observar diferentes curvas; e ela tem o 
@@ -145,7 +144,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
             linearmente para o intervalo \([0,255]\) e utilizar a distribuição beta. 
           </p>
 
-          <p align = "justify" style = "margin-left: -50px;"> 
+          <p align = "justify" style = "margin-right: -50px;"> 
             O problema passa, então, para um problema matemático, com diferentes interpretações: uma visão do problema pode ser com otimização. 
             Imagine que eu tome cada imagem do meu banco de dados, e calcule a distribuição conjunta. Agora, poderia interpretar o problema como:
             \(\min_{\alpha,\beta} \sum_{i=1}^N \sum_{j = 0}^{255} \min_{k} |G_{\alpha,\beta}(k) - T_i(j)|\), onde \(T:[0,255] \to [0,1]\) é a função acumulada da imagem, 
@@ -153,7 +152,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
             imagens. Note que, a grosso modo essa modelagem permite, dado uma distribuição beta, eu somo os erros de cada tom, minimizando eles sempre. Outra forma 
             de imaginar o problema é enxergar como um problema estatístico, onde queremos estimar \(\alpha, \beta\), parâmetros da minha distribuição. 
           </p>
-          <p align = "justify" style = "margin-left: -50px;">
+          <p align = "justify" style = "margin-right: -50px;">
             Antes de dar um pouco de carga matemática nesse problema, eu pretendo neste trabalho observar qualitativamente a relação dessas distribuições 
             com o resultado das imagens. Neste caso, como vou tratar de problemas um tanto mais específicos e que existem um pouco mais de cálculo por 
             causa da distribuição beta, a linguagem javascript fica mais restrita e não é boa para o caso. Nesse sentido, pretendo a utilizar a linguagem 
@@ -171,7 +170,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
             </figcaption>
           </figure>
 
-          <p align = "justify" style = "margin-left: -50px;">
+          <p align = "justify" style = "margin-right: -50px;">
             Uma outra forma de obter um resultado similar é primeiro fazer a equalização de histograma em uma das imagens e depois utilizá-la como referência.
             O que acredito ser interessante é que variando apenas dois parâmetros, posso obter as mais variadas imagens extremamente distintas, como pudemos 
             observar. 
