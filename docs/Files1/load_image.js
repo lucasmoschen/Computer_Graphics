@@ -159,7 +159,7 @@ try{
 		
 		cellMatchOut = ctxMat1.getImageData(0,0,500,500);
 
-		meas = [600,300,50,10,100,100];
+		meas = [500,300,50,10,100,100];
 		
 		processingImage(cellMatchOut,"histogram_matching1","Reference Histogram", meas);
 	}
@@ -172,7 +172,7 @@ try{
 		cellMatchOut = ctxMat2.getImageData(0,0,500,500);
 		cellMatchRef = ctxMat3.getImageData(0,0,500,500);
 		
-		meas2 = [600,300,50,10,100,100];
+		meas2 = [500,300,50,10,100,100];
 		processingImage(cellMatchOut,"histogram_matching2","Current Histogram", meas2);
 		
 		hist_matching(cellMatchOut,cellMatchRef,meas2);  //here we do the matching. 
