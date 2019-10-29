@@ -251,14 +251,14 @@ try{
 	for(let i = 0; i < 2; i++){
 		let cell = new Image();
 		cell.onload = function(){
-			ctxTh.drawImage(cell,0,i*600,600,600);
+			ctxTh.drawImage(cell,0,i*500,500,500);
 		}
 		cell.src = "../Files1/img/"+cellImages[i];
 		
 		let th = new Image();
 		
 		th.onload = function(){
-			ctxTh.drawImage(th,600,i*600,600,600);
+			ctxTh.drawImage(th,500,i*500,500,500);
 		}
 		th.src = "../Files1/img/"+thImages[i];
 	}
@@ -281,9 +281,9 @@ try{
 	//imageCell2.src = "https://i.ibb.co/MkJS4GP/118.png"
 	
 	imageCell2.onload = function() {
-		ctxBcell2.drawImage(imageCell2,0,0,400,400);
-		imageData = ctxBcell2.getImageData(0,0,400,400);
-		hist = histogram(imageData);
+		ctxBcell2.drawImage(imageCell2,0,0,500,500);
+		imageData = ctxBcell2.getImageData(0,0,500,500);
+		hist = histogramMade(imageData);
 		return hist;
 	};
 	
