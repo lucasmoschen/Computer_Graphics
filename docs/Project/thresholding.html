@@ -65,9 +65,10 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
               </figcaption>
             </figure>       
        </div>
+       
        <div class="w3-twothird w3-container w3-padding-64">
           <h3 class="w3-text-teal"> Algoritmo de Thresholding </h3>
-          <p align = "justify" style="marigin-right:-50px">
+          <p align = "justify" style="margin-right:-50px">
               O algoritmo de Thresholding é um método de Segmentação de Imagem de fácil implementação e baseado no 
               formato do histograma. Originalmente, ele foi pensado para distribuições bimodais, desta forma ele é muito 
               útil para esses casos, visto que ele separava o background do objeto em questão. Ele parte do pressuposto de 
@@ -75,14 +76,13 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
               Outro problema que observei ao utilizar esse método é o ruído. Como ele não considera a posição espacial dos 
               pixels, se houver ruído na imagem, os agrupamentos ficam distorcidos. 
           </p>
-          <p align = "justify" style="marigin-right:-50px">
+          <p align = "justify" style="margin-right:-50px">
               Esse algoritmo tem inicialmente uma marcação de \(n\) pontos, que delimitam \(n+1\) regiões. Assim, a suposição 
               inicial é de que existem \(n+1\) regiões constrastantes. Após a marcação desses pontos, para cada ponto, faz-se a média 
               ponderada entre o ponto anterior e o ponto posterior. Essa média é em relação ao histograma. Marca-se esse ponto, então, 
               no valor da média. Faz-se isso para cada ponto (sempre em relação a posição antiga nessa implementação). Assim, faz-se
               um método iterativo, até que o ponto da média se desloque a menos de um valor epsilon.
           </p>
-        </div>
         <section class = "container">
                 <div id = "image2" style = "width: 500px; height: 500px; 
                               margin-bottom: 20px; float: left">
@@ -92,7 +92,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
                               margin-bottom: 20px;margin-left:0px; float: right;">
                 <script type = "text/javascript" src = "../Files2/animationTH.js"></script>
                 </div>
-            </section>
+        </section>
+       </div>
   
     </div>
 
