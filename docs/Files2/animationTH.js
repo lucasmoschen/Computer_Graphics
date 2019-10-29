@@ -99,7 +99,7 @@ function pointsDraw(t){
       rect(400/256*inicial_points[i] + 50,Math.max(50,400 + (6000 - t)*3/20),400/256-1,Math.min(350,(t - 6000)*3/20));
     }
   }
-  if(t <= 10000){
+  if(t <= 12000){
     explain1 = "Depois, marcamos n pontos para dividir o histograma em n + 1 partes." 
     explain2 = "Neste caso, marcam-se três pontos uniformemente."
   }
@@ -108,8 +108,8 @@ function pointsDraw(t){
     explain2 = "Observe o resultado!"
   }
   else{
-    explain1 = "Calcula-se a média ponderada a cada dois pontos." 
-    explain2 = "Posteriormente, iremos marcar os pontos nessas posições."
+    explain1 = "Calcula-se a média ponderada a cada dois pontos. Marcaremos" 
+    explain2 = "os pontos nessas posições e repetimos esse processo até a convergência."
   }
   stroke(255);
   textSize(13);
@@ -131,36 +131,36 @@ function meanCalculation(p1,p2){
 
 function meanDraw(t){
 
-  height = hist[p + Math.floor((t-10000)/30)]*350/max(hist);
+  height = hist[p + Math.floor((t-12000)/30)]*350/max(hist);
   strokeWeight(4);
   stroke(50,200,100);
   fill(50,200,100);
-  rect(400/256*(p + Math.floor((t-10000)/30)) + 50,400 - height,400/256 - 1,height);
+  rect(400/256*(p + Math.floor((t-12000)/30)) + 50,400 - height,400/256 - 1,height);
 
   textSize(10);
   strokeWeight(1);
   stroke(255);
   fill(255);
   if(indice == 0){
-    text("Point 1: " + Math.round(meanCalculation(inicial_points[0],p + Math.floor((t-10000)/30))).toString(),90,20);
+    text("Point 1: " + Math.round(meanCalculation(inicial_points[0],p + Math.floor((t-12000)/30))).toString(),90,20);
     text("Point 2: " + Math.round(meanCalculation(inicial_points[1],inicial_points[3])).toString(),90,40);7
     text("Point 3: " + Math.round(meanCalculation(inicial_points[2],inicial_points[4])).toString(),90,60);
   }
   else if(indice == 1){
     text("Point 1: " + Math.round(meanCalculation(inicial_points[0],inicial_points[2])).toString(),90,20);
-    text("Point 2: " + Math.round(meanCalculation(inicial_points[1],p + Math.floor((t-10000)/30))).toString(),90,40);
+    text("Point 2: " + Math.round(meanCalculation(inicial_points[1],p + Math.floor((t-12000)/30))).toString(),90,40);
     text("Point 3: " + Math.round(meanCalculation(inicial_points[2],inicial_points[4])).toString(),90,60);
   }
   else{
     text("Point 1: " + Math.round(meanCalculation(inicial_points[0],inicial_points[2])).toString(),90,20);
     text("Point 2: " + Math.round(meanCalculation(inicial_points[1],inicial_points[3])).toString(),90,40);
-    text("Point 3: " + Math.round(meanCalculation(inicial_points[2],p + Math.floor((t-10000)/30))).toString(),90,60);
+    text("Point 3: " + Math.round(meanCalculation(inicial_points[2],p + Math.floor((t-12000)/30))).toString(),90,60);
   }
 
-  if(p + Math.floor((t-10000)/30) == inicial_points[indice + 2]){
+  if(p + Math.floor((t-12000)/30) == inicial_points[indice + 2]){
     indice += 1;
     p = inicial_points[indice];
-    t0 = millis() - 10000;
+    t0 = millis() - 12000;
     if (indice == inicial_points.length - 2){
       p = 0;
       indice = 0;
@@ -178,10 +178,6 @@ function meanDraw(t){
 
 }
 
-function transform(){
-
-}
-
 function draw() {
   t = millis() - t0;
   background(0);
@@ -189,7 +185,7 @@ function draw() {
   if (t <= 5000){
     histogramDraw(t);
   }
-  else if (t <= 10000){
+  else if (t <= 12000){
     pointsDraw(t);
   }
   else if(!end){
