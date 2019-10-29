@@ -4,6 +4,20 @@ var inicial_points_old = [...inicial_points];
 var indice = 0;
 var p = 0;
 var end = false;
+
+function restart(){
+
+  var t0 = 0;
+  var inicial_points = [0,1/4*256,1/2*256,3/4*256,255];
+  var inicial_points_old = [...inicial_points];
+  var indice = 0;
+  var p = 0;
+  var end = false;
+  var hist = imageCell2.onload();
+
+  t0 = millis();
+  loop();
+}
  
 //processing.js
 
