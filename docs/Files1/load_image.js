@@ -232,7 +232,7 @@ try{
 			imageData.data[i+1] = matching[imageData.data[i+1]];
 			imageData.data[i+2] = matching[imageData.data[i+2]]; 
 		}
-		ctxBcell.putImageData(imageData,100,0);
+		ctxBcell.putImageData(imageData,0,0);
 	}
 }
 catch(err){
