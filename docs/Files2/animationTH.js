@@ -157,7 +157,7 @@ function meanDraw(t){
     text("Point 3: " + Math.round(meanCalculation(inicial_points[2],p + Math.floor((t-12000)/30))).toString(),90,60);
   }
 
-  if(p + Math.floor((t-12000)/30) == inicial_points[indice + 2]){
+  if(abs(p + Math.floor((t-12000)/30) - inicial_points[indice + 2])<=1){
     indice += 1;
     p = inicial_points[indice];
     t0 = millis() - 12000;
