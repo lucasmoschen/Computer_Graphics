@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="por">
-<title>Computer Graphics Histograms</title>
+<title>Introduction Project 1</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -13,7 +13,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
 <script src="https://unpkg.com/simple-statistics@7.0.2/dist/simple-statistics.min.js"></script>
 <meta charset="utf-8"></meta>
-<link rel="stylesheet" href="Project/style.css">
+<link rel="stylesheet" href="style.css">
 
 <body>
 
@@ -22,15 +22,14 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
     <div class="w3-bar w3-theme tor-bar w3-left-align w3-large">
       <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
         href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-      <a href="index.html" class="w3-bar-item w3-button w3-theme-l1">Sobre</a>
-      <a href="Project/intro.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Intro e Metodologia</a>
-      <a href="Project/histogram.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogramas</a>
-      <a href="Project/matching.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogram Matching</a>
-      <a href="Project/thresholding.html"
+      <a href="../index.html" class="w3-bar-item w3-button w3-theme-l1">Sobre</a>
+      <a href="intro.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Intro e Metodologia</a>
+      <a href="histogram.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogramas</a>
+      <a href="matching.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Histogram Matching</a>
+      <a href="thresholding.html"
         class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Thresholding</a>
-      <a href="Project/conclusion.html"
+      <a href="conclusion.html"
         class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Conclusão</a>
-
 
     </div>
   </div>
@@ -40,8 +39,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
     <h4 class="w3-bar-item"><b>Links Importantes</b></h4>
     <a class="w3-bar-item w3-button w3-hover-black"
       href="https://lmb.informatik.uni-freiburg.de/resources/datasets/tem.en.html">Banco de Imagens</a>
-    <a class="w3-bar-item w3-button w3-hover-black" href="Exercises/SVGhouse.html">Exercício da Casa em SVG</a>
-    <a class="w3-bar-item w3-button w3-hover-black" href="Project/manim.html"> Manim </a>
+    <a class="w3-bar-item w3-button w3-hover-black" href="../Exercises/SVGhouse.html">Exercício da Casa em SVG</a>
+    <a class="w3-bar-item w3-button w3-hover-black" href="manim.html"> Manim </a>
   </nav>
 
   <!-- Overlay effect when opening sidebar on small screens -->
@@ -51,48 +50,43 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
   <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
   <div class="w3-main" style="margin-left:250px; margin-right: -300px;">
 
-    <div class="w3-padding-64 w3-twothird w3-container">
-      <h1 class="w3-text-teal" style = "margin-bottom: -50px;">Introdução à Computação Gráfica</h1>
-    </div>
-
     <div class="w3-row">
-        <div class="w3-twothird w3-container">
-          <h3 class="w3-text-teal">Estrutura do Trabalho</h3>
-          <p align="justify" style = "margin-right: -50px;">
-            Este site pretende apresentar o trabalho para o curso de Introdução à Computação Gráfica, além de dois 
-            exercícios desenvolcidos, encontrados no Menu ao lado. O trabalho está dividido em duas partes. 
-            Uma delas é a parte teórica que explica histogramas e os processos 
-            realizados. Esta parte foi avaliada na primeira parte do curso. A segunda parte avaliada trata-se da 
-            representação meramente ilustrativa desses processos. Alguns exercícios adicionais dessa disciplina também foram
-            adicionados. 
-          </p>
-        </div>
+        <div class="w3-twothird w3-container w3-padding-64">
+            <h3 class="w3-text-teal"> Manim </h3>
+            <p align = "justify" style = "margin-right: -50px;">
+                É uma ferramenta de animação desenvolvida por Grant Sanderson, 
+                do canal 3Blue1Brown. A ferramenta faz com que as provas matemáticas 
+                fiquem mais simples de serem implementadas, na linguagem Python. É uma ótima 
+                ferramenta para obter resultados similares aos obtidos no cana. Ela lida com animações 2D e 3D.  
+            </p>
+            <p align = "justify" style = "margin-right: -50px;">
+                Manim é formado por Python (a linguagem de programação), LaTex (lida com a parte textual), Cairo (programa que faz as figuras), FFmpeg (agrupa os frames para formar o vídeo) e SoX (programa de áudio).
+                É um software livre e é customizável. A documentação ainda não é muito clara, mais muito interessante. 
+            </p>
+            <p align = "justify" style = "margin-right: -50px;">
+                Cada classe representa uma animação. Criamos uma classe do tipo Cena para iniciar os trabalhos. Devemos criar o método contruct, que funciona como o init da animação. 
 
-    <div class="w3-row">
-      <div class="w3-twothird w3-container">
-        <h2 class="w3-text-teal">Correção com Histogramas de Imagens de Células B obtidas por Microscópico Eletrônico de
-             Transmissão</h2>
-        <h3 class="w3-text-teal">Apresentação</h3>
-        <p> Professora Asla Medeiros de Sá</p>
-        <p> Estudante Lucas Machado Moschen</p>
-        <p> Escola de Matemática Aplicada </p>
-        <p> Matéria eletiva em Introdução à Computação Gráfica</p>
-        <p> Rio de Janeiro</p>
-      </div>
+                Para interpretar um código, usa-se "python -m manim name.py NameOfClass -[symbol]. Symbol pode ser p, que sifnifica preview, h, high quality ou l, low quality.  
+            </p>
+            <h3 class="w3-text-teal"> Referência </h3>
+            <p align = "justify" style = "margin-right: -50px;">
+                Para começar a usar a biblioteca para Python Manim, considere os seguintes links:
+                <ol>
+                    <li> <a href = https://github.com/3b1b/manim> GitHub da biblioteca </a>: Tem todos os passos para instalação 
+                        e os primeiros passos com a ferramenta. Atente-se ao requerimentos antes. </li>
+                    <li> <a href = https://github.com/malhotra5/Manim-Tutorial> Tutorial Manin </a>: Apresenta um tutorial feito por Malhotra5. 
+                        Bem intuitivo e mostra alguns códigos para iniciar os trabalhos. </li>
+                    <li> <a href = https://www.youtube.com/playlist?list=PL2B6OzTsMUrwo4hA3BBfS7ZR34K361Z8F> Tutorial Manin em Vídeos </a>: 
+                        Apresenta de forma clara e bem ilustrativa os passos para desenvolver desde o básico até um nível médio de Manim.
+                    </li>
+                    <li> <a href = https://manim.readthedocs.io/en/latest> Documentação Manin </a>: Ainda em desenvolvimento, mas bom para consulta. </li>
 
-      <div class="w3-row w3-padding-64">
-        <div class="w3-twothird w3-container">
-          <h3 class="w3-text-teal">Motivação</h3>
-          <p align="justify" style = "margin-right: -50px;">
-            Desenvolver um projeto para a avaliação do curso de Introdução à Computação Gráfica. O tema foi
-            por seu impacto nas áreas biológicas, visto que, com imagens de células B, podemos estudar sua estrutura e
-            desenvolver métodos mais eficientes para o combate de doenças infecciosas. Todavia, ao conhecer os métodos
-            de obtenção de imagem, percebemos que algumas vezes, existem falhas nesses processos e que antes de uma
-            análise mais precisa, necessitam de correção. Nesse ponto entra a computação gráfica, com a equalização de
-            histogramas e com a segmentação de imagem, a fim de ser separado a área de estudo de interesse da área não
-            interessante, como fundo de imagem ou erros.
-          </p>
+                </ol>
+                Você pode conferir o meu trabalho no meu github e com código no navegador <a href = "../Exercises/first_example.py"> aqui </a>.
+            </p>
+        
         </div>
+    
 
         </div>
 
