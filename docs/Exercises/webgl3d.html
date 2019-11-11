@@ -61,13 +61,31 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-
             em GLSL que são executados na Unidade de Processamento Gráfico (GPU) da máquina. Seus 
             elementos podem ser misturados ao de HTML, como você pode ver. 
             </p>
+          <p align = "justify" style = "margin-right: -50px;">
+            Neste exemplo, podemos ver uma rotação de um cubo. As cores são predefinidas e as matrizes são 
+            contruídas segundo a aula do Paulo Cézar. O slider tem a função de regular a porcentagem da velocidade 
+            da rotação em torno do eixo especificado.
+          </p>
         </div>
     </div>
     <div class = "w3-row w3-container w3-padding-64" align = "center" style = "margin-right: 300px;">
         <canvas id="glCanvas" width="640" height="480"></canvas>
-        <script src = "webgl-editor.js"></script> 
+        
+    </div>
+    <div class="slidecontainer" style ="margin-left: 190px; margin-bottom: 10px;margin-top: -30px;">
+      <input type="range" min="0" max="100" value="50" class="slider" id="myRangeX">
+      <p> Porcentagem Rotação X: <span id="demoX"></span>%</p>
+    </div>
+    <div class="slidecontainer" style ="margin-left: 190px; margin-bottom: 10px;">
+      <input type="range" min="0" max="100" value="50" class="slider" id="myRangeY">
+      <p> Porcentagem Rotação Y: <span id="demoY"></span>%</p>
+    </div>    
+    <div class="slidecontainer" style ="margin-left: 190px; margin-bottom: 50px;">
+      <input type="range" min="0" max="100" value="50" class="slider" id="myRangeZ">
+      <p> Porcentagem Rotação Z: <span id="demoZ"></span>%</p>
     </div>
 
+    <script src = "webgl-editor.js"></script> 
 
     <footer id="myFooter">
         <div class="w3-container w3-theme-l2 w3-padding-32">
